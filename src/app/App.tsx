@@ -8,6 +8,7 @@ import { GenerationWatcher } from './generation';
 import { Layout } from './Layout';
 import { SelectedMonthProvider } from './month';
 import { PrefsProvider } from './prefs';
+import { UpdateWatcher } from './pwa';
 import { TodayProvider } from './today';
 import { ToastProvider } from './toast';
 import { TxSheetProvider } from './tx-sheet';
@@ -19,6 +20,7 @@ export function App({ generated }: { generated: number }) {
         <SelectedMonthProvider>
           <ToastProvider>
             <GenerationWatcher initialCount={generated} />
+            <UpdateWatcher />
             <HashRouter>
               <TxSheetProvider>
                 <Routes>

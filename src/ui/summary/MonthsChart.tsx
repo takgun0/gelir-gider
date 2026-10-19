@@ -46,8 +46,8 @@ export function MonthsChart({ months }: { months: MonthBar[] }) {
   const monthFull = (period: string) => MONTHS[(parsePeriod(period)?.m ?? 1) - 1] ?? '';
 
   return (
-    <section className="flex flex-col gap-4 rounded-2xl bg-surface p-4 lg:gap-5 lg:p-6">
-      <div className="flex items-center justify-between gap-3">
+    <section className="flex min-w-0 flex-col gap-4 rounded-2xl bg-surface p-4 lg:gap-5 lg:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="m-0 text-[15px] leading-5 font-semibold">{copy.summary.lastMonths}</h2>
         <div className="flex gap-3 text-xs leading-4 font-medium text-text-2">
           <span className="flex items-center gap-1.5">

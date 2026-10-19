@@ -17,7 +17,7 @@ export function Switch({ checked, onChange, label, id }: SwitchProps) {
       role="switch"
       aria-checked={checked}
       aria-label={label}
-      className={`flex h-[31px] w-[51px] shrink-0 items-center rounded-full p-0.5 transition-colors ${
+      className={`hit-area flex h-[31px] w-[51px] shrink-0 items-center rounded-full p-0.5 transition-colors ${
         checked ? 'justify-end bg-accent' : 'justify-start bg-switch-off'
       }`}
       onClick={() => onChange(!checked)}
@@ -74,7 +74,7 @@ export function Segmented<T extends string>({ label, value, options, onChange, s
             role="radio"
             aria-checked={selected}
             tabIndex={selected ? 0 : -1}
-            className={`rounded-[10px] ${size === 'sm' ? 'h-[30px] rounded-lg px-3 text-[13px] leading-[18px]' : 'h-[38px]'} ${
+            className={`hit-area rounded-[10px] ${size === 'sm' ? 'h-[30px] rounded-lg px-3 text-[13px] leading-[18px]' : 'h-[38px]'} ${
               selected ? `font-semibold ${o.selectedClass ?? 'bg-surface text-text'}` : 'font-medium text-text-2'
             }`}
             onClick={() => onChange(o.value)}
@@ -104,7 +104,7 @@ export function Chip({ pressed, onClick, children, asButton = false, className =
       id={id}
       type="button"
       aria-pressed={asButton ? undefined : pressed}
-      className={`flex h-9 shrink-0 items-center gap-1 rounded-[18px] px-3.5 text-[13px] whitespace-nowrap ${
+      className={`hit-area flex h-9 shrink-0 items-center gap-1 rounded-[18px] px-3.5 text-[13px] whitespace-nowrap ${
         pressed ? 'bg-text font-semibold text-bg' : 'bg-surface font-medium text-text shadow-[inset_0_0_0_1px_var(--border)]'
       } ${className}`}
       onClick={onClick}

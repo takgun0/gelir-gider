@@ -121,3 +121,19 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* DESIGN §9: dokunma alanları en az 44×44 px. Görsel olarak küçük kontrollerde
+   (çip, anahtar, küçük segment, metin bağlantıları) görünmez bir alan büyütür. */
+@utility hit-area {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+}

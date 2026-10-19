@@ -12,11 +12,11 @@ import { TxRow } from '../tx/TxRow';
 
 function Card({ title, link, children }: { title: string; link?: { to: string; label: string }; children: ReactNode }) {
   return (
-    <section className="flex flex-col gap-1 rounded-2xl bg-surface px-4 pt-4 pb-3 lg:px-6 lg:pt-6">
+    <section className="flex min-w-0 flex-col gap-1 rounded-2xl bg-surface px-4 pt-4 pb-3 lg:px-6 lg:pt-6">
       <div className="mb-1 flex items-center justify-between">
         <h2 className="m-0 text-[15px] leading-5 font-semibold">{title}</h2>
         {link && (
-          <Link to={link.to} className="py-1 text-[13px] leading-[18px] font-semibold text-accent">
+          <Link to={link.to} className="hit-area py-1 text-[13px] leading-[18px] font-semibold text-accent">
             {link.label}
           </Link>
         )}

@@ -83,7 +83,7 @@ export function DailyChart({ period, today, days, average }: DailyChartProps) {
   };
 
   return (
-    <section className="flex flex-col gap-4 rounded-2xl bg-surface p-4 lg:gap-5 lg:p-6">
+    <section className="flex min-w-0 flex-col gap-4 rounded-2xl bg-surface p-4 lg:gap-5 lg:p-6">
       <div className="flex items-baseline justify-between gap-2">
         <h2 className="m-0 text-[15px] leading-5 font-semibold">{copy.summary.daily}</h2>
         <span className="text-right text-xs leading-4 font-medium text-text-2">

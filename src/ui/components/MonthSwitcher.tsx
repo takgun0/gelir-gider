@@ -50,7 +50,7 @@ export function MonthSwitcher({ large = false }: MonthSwitcherProps) {
       {!isCurrent && (
         <button
           type="button"
-          className="ml-1 h-8 shrink-0 rounded-2xl bg-surface px-3 text-[13px] leading-[18px] font-semibold text-accent shadow-[inset_0_0_0_1px_var(--border)]"
+          className="hit-area ml-1 h-8 shrink-0 rounded-2xl bg-surface px-3 text-[13px] leading-[18px] font-semibold text-accent shadow-[inset_0_0_0_1px_var(--border)]"
           onClick={() => setPeriod(current)}
         >
           {copy.month.thisMonth}

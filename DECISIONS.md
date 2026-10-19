@@ -153,3 +153,16 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Yedek tarihi gün adı olmadan "6 Ekim 2026" (`fullDate`).
 - "Tüm verileri sil" ikinci adımında buton "SİL" Türkçe büyük-küçük harf kuralıyla eşleşince etkinleşir (alanda Enter de çalışır); sonrasında seçili ay bu aya döner ve Özet'in ilk açılış durumu gösterilir.
 - "Ana ekrana ekle" yönergesi kurulu değilken: iOS'ta kart metni, diğer platformlarda "Tarayıcı menüsünden Uygulamayı yükle. …" ✱.
+
+## Faz 10
+- Uygulama ikonları ek bağımlılık olmadan `scripts/make-icons.mjs` ile üretilir (SDF şekiller, 4×4 süper örnekleme, Node zlib ile PNG): 192, 512, maskelenebilir 512 (içerik %78) ve 180 px apple-touch-icon; favicon elle yazılmış SVG. Tasarım: vurgu renginde zemin üstünde beyaz cüzdan.
+- Android açılış ekranı rengi `#6B6862` (text-2 tonu): açık temada çok parlak, koyu temada çok karanlık olmayan nötr bir ara ton. `theme_color` manifestte `#F7F7F5`; çalışırken `<meta name="theme-color">` etkin temaya göre güncellenir.
+- vite-plugin-pwa `generateSW`, `registerType: 'prompt'`, `injectRegister: null`; kayıt `virtual:pwa-register/react` ile uygulama kodundan. Uygulama kabuğu, yazı tipleri, ikonlar ve `theme-init.js` precache'te.
+- "Yeni sürüm hazır · Yenile" ve "başka sekmede güncellendi" bildirimleri kendiliğinden kapanmaz (`persistent`); güncellemeyi kaçırmamak için 6 sn kuralının istisnası. Yeni bildirim yine yerlerini alır.
+- Dexie `versionchange`: bağlantı kapatılır, "Uygulama başka bir sekmede güncellendi. Devam etmek için sayfayı yenile." ✱ + "Yenile".
+- CSP, SPEC'teki yönergelerle değiştirilmeden yalnızca build'e `<meta>` olarak (head'in başına) eklenir; hiçbir yönergenin gevşetilmesi gerekmedi. `vite preview`'da ekranlar, alt sayfalar, diyaloglar ve grafikler gezildi: CSP ihlali ve konsol hatası yok, tüm istekler aynı kaynağa.
+- Sunucu kapatılıp sayfa yenilendiğinde uygulama önbellekten açıldı (uçak modu senaryosu); güncelleme bildirimi ve "Yenile" uçtan uca denendi.
+- Paket parçalara ayrıldı (`codeSplitting` grupları: charts, react, data); 500 kB uyarısı kalktı.
+- Dokunma alanları: görsel olarak küçük kontrollere (çip, anahtar, küçük segment, metin bağlantıları, "⋯", temizle) görünmez `hit-area` ile en az 44×44 px.
+- %200 yazı boyutu (≈200 px genişlik) denendi: Özet'te üst kartlar tek sütuna iner, kahraman tutar satır kırabilir, donut kabına göre küçülür; hiçbir ekranda yatay kaydırma yok.
+- Erişilebilir ad taraması: tüm ekranlarda ve işlem formunda adı olmayan etkileşimli öğe yok.

@@ -163,7 +163,7 @@ export function TxRow({ title, subtitle, amount, type, category, note = '', recu
               aria-label={copy.transactions.moreActions}
               aria-haspopup="menu"
               aria-expanded={menuOpen}
-              className={`flex size-9 items-center justify-center rounded-[10px] text-text-2 hover:bg-surface-2 focus-visible:opacity-100 ${
+              className={`hit-area flex size-9 items-center justify-center rounded-[10px] text-text-2 hover:bg-surface-2 focus-visible:opacity-100 ${
                 menuOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
               }`}
               onClick={() => setMenuOpen((o) => !o)}

@@ -169,7 +169,7 @@ export function TransactionsPage() {
         <button
           type="button"
           aria-label={copy.transactions.clearSearch}
-          className="flex size-8 items-center justify-center rounded-lg"
+          className="hit-area flex size-8 items-center justify-center rounded-lg"
           onClick={() => {
             setQuery('');
             searchRef.current?.focus();
@@ -242,7 +242,7 @@ export function TransactionsPage() {
             <ChevronDown size={16} aria-hidden="true" />
           </Chip>
           {filtered && (
-            <button type="button" className="h-9 shrink-0 px-2 text-[13px] font-semibold text-accent" onClick={() => setFilters(NO_FILTERS)}>
+            <button type="button" className="hit-area h-9 shrink-0 px-2 text-[13px] font-semibold text-accent" onClick={() => setFilters(NO_FILTERS)}>
               {copy.transactions.clear}
             </button>
           )}

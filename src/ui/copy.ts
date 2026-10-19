@@ -297,5 +297,9 @@ export const copy = {
     restored: 'Veriler geri yüklendi',
     /** ✱ */
     csvDownloaded: 'CSV dosyası indirildi',
+    updateReady: 'Yeni sürüm hazır',
+    reload: 'Yenile',
+    /** ✱ başka sekme veritabanını yükseltti */
+    dbUpgraded: 'Uygulama başka bir sekmede güncellendi. Devam etmek için sayfayı yenile.',
   },
 } as const;

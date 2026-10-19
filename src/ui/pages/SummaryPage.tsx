@@ -97,8 +97,8 @@ export function SummaryPage() {
 
       {loaded && !firstRun && (
         <>
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-            <div className="col-span-2 grid">
+          <div className="grid grid-cols-1 gap-3 min-[300px]:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            <div className="grid min-[300px]:col-span-2">
               <HeroCard
                 monthName={monthName(period)}
                 net={isFuture ? view.plannedTotals.net : view.actual.net}

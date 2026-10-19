@@ -38,7 +38,7 @@ export function Amount({ kurus, type, signed = false, variant = 'inline', tone =
     const parts = heroParts(value, isSigned);
     const negative = value < 0;
     return (
-      <span className={`flex items-baseline font-semibold tracking-[-0.02em] whitespace-nowrap tabular-nums ${className}`}>
+      <span className={`flex flex-wrap items-baseline font-semibold tracking-[-0.02em] tabular-nums ${className}`}>
         <span className={`text-[28px] leading-[44px] lg:text-[34px] lg:leading-[52px] ${negative ? 'text-expense' : 'text-text-2'}`}>
           {parts.sign}
         </span>

@@ -393,7 +393,7 @@ export function TransactionForm({ mode, onClose, onOpenRecurring }: TransactionF
             ) : (
               <button
                 type="button"
-                className="self-start py-1 text-[15px] font-semibold text-accent"
+                className="hit-area self-start py-1 text-[15px] font-semibold text-accent"
                 onClick={() => {
                   setNoteOpen(true);
                   requestAnimationFrame(() => noteRef.current?.focus());
@@ -473,7 +473,7 @@ export function TransactionForm({ mode, onClose, onOpenRecurring }: TransactionF
                 <span className="text-[13px] leading-[18px] font-medium text-text-2">{copy.form.linkedHint}</span>
                 <button
                   type="button"
-                  className="self-start py-1 text-[13px] leading-[18px] font-semibold text-accent"
+                  className="hit-area self-start py-1 text-[13px] leading-[18px] font-semibold text-accent"
                   onClick={() => (dirty ? setOverlay({ switchTo: linked }) : onOpenRecurring(linked))}
                 >
                   {copy.form.editRecurring}

@@ -8,6 +8,8 @@ export interface ToastInput {
   action?: { label: string; onAction: () => void };
   /** Hata bildirimi ikonla gösterilir (ör. geçersiz yedek dosyası). */
   tone?: 'error';
+  /** Kendiliğinden kapanmaz (ör. "Yeni sürüm hazır · Yenile"); yeni bildirim yerini alır. */
+  persistent?: boolean;
 }
 
 interface ActiveToast extends ToastInput {
@@ -28,7 +30,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!toast) return;
+    if (!toast || toast.persistent) return;
     const timer = window.setTimeout(() => setToast(null), toast.action ? TOAST_ACTION_MS : TOAST_MS);
     return () => window.clearTimeout(timer);
   }, [toast]);
