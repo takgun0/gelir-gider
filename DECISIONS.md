@@ -30,3 +30,18 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Domain testleri varsayılan olarak `node` ortamında; DOM gereken testler dosya başında `@vitest-environment jsdom` ile işaretlenir.
 - Rotalar: `/`, `/islemler`, `/islemler/sabit`, `/kategoriler`, `/ayarlar`; bilinmeyen rota Özet'e döner.
 - CI Node sürümü `.nvmrc` (24) üzerinden; PR'larda CI çalışır, deploy yalnızca `main`'de.
+
+## Faz 2
+- Ortak tipler (`TxType`, `PaletteKey`, `DateStr`, `Period`) `src/domain/types.ts`'te.
+- `formatTRY` negatif değeri gerçek eksiyle yazar (ay sonu tahmini için); Intl'e float değil kesin ondalık string verilir (`'1250.50'`).
+- `formatSigned` sayının işaretini kullanır; türden işaret `signedAmount(amount, type)` ile gelir (gider negatif).
+- `formatShort` tek ondalığa aşağı yuvarlar (₺12.450 → ₺12,4 B; Intl compact "12 B" verdiği için elle yazıldı); ondalık sıfırsa yazılmaz (₺8 B); bin altı tam TL; milyar için "Mr"; birimden önce bölünmeyen boşluk (U+00A0).
+- `formatWhole` yarımı yukarı yuvarlar; `formatPercent` oran (0–1) alır.
+- Kahraman tutar parçaları `heroParts` ile `formatToParts`'tan üretilir.
+- Tutar alanında tam kısım en fazla 12 basamak: üst sınır hatası gösterilebilsin diye ₺999.999.999,99'dan fazlası yazılabilir ama alan sınırsız büyümez.
+- Tutar alanında baştaki sıfırlar atılır; önce "," yazılırsa "0," olur.
+- Binlik noktanın hemen sağında geri silme (ya da solunda ileri silme) noktayı değil yanındaki rakamı siler (`deleteBackward`/`deleteForward`).
+- Yapıştırma seçimin yerine kurallı metni ("1250,50") koyar; sonuç yine `normalizeAmountInput`'tan geçer. "₺" ve büyük-küçük harf duyarsız "TL" atılır; içte boşluk varsa reddedilir.
+- Yapıştırmada ondalık kısmı 3+ basamak olan ya da ayraçla başlayan/biten metin (",5", "1.") reddedilir.
+- Tarih ve ay adları ile "Bugün"/"Dün" etiketleri domain katmanında (`date.ts`) durur; domain UI'ya bağımlı olmasın diye `copy.ts`'e taşınmadı.
+- Gün farkı `Date.UTC` ile hesaplanır, yaz saati geçişlerinden etkilenmez.
