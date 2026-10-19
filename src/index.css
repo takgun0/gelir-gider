@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+@import './ui/fonts.css';
+@import './ui/tokens.css';
+
+/* Karanlık mod class tabanlı (SPEC §3). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tailwind'in hazır paleti kapatılır; yalnızca DESIGN token'ları kullanılabilir. */
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-income: var(--income);
+  --color-income-soft: var(--income-soft);
+  --color-income-chart: var(--income-chart);
+  --color-expense: var(--expense);
+  --color-on-expense: var(--on-expense);
+  --color-expense-soft: var(--expense-soft);
+  --color-expense-chart: var(--expense-chart);
+  --color-amount-expense: var(--amount-expense);
+  --color-switch-off: var(--switch-off);
+  --color-toast: var(--toast);
+  --color-on-toast: var(--on-toast);
+  --color-toast-accent: var(--toast-accent);
+  --color-scrim: var(--scrim);
+  --color-shadow: var(--shadow);
+  --color-white: #ffffff;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 22px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}

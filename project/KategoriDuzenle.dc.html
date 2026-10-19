@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kategoriyi düzenle · mobil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 390px; height: 1000px; position: relative; overflow: hidden; background: var(--scrim); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px">
+<div role="dialog" aria-label="Kategoriyi düzenle" style="position: absolute; left: 0; right: 0; top: 12px; bottom: 0; background: var(--surface); border-radius: 20px 20px 0 0; box-shadow: 0 -8px 24px var(--shadow); display: flex; flex-direction: column">
+<div style="display: flex; justify-content: center; padding-top: 8px"><span style="width: 36px; height: 5px; border-radius: 3px; background: var(--border)"></span></div>
+<header style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 48px; padding: 0 8px">
+<button style="justify-self: start; border: 0; background: none; font: inherit; color: var(--accent); font-weight: 500; height: 44px; padding: 0 8px; cursor: pointer">Vazgeç</button>
+<h1 style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 600">Kategoriyi düzenle</h1>
+<span></span>
+</header>
+
+<div style="flex: 1; display: flex; flex-direction: column; gap: 20px; padding: 8px 16px 0; overflow: hidden">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px 0">
+<span style="width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--c-fusya); background: color-mix(in srgb, var(--c-fusya) 16%, transparent)"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg></span>
+<span style="font-size: 17px; line-height: 22px; font-weight: 600">Eğlence</span>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Gider kategorisi · tür sonradan değişmez</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)"><label for="kat-ad">Ad</label><span style="font-variant-numeric: tabular-nums">7/24</span></div>
+<input id="kat-ad" type="text" value="Eğlence" maxlength="24" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 0; background: var(--s2); font: inherit; color: var(--text); outline: 2px solid var(--accent); outline-offset: 0">
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Renk</span>
+<div role="radiogroup" aria-label="Renk" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; justify-items: center">
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="14">
+<button role="radio" aria-checked="{{c.sel}}" aria-label="{{c.name}}" style="border: 0; padding: 0; cursor: pointer; width: 36px; height: 36px; border-radius: 50%; background: {{c.v}}; box-shadow: {{c.ring}}"></button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">İkon</span>
+<label style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border-radius: 12px; background: var(--s2); color: var(--text2)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">İkon ara</span>
+<input type="search" placeholder="İkon ara: kahve, benzin, spor" style="flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: inherit; color: var(--text)">
+</label>
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2)">{{g.title}}</span>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{g.icons}}" as="i" hint-placeholder-count="6">
+<button aria-label="{{i.name}}" aria-pressed="{{i.sel}}" style="border: 0; cursor: pointer; height: 48px; border-radius: 12px; background: {{i.bg}}; color: {{i.fg}}; box-shadow: {{i.ring}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{i.p}}" as="p" hint-placeholder-count="3"><path d="{{p.d}}"></path></sc-for></svg></button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding-bottom: 8px">
+<a href="IslemlerMobil.dc.html" style="font-size: 15px; font-weight: 600; color: var(--accent); text-decoration: none; height: 40px; display: flex; align-items: center">Bu kategorinin işlemleri →</a>
+<a href="KategoriSil.dc.html" style="font-size: 15px; font-weight: 600; color: var(--exp); text-decoration: none; height: 40px; display: flex; align-items: center">Kategoriyi sil</a>
+</div>
+</div>
+
+<div style="padding: 12px 16px 24px; background: var(--surface); box-shadow: 0 -1px 0 var(--border)">
+<button style="width: 100%; height: 52px; border: 0; border-radius: 12px; background: var(--accent); color: var(--onAccent); font: inherit; font-size: 16px; font-weight: 600; cursor: pointer">Kaydet</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const PAL = {
+      light: { 'gül':'#D14D72', 'fuşya':'#B9479F', 'mor':'#8257D1', 'çivit':'#5560CC', 'mavi':'#3478BE', 'gök mavisi':'#2696C7', 'camgöbeği':'#16999C', 'petrol':'#2A7980', 'zeytin':'#77862A', 'hardal':'#AE8B1F', 'amber':'#CF7F12', 'turuncu':'#D9662F', 'kahve':'#93633F', 'arduvaz grisi':'#66717F' },
+      dark: { 'gül':'#EC7898', 'fuşya':'#DA79C9', 'mor':'#A98BEE', 'çivit':'#8990EC', 'mavi':'#64A4E2', 'gök mavisi':'#5BBDE6', 'camgöbeği':'#45C4C6', 'petrol':'#57A9B0', 'zeytin':'#A7B652', 'hardal':'#D6B550', 'amber':'#EDA748', 'turuncu':'#F28D5C', 'kahve':'#BF9270', 'arduvaz grisi':'#96A0AD' }
+    };
+    const T = {
+      light: { scrim:'#8E8C88', surface:'#FFFFFF', s2:'#F0EFEC', border:'#E6E4DF', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', exp:'#C2453A' },
+      dark: { scrim:'#050506', surface:'#1A1B1E', s2:'#232428', border:'#2C2D31', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', exp:'#FF8A7A' }
+    };
+    const mode = this.props.theme === 'dark' ? 'dark' : 'light';
+    const t = Object.assign({}, T[mode], { 'c-fusya': PAL[mode]['fuşya'] });
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+    const colors = Object.keys(PAL[mode]).map((name) => ({
+      name, v: PAL[mode][name], sel: name === 'fuşya' ? 'true' : 'false',
+      ring: name === 'fuşya' ? '0 0 0 3px var(--surface), 0 0 0 5px var(--text)' : 'none'
+    }));
+    const P = (a) => a.map((d) => ({ d }));
+    const I = {
+      ticket: P(['M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z', 'M13 5v2', 'M13 17v2', 'M13 11v2']),
+      music: P(['M9 18V5l12-2v13', 'M3 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0', 'M15 16a3 3 0 1 0 6 0a3 3 0 1 0 -6 0']),
+      gift: P(['M3 8h18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z', 'M12 8v13', 'M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7', 'M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5']),
+      dumbbell: P(['M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z', 'm2.5 21.5 1.4-1.4', 'm20.1 3.9 1.4-1.4', 'M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z', 'm9.6 14.4 4.8-4.8']),
+      coffee: P(['M10 2v2', 'M14 2v2', 'M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1', 'M6 2v2']),
+      smartphone: P(['M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z', 'M12 18h.01']),
+      bus: P(['M8 6v6', 'M15 6v6', 'M2 12h19.6', 'M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3', 'M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0', 'M9 18h5', 'M14 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0']),
+      car: P(['M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2', 'M5 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0', 'M9 17h6', 'M15 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0']),
+      fuel: P(['M3 22h12', 'M4 9h10', 'M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18', 'M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5']),
+      plane: P(['M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z']),
+      bike: P(['M2.5 17.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0', 'M15 17.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0', 'M15 6a1 1 0 1 0 2 0a1 1 0 1 0 -2 0', 'M12 17.5V14l-3-3 4-3 2 3h2']),
+      parking: P(['M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'M9 17V7h4a3 3 0 0 1 0 6H9'])
+    };
+    const tile = (key, name, sel) => ({
+      name, p: I[key], sel: sel ? 'true' : 'false',
+      bg: sel ? 'color-mix(in srgb, var(--c-fusya) 16%, transparent)' : 'var(--s2)',
+      fg: sel ? 'var(--c-fusya)' : 'var(--text)',
+      ring: sel ? 'inset 0 0 0 2px var(--accent)' : 'none'
+    });
+    const groups = [
+      { title: 'Eğlence', icons: [tile('ticket', 'Bilet', true), tile('music', 'Müzik'), tile('gift', 'Hediye'), tile('dumbbell', 'Spor'), tile('coffee', 'Kahve'), tile('smartphone', 'Telefon')] },
+      { title: 'Ulaşım', icons: [tile('bus', 'Otobüs'), tile('car', 'Araba'), tile('fuel', 'Benzin'), tile('plane', 'Uçak'), tile('bike', 'Bisiklet'), tile('parking', 'Otopark')] }
+    ];
+    return { vars, colors, groups };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>İşlemler · filtre ve arama</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 390px; height: {{rootH}}px; position: relative; overflow: hidden; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px">
+<main style="display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 120px">
+<h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">İşlemler</h1>
+<div role="tablist" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--s2); border-radius: 12px; padding: 3px">
+<button role="tab" aria-selected="true" style="border: 0; font: inherit; cursor: pointer; height: 38px; border-radius: 10px; background: var(--surface); color: var(--text); font-weight: 600">Kayıtlar</button>
+<a href="SabitMobil.dc.html" role="tab" aria-selected="false" style="display: flex; align-items: center; justify-content: center; height: 38px; border-radius: 10px; color: var(--text2); text-decoration: none; font-weight: 500">Sabit</a>
+</div>
+
+<sc-if value="{{ayModu}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: center; justify-content: space-between; height: 44px">
+<div style="display: flex; align-items: center; gap: 4px; margin-left: -12px">
+<button aria-label="Önceki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button style="border: 0; background: none; padding: 0 4px; font: inherit; color: var(--text); font-size: 17px; font-weight: 600; height: 44px; cursor: pointer">Ekim 2026</button>
+<button aria-label="Sonraki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+</div>
+<button aria-label="Ara" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; margin-right: -10px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
+</div>
+</sc-if>
+
+<sc-if value="{{aramaModu}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 8px; height: 44px">
+<label style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 6px 0 12px; border-radius: 12px; background: var(--s2); color: var(--text2); outline: 2px solid var(--accent)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Ara</span>
+<input type="search" value="{{sorgu}}" placeholder="Açıklama, not ya da kategori" style="flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: inherit; color: var(--text)">
+<button aria-label="Aramayı temizle" style="border: 0; background: none; padding: 0; width: 32px; height: 32px; color: var(--text2); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+</label>
+<button style="border: 0; background: none; font: inherit; color: var(--accent); font-weight: 500; height: 44px; padding: 0 4px; cursor: pointer">Vazgeç</button>
+</div>
+</sc-if>
+
+<div style="display: flex; gap: 8px; align-items: center; overflow-x: auto; margin: 0 -16px; padding: 0 16px 4px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+<button aria-pressed="{{c.pressed}}" style="border: 0; font: inherit; cursor: pointer; flex: none; height: 36px; padding: 0 {{c.pr}}px 0 14px; border-radius: 18px; background: {{c.bg}}; color: {{c.fg}}; box-shadow: {{c.ring}}; font-size: 13px; font-weight: {{c.w}}; display: flex; align-items: center; gap: 4px">{{c.label}}<sc-if value="{{c.chev}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></sc-if></button>
+</sc-for>
+<sc-if value="{{temizle}}" hint-placeholder-val="{{ false }}">
+<button style="border: 0; background: none; font: inherit; color: var(--accent); font-size: 13px; font-weight: 600; height: 36px; padding: 0 6px; flex: none; cursor: pointer">Temizle</button>
+</sc-if>
+</div>
+
+<sc-if value="{{ozetVar}}" hint-placeholder-val="{{ true }}">
+<div style="padding: 0 4px; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">{{ozetSayi}} · <span style="color: var(--text); font-weight: 600">{{ozetTutar}}</span></div>
+</sc-if>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<section style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; padding: 8px 4px 4px; font-size: {{g.fs}}px; line-height: 20px; font-weight: 600; color: {{g.hc}}; font-variant-numeric: tabular-nums"><span>{{g.title}}</span><span style="font-size: 13px; font-weight: 500; color: var(--text2)">{{g.net}}</span></div>
+<div style="background: var(--surface); border-radius: 16px; padding: 0 16px">
+<sc-for list="{{g.rows}}" as="r" hint-placeholder-count="1">
+<button style="border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; width: 100%; display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-turuncu); background: color-mix(in srgb, var(--c-turuncu) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: {{r.w}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">{{r.sub}}</span></span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">{{r.amount}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+</sc-for>
+
+<sc-if value="{{sonucsuz}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 72px 24px 0; text-align: center">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: var(--surface); color: var(--text2); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
+<p style="margin: 0; color: var(--text2)">Bu aramayla eşleşen işlem yok.</p>
+<button style="border: 0; font: inherit; cursor: pointer; height: 44px; padding: 0 18px; border-radius: 12px; background: var(--s2); color: var(--text); font-weight: 600">Filtreleri temizle</button>
+</div>
+</sc-if>
+</main>
+
+<nav aria-label="Ana menü" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); box-shadow: inset 0 1px 0 var(--border); padding: 6px 4px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end">
+<sc-for list="{{navL}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+<div style="display: flex; justify-content: center; height: 52px; align-items: flex-start">
+<a href="IslemEkle.dc.html" aria-label="İşlem ekle" style="width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; background: var(--accent); color: var(--onAccent); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px var(--shadow)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></a>
+</div>
+<sc-for list="{{navR}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"mod":{"editor":"enum","options":["filtre","arama","sonucsuz"],"default":"filtre"},"$preview":{"width":390,"height":1280}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      light: { bg:'#F7F7F5', surface:'#FFFFFF', s2:'#F0EFEC', border:'#E6E4DF', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', exp:'#C2453A', 'c-turuncu':'#D9662F' },
+      dark: { bg:'#111214', surface:'#1A1B1E', s2:'#232428', border:'#2C2D31', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', exp:'#FF8A7A', 'c-turuncu':'#F28D5C' }
+    };
+    const t = T[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+    const mod = this.props.mod ?? 'filtre';
+    const filtre = mod === 'filtre', arama = mod === 'arama', sonucsuz = mod === 'sonucsuz';
+
+    const on = { bg: 'var(--text)', fg: 'var(--bg)', ring: 'none', w: 600, pressed: 'true' };
+    const off = { bg: 'var(--surface)', fg: 'var(--text)', ring: 'inset 0 0 0 1px var(--border)', w: 500, pressed: 'false' };
+    const chip = (label, st, chev) => Object.assign({ label, chev: !!chev, pr: chev ? 10 : 14 }, st);
+    const chips = filtre
+      ? [chip('Tümü', off), chip('Gelir', off), chip('Gider', on), chip('Market', on, true)]
+      : [chip('Tümü', on), chip('Gelir', off), chip('Gider', off), chip('Kategori', off, true)];
+
+    const r = (name, sub, amount) => ({ name, sub, amount, w: 500 });
+    let groups = [];
+    if (filtre) {
+      groups = [
+        ['Bugün', 'Migros', 340], ['13 Ekim Salı', 'Haftalık pazar', 410], ['10 Ekim Cumartesi', 'Migros', 560], ['9 Ekim Cuma', 'Manav', 380],
+        ['6 Ekim Salı', 'Bakkal', 95], ['4 Ekim Pazar', 'Haftalık pazar', 620], ['2 Ekim Cuma', 'Migros', 240], ['1 Ekim Perşembe', 'Market alışverişi', 195]
+      ].map((g) => {
+        const a = '−₺' + g[2].toLocaleString('tr-TR', { minimumFractionDigits: 2 });
+        return { title: g[0], net: a, fs: 13, hc: 'var(--text2)', rows: [r(g[1], 'Market', a)] };
+      });
+    }
+    if (arama) {
+      groups = [
+        { title: 'Ekim 2026', net: '3 işlem', fs: 15, hc: 'var(--text)', rows: [r('Migros', 'Market · 18 Eki', '−₺340,00'), r('Migros', 'Market · 10 Eki', '−₺560,00'), r('Migros', 'Market · 2 Eki', '−₺240,00')] },
+        { title: 'Eylül 2026', net: '2 işlem', fs: 15, hc: 'var(--text)', rows: [r('Migros', 'Market · 27 Eyl', '−₺410,00'), r('Migros Jet', 'Market · 14 Eyl', '−₺290,00')] },
+        { title: 'Ağustos 2026', net: '1 işlem', fs: 15, hc: 'var(--text)', rows: [r('Migros', 'Market · 30 Ağu', '−₺140,00')] }
+      ];
+    }
+
+    const P = (a) => a.map((d) => ({ d }));
+    const N = {
+      ozet: P(['M4 3h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 3h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 12h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z', 'M4 16h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z']),
+      islem: P(['M3 12h.01', 'M3 18h.01', 'M3 6h.01', 'M8 12h13', 'M8 18h13', 'M8 6h13']),
+      kat: P(['M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z', 'M4 14h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z', 'M14 17.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0']),
+      ayar: P(['M20 7h-9', 'M14 17H5', 'M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0', 'M4 7a3 3 0 1 0 6 0a3 3 0 1 0 -6 0'])
+    };
+    const nav = [['Özet', 'ozet', 'Main.dc.html'], ['İşlemler', 'islem', 'IslemlerMobil.dc.html'], ['Kategoriler', 'kat', 'KategorilerMobil.dc.html'], ['Ayarlar', 'ayar', 'AyarlarMobil.dc.html']]
+      .map((n, i) => ({ label: n[0], icon: N[n[1]], href: n[2], color: i === 1 ? 'var(--accent)' : 'var(--text2)', weight: i === 1 ? 600 : 500 }));
+
+    return {
+      vars, chips, groups, sonucsuz,
+      ayModu: filtre, aramaModu: !filtre, sorgu: arama ? 'migros' : 'kırtasiye',
+      temizle: filtre,
+      ozetVar: !sonucsuz,
+      ozetSayi: filtre ? '8 işlem' : '6 işlem',
+      ozetTutar: filtre ? '−₺2.840,00' : '−₺1.980,00',
+      rootH: filtre ? 1280 : 844,
+      navL: nav.slice(0, 2), navR: nav.slice(2)
+    };
+  }
+}
+</script>
+</body>
+</html>

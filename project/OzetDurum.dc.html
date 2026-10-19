@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Özet · durumlar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px">
+<main style="display: flex; flex-direction: column; gap: 16px; padding: 12px 16px 120px">
+
+<header style="display: flex; align-items: center; justify-content: space-between; height: 48px">
+<div style="display: flex; align-items: center; gap: 4px">
+<button aria-label="Önceki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button style="border: 0; background: none; padding: 0 4px; font: inherit; color: var(--text); font-size: 17px; font-weight: 600; height: 44px; cursor: pointer">{{ay}}</button>
+<button aria-label="Sonraki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+<sc-if value="{{buAyChip}}" hint-placeholder-val="{{ false }}">
+<button style="border: 0; font: inherit; cursor: pointer; height: 32px; padding: 0 12px; border-radius: 16px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); font-size: 13px; font-weight: 600; margin-left: 4px">Bu ay</button>
+</sc-if>
+</div>
+<button aria-label="{{eyeLabel}}" aria-pressed="{{gizliStr}}" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{eye}}" as="p" hint-placeholder-count="2"><path d="{{p.d}}"></path></sc-for></svg></button>
+</header>
+
+<sc-if value="{{ilk}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; padding: 72px 16px 0">
+<svg width="168" height="128" viewBox="0 0 168 128" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--text2)">
+<rect x="28" y="30" width="112" height="74" rx="14"></rect>
+<path d="M28 50h112"></path>
+<path d="M116 70h24v18h-24a9 9 0 0 1 0-18z"></path>
+<circle cx="120" cy="79" r="2.5"></circle>
+<path d="M52 30V20a6 6 0 0 1 6-6h44"></path>
+<path d="M16 104h136" stroke-dasharray="2 8"></path>
+<path d="M62 70v18M74 64v24M86 76v12" style="color: var(--accent)" stroke="currentColor"></path>
+</svg>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Hoş geldin!</h1>
+<p style="margin: 0; max-width: 300px; color: var(--text2)">Gelir ve giderlerini ekledikçe ayın özeti burada oluşacak.</p>
+</div>
+<a href="IslemEkle.dc.html" style="height: 52px; padding: 0 24px; border-radius: 12px; background: var(--accent); color: var(--onAccent); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>İlk işlemini ekle</a>
+</div>
+</sc-if>
+
+<sc-if value="{{dolu}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<section style="background: var(--surface); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Kalan · {{ayKisa}}</span>
+<sc-if value="{{eksi}}" hint-placeholder-val="{{ true }}">
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--exp); background: var(--expSoft); padding: 2px 8px; border-radius: 10px">Eksi bakiye</span>
+</sc-if>
+<sc-if value="{{gelecek}}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2); background: var(--s2); padding: 2px 8px; border-radius: 10px">Planlanan</span>
+</sc-if>
+</div>
+<sc-if value="{{gizli}}" hint-placeholder-val="{{ false }}">
+<div style="font-size: 40px; line-height: 44px; font-weight: 600; color: var(--text2); letter-spacing: 0.04em">₺•••••</div>
+</sc-if>
+<sc-if value="{{acik}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: baseline; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em">
+<span style="font-size: 28px; line-height: 44px; color: {{hpc}}">{{hp}}</span><span style="font-size: 40px; line-height: 44px; color: {{hmc}}">{{hm}}</span><span style="font-size: 28px; line-height: 44px; color: var(--text2)">{{hk}}</span>
+</div>
+</sc-if>
+<sc-if value="{{simdi}}" hint-placeholder-val="{{ true }}">
+<div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">Ay sonu tahmini: <span style="color: {{tc}}">{{tahmin}}</span></div>
+</sc-if>
+</section>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: var(--incSoft); color: var(--inc); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Gelir</span><sc-if value="{{gelecek}}" hint-placeholder-val="{{ false }}"><span style="margin-left: auto; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2); background: var(--s2); padding: 2px 6px; border-radius: 8px">Planlanan</span></sc-if></div>
+<span style="font-size: 20px; line-height: 28px; font-weight: 600; color: {{gc}}; font-variant-numeric: tabular-nums">{{gelir}}</span>
+</div>
+<div style="background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: var(--expSoft); color: var(--exp); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Gider</span><sc-if value="{{gelecek}}" hint-placeholder-val="{{ false }}"><span style="margin-left: auto; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2); background: var(--s2); padding: 2px 6px; border-radius: 8px">Planlanan</span></sc-if></div>
+<span style="font-size: 20px; line-height: 28px; font-weight: 600; color: {{xc}}; font-variant-numeric: tabular-nums">{{gider}}</span>
+</div>
+</div>
+
+<sc-if value="{{simdi}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: center; gap: 8px; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">
+<span>Bugün <span style="color: var(--text)">{{bugun}}</span></span><span aria-hidden="true">·</span><span>Bu hafta <span style="color: var(--text)">{{hafta}}</span></span>
+</div>
+<section style="background: var(--surface); border-radius: 16px; padding: 16px 16px 8px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px">
+<h2 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Yaklaşan sabit işlemler</h2>
+<a href="SabitMobil.dc.html" style="font-size: 13px; line-height: 18px; font-weight: 600; color: var(--accent); text-decoration: none">Tümü</a>
+</div>
+<sc-for list="{{yak}}" as="y" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: {{y.color}}; background: color-mix(in srgb, {{y.color}} 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{y.icon}}" as="p" hint-placeholder-count="3"><path d="{{p.d}}"></path></sc-for></svg></span>
+<div style="flex: 1; min-width: 0"><div style="font-weight: 500">{{y.name}}</div><div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">{{y.sub}}</div></div>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: {{y.ac}}; font-variant-numeric: tabular-nums">{{y.amount}}</span>
+</div>
+</sc-for>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{bosAy}}" hint-placeholder-val="{{ false }}">
+<section style="background: var(--surface); border-radius: 16px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--text2)"><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+<p style="margin: 0; color: var(--text2)">{{ay}} için kayıt yok.</p>
+<a href="IslemEkle.dc.html" style="height: 44px; padding: 0 18px; border-radius: 12px; background: var(--s2); color: var(--text); text-decoration: none; font-weight: 600; display: flex; align-items: center">İşlem ekle</a>
+</section>
+</sc-if>
+
+<sc-if value="{{gelecek}}" hint-placeholder-val="{{ false }}">
+<section style="background: var(--surface); border-radius: 16px; padding: 16px 16px 8px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px">
+<h2 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Planlanan sabit işlemler</h2>
+<a href="SabitMobil.dc.html" style="font-size: 13px; line-height: 18px; font-weight: 600; color: var(--accent); text-decoration: none">Tümü</a>
+</div>
+<p style="margin: 0 0 4px; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Bu ay için henüz kayıt oluşmadı; tutarlar sabit işlemlerden hesaplandı.</p>
+<sc-for list="{{plan}}" as="y" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 12px; height: 60px; opacity: 0.75">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: {{y.color}}; background: color-mix(in srgb, {{y.color}} 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{y.icon}}" as="p" hint-placeholder-count="3"><path d="{{p.d}}"></path></sc-for></svg></span>
+<div style="flex: 1; min-width: 0"><div style="font-weight: 500">{{y.name}}</div><div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">{{y.sub}}</div></div>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: {{y.ac}}; font-variant-numeric: tabular-nums">{{y.amount}}</span>
+</div>
+</sc-for>
+</section>
+</sc-if>
+</div>
+</sc-if>
+</main>
+
+<nav aria-label="Ana menü" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); box-shadow: inset 0 1px 0 var(--border); padding: 6px 4px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end">
+<sc-for list="{{navL}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+<div style="display: flex; justify-content: center; height: 52px; align-items: flex-start">
+<a href="IslemEkle.dc.html" aria-label="İşlem ekle" style="width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; background: var(--accent); color: var(--onAccent); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px var(--shadow)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></a>
+</div>
+<sc-for list="{{navR}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"durum":{"editor":"enum","options":["eksi","bosAy","ilk","gizli","gelecek"],"default":"eksi"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      light: { bg:'#F7F7F5', surface:'#FFFFFF', s2:'#F0EFEC', border:'#E6E4DF', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', inc:'#237A4B', incSoft:'#E5F3EA', exp:'#C2453A', expSoft:'#FBEAE7', 'c-mor':'#8257D1', 'c-amber':'#CF7F12', 'c-petrol':'#2A7980', 'c-kahve':'#93633F', 'c-mavi':'#3478BE' },
+      dark: { bg:'#111214', surface:'#1A1B1E', s2:'#232428', border:'#2C2D31', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', inc:'#6FD39A', incSoft:'#1B2E23', exp:'#FF8A7A', expSoft:'#36201E', 'c-mor':'#A98BEE', 'c-amber':'#EDA748', 'c-petrol':'#57A9B0', 'c-kahve':'#BF9270', 'c-mavi':'#64A4E2' }
+    };
+    const t = T[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+    const P = (a) => a.map((d) => ({ d }));
+    const d = this.props.durum ?? 'eksi';
+    const gizli = d === 'gizli', bosAy = d === 'bosAy', ilk = d === 'ilk', eksi = d === 'eksi', gelecek = d === 'gelecek';
+    const M = '₺•••••';
+    const ac = (v) => gizli ? M : v;
+
+    const receipt = P(['M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z', 'M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8', 'M12 17.5v-11']);
+    const monitor = P(['M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z', 'M12 17v4', 'M8 21h8']);
+    const yc = gizli ? 'var(--text2)' : 'var(--exp)';
+    const yak = [
+      { name: 'İnternet', sub: '25 Ekim · 7 gün sonra', amount: ac('−₺450,00'), ac: yc, icon: receipt, color: 'var(--c-amber)' },
+      { name: 'Müzik aboneliği', sub: '28 Ekim · 10 gün sonra', amount: ac('−₺99,00'), ac: yc, icon: monitor, color: 'var(--c-mor)' },
+      { name: 'Telefon faturası', sub: '30 Ekim · 12 gün sonra', amount: ac('−₺350,00'), ac: yc, icon: receipt, color: 'var(--c-amber)' }
+    ];
+
+    let hero = { hp: '+₺', hm: '5.900', hk: ',00', hpc: 'var(--text2)', hmc: 'var(--text)' };
+    if (eksi) hero = { hp: '−₺', hm: '1.840', hk: ',00', hpc: 'var(--exp)', hmc: 'var(--exp)' };
+    if (bosAy) hero = { hp: '₺', hm: '0', hk: ',00', hpc: 'var(--text2)', hmc: 'var(--text)' };
+    if (gelecek) hero = { hp: '+₺', hm: '9.241', hk: ',00', hpc: 'var(--text2)', hmc: 'var(--text)' };
+
+    const banknote = P(['M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z', 'M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0', 'M6 12h.01M18 12h.01']);
+    const house = P(['M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8', 'M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z']);
+    const bus = P(['M8 6v6', 'M15 6v6', 'M2 12h19.6', 'M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3', 'M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0', 'M9 18h5', 'M14 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0']);
+    const plan = [
+      { name: 'Maaş', sub: '1 Kasım', amount: '+₺18.000,00', ac: 'var(--inc)', icon: banknote, color: 'var(--c-petrol)' },
+      { name: 'Kira', sub: '1 Kasım', amount: '−₺7.500,00', ac: 'var(--exp)', icon: house, color: 'var(--c-kahve)' },
+      { name: 'Dizi aboneliği', sub: '8 Kasım', amount: '−₺230,00', ac: 'var(--exp)', icon: monitor, color: 'var(--c-mor)' },
+      { name: 'Ulaşım kartı', sub: '14 Kasım', amount: '−₺130,00', ac: 'var(--exp)', icon: bus, color: 'var(--c-mavi)' }
+    ];
+
+    const vals = gelecek
+      ? { gelir: '+₺18.000,00', gider: '−₺8.759,00', gc: 'var(--inc)', xc: 'var(--exp)', tahmin: '', tc: 'var(--text)' }
+      : eksi
+      ? { gelir: '+₺18.000,00', gider: '−₺19.840,00', gc: 'var(--inc)', xc: 'var(--exp)', tahmin: '−₺2.739,00', tc: 'var(--exp)' }
+      : bosAy
+        ? { gelir: '₺0,00', gider: '₺0,00', gc: 'var(--text)', xc: 'var(--text)', tahmin: '', tc: 'var(--text)' }
+        : { gelir: ac('+₺20.500,00'), gider: ac('−₺14.600,00'), gc: gizli ? 'var(--text2)' : 'var(--inc)', xc: gizli ? 'var(--text2)' : 'var(--exp)', tahmin: ac('₺5.001,00'), tc: gizli ? 'var(--text2)' : 'var(--text)' };
+
+    const eye = gizli
+      ? P(['M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49', 'M14.084 14.158a3 3 0 0 1-4.242-4.242', 'M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143', 'm2 2 20 20'])
+      : P(['M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0', 'M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0']);
+
+    const N = {
+      ozet: P(['M4 3h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 3h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 12h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z', 'M4 16h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z']),
+      islem: P(['M3 12h.01', 'M3 18h.01', 'M3 6h.01', 'M8 12h13', 'M8 18h13', 'M8 6h13']),
+      kat: P(['M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z', 'M4 14h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z', 'M14 17.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0']),
+      ayar: P(['M20 7h-9', 'M14 17H5', 'M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0', 'M4 7a3 3 0 1 0 6 0a3 3 0 1 0 -6 0'])
+    };
+    const nav = [['Özet', 'ozet', 'Main.dc.html'], ['İşlemler', 'islem', 'IslemlerMobil.dc.html'], ['Kategoriler', 'kat', 'KategorilerMobil.dc.html'], ['Ayarlar', 'ayar', 'AyarlarMobil.dc.html']]
+      .map((n, i) => ({ label: n[0], icon: N[n[1]], href: n[2], color: i === 0 ? 'var(--accent)' : 'var(--text2)', weight: i === 0 ? 600 : 500 }));
+
+    return Object.assign({
+      vars, eye, yak, gizli, acik: !gizli, gizliStr: gizli ? 'true' : 'false', eyeLabel: gizli ? 'Tutarları göster' : 'Tutarları gizle',
+      bosAy, ilk, dolu: !ilk, eksi, gelecek, plan, buAyChip: bosAy || gelecek, simdi: !bosAy && !ilk && !gelecek,
+      ay: bosAy ? 'Ocak 2025' : gelecek ? 'Kasım 2026' : 'Ekim 2026', ayKisa: bosAy ? 'Ocak' : gelecek ? 'Kasım' : 'Ekim',
+      bugun: ac('−₺340,00'), hafta: ac('−₺2.115,00'),
+      navL: nav.slice(0, 2), navR: nav.slice(2)
+    }, hero, vals);
+  }
+}
+</script>
+</body>
+</html>

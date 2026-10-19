@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Tüm verileri sil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; font-family: Inter, system-ui, sans-serif; color: #1C1B19; font-size: 15px; line-height: 22px">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: -396px">
+<dc-import name="AyarlarMobil" hint-size="390px,1240px"></dc-import>
+</div>
+<div style="position: absolute; inset: 0; background: rgba(17,18,20,0.45)"></div>
+
+<sc-if value="{{adim1}}" hint-placeholder-val="{{ true }}">
+<div role="alertdialog" aria-labelledby="ts1-baslik" aria-describedby="ts1-metin" style="position: absolute; left: 24px; right: 24px; top: 270px; background: #FFFFFF; border-radius: 20px; padding: 24px; box-shadow: 0 16px 40px rgba(28,27,25,0.22); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: #6B6862">1 / 2</span>
+<h2 id="ts1-baslik" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 600">Tüm veriler silinsin mi?</h2>
+<p id="ts1-metin" style="margin: 0; color: #6B6862">Tüm işlemler, kategoriler ve sabit işlemler silinecek. Varsayılan kategoriler geri gelecek.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<a href="TumunuSil2.dc.html" style="height: 48px; border-radius: 12px; background: #C2453A; color: #FFFFFF; text-decoration: none; font-weight: 600; display: flex; align-items: center; justify-content: center">Devam</a>
+<a href="AyarlarMobil.dc.html" style="height: 48px; border-radius: 12px; background: #F0EFEC; color: #1C1B19; text-decoration: none; font-weight: 600; display: flex; align-items: center; justify-content: center">Vazgeç</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{adim2}}" hint-placeholder-val="{{ false }}">
+<div role="alertdialog" aria-labelledby="ts2-baslik" style="position: absolute; left: 24px; right: 24px; top: 240px; background: #FFFFFF; border-radius: 20px; padding: 24px; box-shadow: 0 16px 40px rgba(28,27,25,0.22); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: #6B6862">2 / 2</span>
+<h2 id="ts2-baslik" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 600">Son onay</h2>
+<p style="margin: 0; color: #6B6862">Bu işlem geri alınamaz.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="sil-onay" style="font-size: 13px; line-height: 18px; font-weight: 500; color: #6B6862">Onaylamak için SİL yaz</label>
+<input id="sil-onay" type="text" value="Sİ" autocomplete="off" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 0; background: #F0EFEC; font: inherit; font-weight: 600; letter-spacing: 0.08em; color: #1C1B19; outline: 2px solid #3D4ED8">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<button disabled style="height: 48px; border: 0; border-radius: 12px; background: #F0EFEC; color: #8E8B85; font: inherit; font-weight: 600">Tüm verileri sil</button>
+<a href="AyarlarMobil.dc.html" style="height: 48px; border-radius: 12px; background: none; color: #1C1B19; text-decoration: none; font-weight: 600; display: flex; align-items: center; justify-content: center">Vazgeç</a>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"adim":{"editor":"enum","options":["1","2"],"default":"1"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const two = String(this.props.adim ?? '1') === '2';
+    return { adim1: !two, adim2: two };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>İşlemler › Sabit · mobil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 390px; height: {{rootH}}px; position: relative; overflow: hidden; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px">
+<main style="display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 120px">
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">İşlemler</h1>
+<button style="border: 0; background: none; font: inherit; color: var(--accent); font-weight: 600; height: 44px; padding: 0 4px; margin-right: -4px; cursor: pointer; display: flex; align-items: center; gap: 4px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Ekle</button>
+</div>
+<div role="tablist" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--s2); border-radius: 12px; padding: 3px">
+<a href="IslemlerMobil.dc.html" role="tab" aria-selected="false" style="display: flex; align-items: center; justify-content: center; height: 38px; border-radius: 10px; color: var(--text2); text-decoration: none; font-weight: 500">Kayıtlar</a>
+<button role="tab" aria-selected="true" style="border: 0; font: inherit; cursor: pointer; height: 38px; border-radius: 10px; background: var(--surface); color: var(--text); font-weight: 600">Sabit</button>
+</div>
+</div>
+
+<sc-if value="{{bos}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 96px 24px 0">
+<span style="width: 72px; height: 72px; border-radius: 50%; background: var(--surface); color: var(--text2); display: flex; align-items: center; justify-content: center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m17 2 4 4-4 4"></path><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg></span>
+<p style="margin: 0; max-width: 280px; color: var(--text2)">Kira, maaş, abonelik gibi her ay tekrar edenleri buraya ekle.</p>
+<button style="border: 0; font: inherit; cursor: pointer; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: var(--onAccent); font-weight: 600">Sabit işlem ekle</button>
+</div>
+</sc-if>
+
+<sc-if value="{{dolu}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="background: var(--surface); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Aylık sabit gelir</span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--inc); font-variant-numeric: tabular-nums">+₺18.000,00</span>
+</div>
+<div style="background: var(--surface); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Aylık sabit gider</span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺8.759,00</span>
+</div>
+</div>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<section style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; padding: 8px 4px 4px; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)"><span style="font-weight: 600">{{g.title}}</span><span>{{g.count}}</span></div>
+<div style="background: var(--surface); border-radius: 16px; padding: 0 16px">
+<sc-for list="{{g.rows}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 72px">
+<button style="flex: 1; min-width: 0; border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; opacity: {{r.op}}">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: {{r.color}}; background: color-mix(in srgb, {{r.color}} 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{r.icon}}" as="p" hint-placeholder-count="2"><path d="{{p.d}}"></path></sc-for></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<span style="font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">{{r.sub}}</span>
+</span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: {{r.ac}}; font-variant-numeric: tabular-nums; flex: none">{{r.amount}}</span>
+</button>
+<sc-if value="{{r.sw}}" hint-placeholder-val="{{ true }}">
+<button role="switch" aria-checked="{{r.on}}" aria-label="{{r.swLabel}}" style="flex: none; border: 0; cursor: pointer; width: 51px; height: 31px; border-radius: 16px; background: {{r.track}}; padding: 2px; display: flex; align-items: center; justify-content: {{r.knob}}"><span style="width: 27px; height: 27px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.2)"></span></button>
+</sc-if>
+<sc-if value="{{r.noSw}}" hint-placeholder-val="{{ false }}">
+<span style="flex: none; width: 51px"></span>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+</sc-for>
+</div>
+</sc-if>
+</main>
+
+<nav aria-label="Ana menü" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); box-shadow: inset 0 1px 0 var(--border); padding: 6px 4px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end">
+<sc-for list="{{navL}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+<div style="display: flex; justify-content: center; height: 52px; align-items: flex-start">
+<a href="IslemEkle.dc.html" aria-label="İşlem ekle" style="width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; background: var(--accent); color: var(--onAccent); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px var(--shadow)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></a>
+</div>
+<sc-for list="{{navR}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"bos":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      light: { bg:'#F7F7F5', surface:'#FFFFFF', s2:'#F0EFEC', border:'#E6E4DF', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', switchOff:'#D9D7D2', inc:'#237A4B', exp:'#C2453A',
+        'c-fusya':'#B9479F', 'c-mor':'#8257D1', 'c-mavi':'#3478BE', 'c-petrol':'#2A7980', 'c-zeytin':'#77862A', 'c-amber':'#CF7F12', 'c-kahve':'#93633F' },
+      dark: { bg:'#111214', surface:'#1A1B1E', s2:'#232428', border:'#2C2D31', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', switchOff:'#3A3B40', inc:'#6FD39A', exp:'#FF8A7A',
+        'c-fusya':'#DA79C9', 'c-mor':'#A98BEE', 'c-mavi':'#64A4E2', 'c-petrol':'#57A9B0', 'c-zeytin':'#A7B652', 'c-amber':'#EDA748', 'c-kahve':'#BF9270' }
+    };
+    const t = T[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+    const P = (a) => a.map((d) => ({ d }));
+    const I = {
+      banknote: P(['M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z', 'M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0', 'M6 12h.01M18 12h.01']),
+      house: P(['M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8', 'M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z']),
+      receipt: P(['M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z', 'M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8', 'M12 17.5v-11']),
+      monitor: P(['M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z', 'M12 17v4', 'M8 21h8']),
+      bus: P(['M8 6v6', 'M15 6v6', 'M2 12h19.6', 'M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3', 'M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0', 'M9 18h5', 'M14 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0']),
+      ticket: P(['M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z', 'M13 5v2', 'M13 17v2', 'M13 11v2']),
+      grad: P(['M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z', 'M22 10v6', 'M6 12.5V16a6 3 0 0 0 12 0v-3.5'])
+    };
+    const on = (name, sub, amount, inc, icon, color) => ({ name, sub, amount, ac: inc ? 'var(--inc)' : 'var(--exp)', icon: I[icon], color: 'var(--c-' + color + ')', op: 1, sw: true, noSw: false, on: 'true', swLabel: name + ' aktif', track: 'var(--accent)', knob: 'flex-end' });
+    const active = [
+      on('İnternet', 'Ayın 25. günü · Sonraki: 25 Ekim', '−₺450,00', false, 'receipt', 'amber'),
+      on('Müzik aboneliği', 'Ayın 28. günü · Sonraki: 28 Ekim', '−₺99,00', false, 'monitor', 'mor'),
+      on('Telefon faturası', 'Ayın 30. günü · Sonraki: 30 Ekim', '−₺350,00', false, 'receipt', 'amber'),
+      on('Maaş', 'Ayın 1. günü · Sonraki: 1 Kasım', '+₺18.000,00', true, 'banknote', 'petrol'),
+      on('Kira', 'Ayın 1. günü · Sonraki: 1 Kasım', '−₺7.500,00', false, 'house', 'kahve'),
+      on('Dizi aboneliği', 'Ayın 8. günü · Sonraki: 8 Kasım', '−₺230,00', false, 'monitor', 'mor'),
+      on('Ulaşım kartı', 'Ayın 14. günü · Sonraki: 14 Kasım', '−₺130,00', false, 'bus', 'mavi')
+    ];
+    const paused = Object.assign(on('Spor salonu', 'Ayın 5. günü · Durduruldu', '−₺600,00', false, 'ticket', 'fusya'), { op: 0.55, on: 'false', swLabel: 'Spor salonu durduruldu', track: 'var(--switchOff)', knob: 'flex-start' });
+    const ended = Object.assign(on('Burs', 'Ayın 10. günü · Bitti · Haziran 2026', '+₺3.000,00', true, 'grad', 'zeytin'), { op: 0.55, sw: false, noSw: true });
+    const groups = [
+      { title: 'Aktif', count: '7 sabit işlem', rows: active },
+      { title: 'Durdurulan ve bitenler', count: '2', rows: [paused, ended] }
+    ];
+
+    const N = {
+      ozet: P(['M4 3h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 3h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 12h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z', 'M4 16h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z']),
+      islem: P(['M3 12h.01', 'M3 18h.01', 'M3 6h.01', 'M8 12h13', 'M8 18h13', 'M8 6h13']),
+      kat: P(['M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z', 'M4 14h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z', 'M14 17.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0']),
+      ayar: P(['M20 7h-9', 'M14 17H5', 'M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0', 'M4 7a3 3 0 1 0 6 0a3 3 0 1 0 -6 0'])
+    };
+    const activeTab = 1;
+    const nav = [['Özet', 'ozet', 'Main.dc.html'], ['İşlemler', 'islem', 'IslemlerMobil.dc.html'], ['Kategoriler', 'kat', 'KategorilerMobil.dc.html'], ['Ayarlar', 'ayar', 'AyarlarMobil.dc.html']]
+      .map((n, i) => ({ label: n[0], icon: N[n[1]], href: n[2], color: i === activeTab ? 'var(--accent)' : 'var(--text2)', weight: i === activeTab ? 600 : 500 }));
+
+    const bos = this.props.bos === true || this.props.bos === 'true';
+    return { vars, groups, bos, dolu: !bos, rootH: bos ? 844 : 1100, navL: nav.slice(0, 2), navR: nav.slice(2) };
+  }
+}
+</script>
+</body>
+</html>

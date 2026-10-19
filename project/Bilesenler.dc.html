@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>14 Bileşenler</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 1440px; height: 1900px; box-sizing: border-box; padding: 56px 64px; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px; display: flex; flex-direction: column; gap: 36px; overflow: hidden">
+
+<header style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Bileşenler</h1>
+<p style="margin: 0; color: var(--text2)">Normal, odak ve hata halleri. Odak halkası 2 px, vurgu renginde. Basılı ve pasif haller token'lardan türetilir.</p>
+</header>
+
+<div style="display: grid; grid-template-columns: 180px repeat(3, minmax(0, 1fr)); gap: 16px 32px; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2)">
+<span></span><span>Normal</span><span>Odak</span><span>Hata</span>
+</div>
+
+<section style="display: grid; grid-template-columns: 180px repeat(3, minmax(0, 1fr)); gap: 16px 32px; align-items: center">
+<h2 style="grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Buton</h2>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Birincil</span>
+<button style="height: 52px; border: 0; border-radius: 12px; background: var(--accent); color: var(--onAccent); font: inherit; font-weight: 600">Kaydet</button>
+<button style="height: 52px; border: 0; border-radius: 12px; background: var(--accent); color: var(--onAccent); font: inherit; font-weight: 600; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent)">Kaydet</button>
+<span style="color: var(--text2)">—</span>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">İkincil</span>
+<button style="height: 48px; border: 0; border-radius: 12px; background: var(--s2); color: var(--text); font: inherit; font-weight: 600">Vazgeç</button>
+<button style="height: 48px; border: 0; border-radius: 12px; background: var(--s2); color: var(--text); font: inherit; font-weight: 600; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent)">Vazgeç</button>
+<span style="color: var(--text2)">—</span>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Tehlikeli</span>
+<button style="height: 48px; border: 0; border-radius: 12px; background: var(--exp); color: var(--onExp); font: inherit; font-weight: 600">Taşı ve sil</button>
+<button style="height: 48px; border: 0; border-radius: 12px; background: var(--exp); color: var(--onExp); font: inherit; font-weight: 600; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent)">Taşı ve sil</button>
+<span style="color: var(--text2)">—</span>
+</section>
+
+<section style="display: grid; grid-template-columns: 180px repeat(3, minmax(0, 1fr)); gap: 16px 32px; align-items: start">
+<h2 style="grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Giriş alanı</h2>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); padding-top: 13px">Tek satır</span>
+<input type="text" placeholder="Açıklama (isteğe bağlı)" aria-label="Normal" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 0; background: var(--s2); font: inherit; color: var(--text); outline: 0">
+<input type="text" value="Migros" aria-label="Odak" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 0; background: var(--s2); font: inherit; color: var(--text); outline: 2px solid var(--accent)">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<input type="text" value="" aria-label="Kategori adı" aria-invalid="true" placeholder="Kategori adı" style="height: 48px; box-sizing: border-box; padding: 0 14px; border-radius: 12px; border: 0; background: var(--s2); font: inherit; color: var(--text); outline: 2px solid var(--exp)">
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--exp)">Kategori adı gir.</span>
+</div>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); padding-top: 20px">Tutar</span>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px"><span style="display: flex; align-items: baseline; gap: 4px; font-weight: 600; font-variant-numeric: tabular-nums"><span style="font-size: 28px; line-height: 44px; color: var(--text2)">₺</span><span style="font-size: 40px; line-height: 44px">340</span></span><span style="width: 160px; height: 2px; background: var(--border)"></span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px"><span style="display: flex; align-items: baseline; gap: 4px; font-weight: 600; font-variant-numeric: tabular-nums"><span style="font-size: 28px; line-height: 44px; color: var(--text2)">₺</span><span style="font-size: 40px; line-height: 44px">340</span><span style="width: 2px; height: 36px; background: var(--accent); align-self: center"></span></span><span style="width: 160px; height: 2px; background: var(--accent)"></span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px"><span style="display: flex; align-items: baseline; gap: 4px; font-weight: 600; font-variant-numeric: tabular-nums"><span style="font-size: 28px; line-height: 44px; color: var(--text2)">₺</span><span style="font-size: 40px; line-height: 44px">0</span></span><span style="width: 160px; height: 2px; background: var(--exp)"></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--exp); margin-top: 4px">Tutar sıfırdan büyük olmalı.</span></div>
+</section>
+
+<section style="display: grid; grid-template-columns: 180px repeat(3, minmax(0, 1fr)); gap: 16px 32px; align-items: center">
+<h2 style="grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Çip · Segment · Anahtar</h2>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Çip</span>
+<div style="display: flex; gap: 8px">
+<button aria-pressed="true" style="height: 36px; padding: 0 14px; border: 0; border-radius: 18px; background: var(--text); color: var(--bg); font: inherit; font-size: 13px; font-weight: 600">Tümü</button>
+<button aria-pressed="false" style="height: 36px; padding: 0 14px; border: 0; border-radius: 18px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); color: var(--text); font: inherit; font-size: 13px; font-weight: 500">Gider</button>
+</div>
+<div style="display: flex; gap: 8px">
+<button aria-pressed="true" style="height: 36px; padding: 0 14px; border: 0; border-radius: 18px; background: var(--text); color: var(--bg); font: inherit; font-size: 13px; font-weight: 600">Tümü</button>
+<button aria-pressed="false" style="height: 36px; padding: 0 14px; border: 0; border-radius: 18px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border), 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); color: var(--text); font: inherit; font-size: 13px; font-weight: 500">Gider</button>
+</div>
+<span style="color: var(--text2)">—</span>
+
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Segment</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--s2); border-radius: 12px; padding: 3px">
+<button style="border: 0; font: inherit; height: 38px; border-radius: 10px; background: var(--expSoft); color: var(--exp); font-weight: 600">Gider</button>
+<button style="border: 0; font: inherit; height: 38px; border-radius: 10px; background: none; color: var(--text2); font-weight: 500">Gelir</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--s2); border-radius: 12px; padding: 3px">
+<button style="border: 0; font: inherit; height: 38px; border-radius: 10px; background: none; color: var(--text2); font-weight: 500">Gider</button>
+<button style="border: 0; font: inherit; height: 38px; border-radius: 10px; background: var(--incSoft); color: var(--inc); font-weight: 600; box-shadow: 0 0 0 2px var(--accent)">Gelir</button>
+</div>
+<span style="color: var(--text2)">—</span>
+
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Anahtar</span>
+<div style="display: flex; gap: 16px">
+<button role="switch" aria-checked="false" aria-label="Kapalı" style="border: 0; width: 51px; height: 31px; border-radius: 16px; background: var(--switchOff); padding: 2px; display: flex; align-items: center; justify-content: flex-start"><span style="width: 27px; height: 27px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.2)"></span></button>
+<button role="switch" aria-checked="true" aria-label="Açık" style="border: 0; width: 51px; height: 31px; border-radius: 16px; background: var(--accent); padding: 2px; display: flex; align-items: center; justify-content: flex-end"><span style="width: 27px; height: 27px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.2)"></span></button>
+</div>
+<div style="display: flex; gap: 16px">
+<button role="switch" aria-checked="true" aria-label="Açık odak" style="border: 0; width: 51px; height: 31px; border-radius: 16px; background: var(--accent); padding: 2px; display: flex; align-items: center; justify-content: flex-end; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent)"><span style="width: 27px; height: 27px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.2)"></span></button>
+</div>
+<span style="color: var(--text2)">—</span>
+</section>
+
+<section style="display: grid; grid-template-columns: 180px repeat(3, minmax(0, 1fr)); gap: 16px 32px; align-items: start">
+<h2 style="grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Kart · Eksi bakiye rozeti</h2>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Kahraman, özet, kategori</span>
+<div style="background: var(--surface); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
+<span style="display: flex; align-items: center; gap: 8px"><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Kalan · Ekim</span><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--exp); background: var(--expSoft); padding: 2px 8px; border-radius: 10px">Eksi bakiye</span></span>
+<span style="display: flex; align-items: baseline; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em"><span style="font-size: 28px; line-height: 44px; color: var(--exp)">−₺</span><span style="font-size: 40px; line-height: 44px; color: var(--exp)">1.840</span><span style="font-size: 28px; line-height: 44px; color: var(--text2)">,00</span></span>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Zemin nötr kalır; yalnızca tutar ve rozet renklenir.</span>
+</div>
+<div style="background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<span style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: var(--incSoft); color: var(--inc); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Gelir</span></span>
+<span style="font-size: 22px; line-height: 28px; font-weight: 600; color: var(--inc); font-variant-numeric: tabular-nums">+₺20.500,00</span>
+</div>
+<div style="background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--c-kahve); background: color-mix(in srgb, var(--c-kahve) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Kira</span><span style="font-size: 16px; line-height: 22px; font-weight: 600; font-variant-numeric: tabular-nums">−₺7.500,00</span></span>
+<span aria-hidden="true" style="height: 4px; border-radius: 2px; background: var(--s2); display: flex"><span style="width: 51%; background: var(--expChart); border-radius: 2px"></span></span>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: 180px repeat(3, minmax(0, 1fr)); gap: 12px 32px; align-items: end">
+<h2 style="grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Liste satırı</h2>
+<span></span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2)">Normal · odak</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2)">Not ve tekrar ikonlu</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2)">Sola kaydırılmış</span>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); align-self: center">İşlem</span>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="background: var(--surface); border-radius: 16px; padding: 0 16px; height: 64px; display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-turuncu); background: color-mix(in srgb, var(--c-turuncu) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Migros</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Market</span></span>
+<span style="font-size: 16px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺340,00</span>
+</div>
+<div style="background: var(--surface); border-radius: 16px; padding: 0 16px; height: 64px; display: flex; align-items: center; gap: 12px; box-shadow: 0 0 0 2px var(--accent)">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-turuncu); background: color-mix(in srgb, var(--c-turuncu) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Migros</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Enter düzenler · Delete siler</span></span>
+<span style="font-size: 16px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺340,00</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="background: var(--surface); border-radius: 16px; padding: 0 16px; height: 64px; display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-gul); background: color-mix(in srgb, var(--c-gul) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="display: flex; align-items: center; gap: 6px"><span style="font-weight: 500">Akşam yemeği</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Notu var" style="color: var(--text2)"><path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Z"></path><path d="M15 3v4a2 2 0 0 0 2 2h4"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Yemek</span></span>
+<span style="font-size: 16px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺720,00</span>
+</div>
+<div style="background: var(--surface); border-radius: 16px; padding: 0 16px; height: 64px; display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-mavi); background: color-mix(in srgb, var(--c-mavi) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6v6"></path><path d="M15 6v6"></path><path d="M2 12h19.6"></path><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"></path><circle cx="7" cy="18" r="2"></circle><path d="M9 18h5"></path><circle cx="16" cy="18" r="2"></circle></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="display: flex; align-items: center; gap: 6px"><span style="font-weight: 500">Ulaşım kartı</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Sabit işlem" style="color: var(--text2)"><path d="m17 2 4 4-4 4"></path><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Ulaşım</span></span>
+<span style="font-size: 16px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺130,00</span>
+</div>
+</div>
+<div style="align-self: start; background: var(--surface); border-radius: 16px; height: 64px; position: relative; overflow: hidden">
+<span style="position: absolute; top: 0; right: 0; bottom: 0; width: 88px; background: var(--exp); color: var(--onExp); font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>Sil</span>
+<div style="position: absolute; inset: 0; background: var(--surface); padding: 0 16px; display: flex; align-items: center; gap: 12px; transform: translateX(-88px)">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-camgobegi); background: color-mix(in srgb, var(--c-camgobegi) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Eczane</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Sağlık</span></span>
+<span style="font-size: 16px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺230,00</span>
+</div>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: 180px repeat(2, minmax(0, 1fr)) minmax(0, 1fr); gap: 12px 32px; align-items: start">
+<h2 style="grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Liste satırı varyantları · Bildirim</h2>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Gider kırmızı / nötr</span>
+<sc-for list="{{variants}}" as="v" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2)">{{v.title}}</span>
+<div style="background: var(--surface); border-radius: 16px; padding: 0 16px">
+<sc-for list="{{v.rows}}" as="r" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; height: 56px">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">{{r.name}}</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">{{r.cat}}</span></span>
+<span style="font-size: 16px; font-weight: 600; color: {{r.ac}}; font-variant-numeric: tabular-nums">{{r.amount}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--text2)">Bildirim · düz ve Geri al</span>
+<div role="status" style="background: var(--toast); color: var(--onToast); border-radius: 12px; padding: 0 16px; height: 52px; display: flex; align-items: center; font-weight: 500; box-shadow: 0 8px 24px var(--shadow)">İşlem kaydedildi</div>
+<div role="status" style="background: var(--toast); color: var(--onToast); border-radius: 12px; padding: 4px 4px 4px 16px; height: 52px; box-sizing: border-box; display: flex; align-items: center; gap: 8px; font-weight: 500; box-shadow: 0 8px 24px var(--shadow)"><span style="flex: 1">İşlem silindi</span><button style="border: 0; background: none; font: inherit; color: var(--toastAccent); font-weight: 600; height: 44px; padding: 0 14px; border-radius: 10px">Geri al</button></div>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: 180px repeat(2, minmax(0, 1fr)); gap: 12px 32px; align-items: start">
+<h2 style="grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Onay diyaloğu · Alt sayfa kabı</h2>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Kategori silme örneği</span>
+<div style="background: var(--scrim); border-radius: 16px; padding: 32px; display: flex; justify-content: center">
+<div role="alertdialog" aria-label="Kategori silme onayı" style="width: 342px; background: var(--surface); border-radius: 20px; padding: 24px; box-shadow: 0 16px 40px var(--shadow); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 17px; line-height: 22px; font-weight: 600">'Eğlence' silinsin mi?</span><span style="color: var(--text2)">'Eğlence' kategorisinde 14 işlem ve 1 sabit işlem var. Bunlar 'Diğer' kategorisine taşınacak.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<button style="height: 48px; border: 0; border-radius: 12px; background: var(--exp); color: var(--onExp); font: inherit; font-weight: 600">Taşı ve sil</button>
+<button style="height: 48px; border: 0; border-radius: 12px; background: var(--s2); color: var(--text); font: inherit; font-weight: 600">Vazgeç</button>
+</div>
+</div>
+</div>
+<div style="background: var(--scrim); border-radius: 16px; padding: 32px 32px 0; display: flex; justify-content: center; align-items: flex-end; min-height: 340px; box-sizing: border-box">
+<div style="width: 390px; background: var(--surface); border-radius: 20px 20px 0 0; box-shadow: 0 -8px 24px var(--shadow); padding: 8px 16px 24px; display: flex; flex-direction: column; gap: 12px">
+<span style="align-self: center; width: 36px; height: 5px; border-radius: 3px; background: var(--border)"></span>
+<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 44px"><span style="color: var(--accent); font-weight: 500">Vazgeç</span><span style="font-size: 17px; font-weight: 600">Yeni işlem</span><span></span></div>
+<span style="color: var(--text2); font-size: 13px; line-height: 18px; font-weight: 500">Üst köşeler 20 px · tutamaç · aşağı çekince kapanır · tek yumuşak gölge. Kaydet altta sabit, 52 px.</span>
+<button style="height: 52px; border: 0; border-radius: 12px; background: var(--accent); color: var(--onAccent); font: inherit; font-size: 16px; font-weight: 600">Kaydet</button>
+</div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      light: { bg:'#F7F7F5', surface:'#FFFFFF', s2:'#F0EFEC', border:'#E6E4DF', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', scrim:'rgba(17,18,20,0.35)', switchOff:'#D9D7D2',
+        inc:'#237A4B', incSoft:'#E5F3EA', exp:'#C2453A', onExp:'#FFFFFF', expSoft:'#FBEAE7', expChart:'#EE8577', toast:'#1C1B19', onToast:'#F2F1EE', toastAccent:'#8C98FF',
+        'c-turuncu':'#D9662F', 'c-kahve':'#93633F', 'c-gul':'#D14D72', 'c-mavi':'#3478BE', 'c-camgobegi':'#16999C' },
+      dark: { bg:'#111214', surface:'#1A1B1E', s2:'#232428', border:'#2C2D31', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', scrim:'rgba(0,0,0,0.5)', switchOff:'#3A3B40',
+        inc:'#6FD39A', incSoft:'#1B2E23', exp:'#FF8A7A', onExp:'#111214', expSoft:'#36201E', expChart:'#E06E60', toast:'#F2F1EE', onToast:'#1C1B19', toastAccent:'#3D4ED8',
+        'c-turuncu':'#F28D5C', 'c-kahve':'#BF9270', 'c-gul':'#EC7898', 'c-mavi':'#64A4E2', 'c-camgobegi':'#45C4C6' }
+    };
+    const t = T[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+    const rows = (ec) => [
+      { name: 'Migros', cat: 'Market', amount: '−₺340,00', ac: ec },
+      { name: 'Çeviri işi', cat: 'Ek gelir', amount: '+₺2.500,00', ac: 'var(--inc)' },
+      { name: 'Taksi', cat: 'Ulaşım', amount: '−₺285,00', ac: ec }
+    ];
+    const variants = [
+      { title: 'A · Gider tutarı kırmızı', rows: rows('var(--exp)') },
+      { title: 'B · Gider tutarı nötr, yalnızca eksi işaretli', rows: rows('var(--text)') }
+    ];
+    return { vars, variants };
+  }
+}
+</script>
+</body>
+</html>

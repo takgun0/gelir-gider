@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Özet · masaüstü</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 1440px; height: 1540px; display: flex; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px; overflow: hidden">
+
+<aside style="width: 200px; flex: none; box-sizing: border-box; background: var(--surface); box-shadow: inset -1px 0 0 var(--border); padding: 24px 12px; display: flex; flex-direction: column; gap: 20px">
+<div style="padding: 0 8px; font-size: 15px; line-height: 20px; font-weight: 600">Gelir Gider</div>
+<a href="IslemEkle.dc.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border-radius: 12px; background: var(--accent); color: var(--onAccent); text-decoration: none; font-weight: 600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg><span style="flex: 1">İşlem ekle</span><kbd style="font: inherit; font-size: 12px; line-height: 16px; padding: 1px 6px; border-radius: 6px; background: rgba(255,255,255,0.18)">N</kbd></a>
+<nav aria-label="Ana menü" style="display: flex; flex-direction: column; gap: 2px">
+<a href="#" aria-current="page" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); text-decoration: none; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>Özet</a>
+<a href="IslemlerMobil.dc.html" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 12px; color: var(--text2); text-decoration: none; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h.01"></path><path d="M3 18h.01"></path><path d="M3 6h.01"></path><path d="M8 12h13"></path><path d="M8 18h13"></path><path d="M8 6h13"></path></svg>İşlemler</a>
+<a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 12px; color: var(--text2); text-decoration: none; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"></path><rect x="3" y="14" width="7" height="7" rx="1"></rect><circle cx="17.5" cy="17.5" r="3.5"></circle></svg>Kategoriler</a>
+</nav>
+<div style="flex: 1"></div>
+<a href="#" style="display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 12px; color: var(--text2); text-decoration: none; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>Ayarlar</a>
+</aside>
+
+<main style="flex: 1; min-width: 0; padding: 28px 60px 48px; box-sizing: border-box">
+<div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px">
+
+<header style="display: flex; align-items: center; justify-content: space-between; height: 48px">
+<div style="display: flex; align-items: center; gap: 4px; margin-left: -12px">
+<button aria-label="Önceki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button style="border: 0; background: none; padding: 0 4px; font: inherit; color: var(--text); font-size: 22px; line-height: 28px; font-weight: 600; height: 44px; cursor: pointer">Ekim 2026</button>
+<button aria-label="Sonraki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+</div>
+<button aria-label="Tutarları gizle" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
+</header>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<section style="grid-column: span 2; background: var(--surface); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Kalan · Ekim</div>
+<div style="display: flex; align-items: baseline; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em">
+<span style="font-size: 32px; line-height: 52px; color: var(--text2)">+₺</span><span style="font-size: 48px; line-height: 52px">5.900</span><span style="font-size: 32px; line-height: 52px; color: var(--text2)">,00</span>
+</div>
+<div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">Ay sonu tahmini: <span style="color: var(--text)">₺5.001,00</span></div>
+</section>
+<a href="IslemlerMobil.dc.html" style="background: var(--surface); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; text-decoration: none; color: inherit">
+<span style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: var(--incSoft); color: var(--inc); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Gelir</span></span>
+<span style="font-size: 22px; line-height: 28px; font-weight: 600; color: var(--inc); font-variant-numeric: tabular-nums">+₺20.500,00</span>
+</a>
+<a href="IslemlerMobil.dc.html" style="background: var(--surface); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; text-decoration: none; color: inherit">
+<span style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: var(--expSoft); color: var(--exp); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Gider</span></span>
+<span style="font-size: 22px; line-height: 28px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺14.600,00</span>
+</a>
+</div>
+
+<div style="display: flex; gap: 8px; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums; padding: 0 4px">
+<span>Bugün <span style="color: var(--text)">−₺340,00</span></span><span aria-hidden="true">·</span><span>Bu hafta <span style="color: var(--text)">−₺2.115,00</span></span>
+</div>
+
+<section style="background: var(--surface); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h2 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Günlük harcama</h2>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2)">Yalnızca gider · pazartesiler çizgiyle işaretli</span>
+</div>
+<div role="img" aria-label="Ekim günlük harcama grafiği" style="display: flex; gap: 8px">
+<div style="position: relative; width: 40px; height: 200px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">
+<span style="position: absolute; right: 0; top: -8px">₺8 B</span>
+<span style="position: absolute; right: 0; top: 92px">₺4 B</span>
+<span style="position: absolute; right: 0; bottom: -8px">₺0</span>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<div style="position: relative; height: 200px; display: flex; align-items: flex-end; box-shadow: inset 0 -1px 0 var(--border)">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="31">
+<div style="flex: 1; height: 100%; display: flex; align-items: flex-end; justify-content: center; {{d.col}}">
+<div style="width: 12px; height: {{d.h}}px; border-radius: 4px 4px 0 0; background: var(--expChart); opacity: {{d.op}}"></div>
+</div>
+</sc-for>
+<div style="position: absolute; left: 0; right: 0; bottom: {{avgB}}px; border-top: 1px dashed var(--text2); opacity: 0.8"></div>
+<span style="position: absolute; right: 0; bottom: {{avgL}}px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums; background: var(--surface); padding-left: 6px">Ort. ₺811</span>
+<a href="IslemlerMobil.dc.html" style="position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); background: var(--text); color: var(--surface); border-radius: 10px; padding: 8px 12px; font-size: 13px; line-height: 18px; font-weight: 500; white-space: nowrap; text-decoration: none; box-shadow: 0 6px 16px var(--shadow); font-variant-numeric: tabular-nums">16 Ekim Cuma · <span style="font-weight: 600">−₺230,00</span> · 1 işlem</a>
+</div>
+<div style="display: flex; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="31">
+<span style="flex: 1; text-align: center; white-space: nowrap; width: 0">{{d.label}}</span>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<section style="background: var(--surface); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h2 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Kategori dağılımı</h2>
+<div style="display: flex; background: var(--s2); border-radius: 10px; padding: 3px">
+<button style="border: 0; font: inherit; cursor: pointer; background: var(--surface); color: var(--text); border-radius: 8px; padding: 4px 12px; font-size: 13px; line-height: 18px; font-weight: 600">Gider</button>
+<button style="border: 0; font: inherit; cursor: pointer; background: none; color: var(--text2); border-radius: 8px; padding: 4px 12px; font-size: 13px; line-height: 18px; font-weight: 500">Gelir</button>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 28px">
+<div style="position: relative; width: 176px; height: 176px; flex: none">
+<svg width="176" height="176" viewBox="0 0 176 176" aria-hidden="true" style="transform: rotate(-90deg)">
+<sc-for list="{{segs}}" as="s" hint-placeholder-count="7">
+<circle cx="88" cy="88" r="70" fill="none" stroke-width="18" style="stroke: {{s.color}}; stroke-dasharray: {{s.dash}}; stroke-dashoffset: {{s.off}}"></circle>
+</sc-for>
+</svg>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2)">Toplam gider</span>
+<span style="font-size: 15px; line-height: 20px; font-weight: 600; font-variant-numeric: tabular-nums">−₺14.600,00</span>
+</div>
+</div>
+<ul style="flex: 1; min-width: 0; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<sc-for list="{{segs}}" as="s" hint-placeholder-count="7">
+<li style="display: flex; align-items: center; gap: 10px; height: 36px">
+<span style="width: 10px; height: 10px; border-radius: 50%; flex: none; background: {{s.color}}"></span>
+<span style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{s.name}}</span>
+<span style="font-weight: 600; font-variant-numeric: tabular-nums">{{s.amount}}</span>
+<span style="width: 36px; text-align: right; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">{{s.pct}}</span>
+</li>
+</sc-for>
+</ul>
+</div>
+<a href="#" style="align-self: flex-end; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--accent); text-decoration: none">Tümünü göster</a>
+</section>
+
+<section style="background: var(--surface); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h2 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Son 6 ay</h2>
+<div style="display: flex; gap: 12px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2)">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 2px; background: var(--incChart)"></span>Gelir</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 2px; background: var(--expChart)"></span>Gider</span>
+</div>
+</div>
+<div role="img" aria-label="Son 6 ay gelir ve gider grafiği" style="display: flex; gap: 8px; flex: 1; align-items: flex-end">
+<div style="position: relative; width: 40px; height: 220px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">
+<span style="position: absolute; right: 0; bottom: 179px">₺20 B</span>
+<span style="position: absolute; right: 0; bottom: 98px">₺10 B</span>
+<span style="position: absolute; right: 0; bottom: 16px">₺0</span>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<div style="height: 196px; display: flex; align-items: flex-end; box-shadow: inset 0 -1px 0 var(--border)">
+<sc-for list="{{months}}" as="m" hint-placeholder-count="6">
+<button aria-label="{{m.aria}}" style="border: 0; background: none; padding: 0; cursor: pointer; flex: 1; height: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 4px; opacity: {{m.op}}">
+<span style="width: 18px; height: {{m.gh}}px; border-radius: 4px 4px 0 0; background: var(--incChart)"></span>
+<span style="width: 18px; height: {{m.xh}}px; border-radius: 4px 4px 0 0; background: var(--expChart)"></span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text2)">
+<sc-for list="{{months}}" as="m" hint-placeholder-count="6">
+<span style="flex: 1; text-align: center; color: {{m.lc}}; font-weight: {{m.lw}}">{{m.label}}</span>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start">
+<section style="background: var(--surface); border-radius: 16px; padding: 24px 24px 12px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px">
+<h2 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Yaklaşan sabit işlemler</h2>
+<a href="#" style="font-size: 13px; line-height: 18px; font-weight: 600; color: var(--accent); text-decoration: none">Tümü</a>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-amber); background: color-mix(in srgb, var(--c-amber) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 17.5v-11"></path></svg></span>
+<div style="flex: 1; min-width: 0"><div style="font-weight: 500">İnternet</div><div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">25 Ekim · 7 gün sonra</div></div>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺450,00</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-mor); background: color-mix(in srgb, var(--c-mor) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z"></path><path d="M12 17v4"></path><path d="M8 21h8"></path><rect x="2" y="3" width="20" height="14" rx="2"></rect></svg></span>
+<div style="flex: 1; min-width: 0"><div style="font-weight: 500">Müzik aboneliği</div><div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">28 Ekim · 10 gün sonra</div></div>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺99,00</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-amber); background: color-mix(in srgb, var(--c-amber) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 17.5v-11"></path></svg></span>
+<div style="flex: 1; min-width: 0"><div style="font-weight: 500">Telefon faturası</div><div style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">30 Ekim · 12 gün sonra</div></div>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺350,00</span>
+</div>
+</section>
+
+<section style="background: var(--surface); border-radius: 16px; padding: 24px 24px 12px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px">
+<h2 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 600">Son işlemler</h2>
+<a href="IslemlerMobil.dc.html" style="font-size: 13px; line-height: 18px; font-weight: 600; color: var(--accent); text-decoration: none">Tümünü gör</a>
+</div>
+<button style="border: 0; background: var(--s2); margin: 0 -12px; padding: 0 12px; border-radius: 12px; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-turuncu); background: color-mix(in srgb, var(--c-turuncu) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Migros</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Market · Bugün</span></span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺340,00</span>
+<span aria-label="Diğer eylemler" style="width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text2); background: var(--surface)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>
+</button>
+<button style="border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-camgobegi); background: color-mix(in srgb, var(--c-camgobegi) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Eczane</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Sağlık · 16 Eki</span></span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺230,00</span>
+</button>
+<button style="border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-gul); background: color-mix(in srgb, var(--c-gul) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="display: flex; align-items: center; gap: 6px"><span style="font-weight: 500">Akşam yemeği</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Notu var" style="color: var(--text2)"><path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Z"></path><path d="M15 3v4a2 2 0 0 0 2 2h4"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Yemek · 15 Eki</span></span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺720,00</span>
+</button>
+<button style="border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-mavi); background: color-mix(in srgb, var(--c-mavi) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6v6"></path><path d="M15 6v6"></path><path d="M2 12h19.6"></path><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"></path><circle cx="7" cy="18" r="2"></circle><path d="M9 18h5"></path><circle cx="16" cy="18" r="2"></circle></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="display: flex; align-items: center; gap: 6px"><span style="font-weight: 500">Ulaşım kartı</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Sabit işlem" style="color: var(--text2)"><path d="m17 2 4 4-4 4"></path><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg></span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Ulaşım · 14 Eki</span></span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺130,00</span>
+</button>
+<button style="border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--c-turuncu); background: color-mix(in srgb, var(--c-turuncu) 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Haftalık pazar</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Market · 13 Eki</span></span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; color: var(--exp); font-variant-numeric: tabular-nums">−₺410,00</span>
+</button>
+</section>
+</div>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1540}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      light: { bg:'#F7F7F5', surface:'#FFFFFF', s2:'#F0EFEC', border:'#E6E4DF', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', inc:'#237A4B', incSoft:'#E5F3EA', incChart:'#6CC08F', exp:'#C2453A', expSoft:'#FBEAE7', expChart:'#EE8577',
+        'c-gul':'#D14D72', 'c-mor':'#8257D1', 'c-mavi':'#3478BE', 'c-camgobegi':'#16999C', 'c-amber':'#CF7F12', 'c-turuncu':'#D9662F', 'c-kahve':'#93633F' },
+      dark: { bg:'#111214', surface:'#1A1B1E', s2:'#232428', border:'#2C2D31', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', inc:'#6FD39A', incSoft:'#1B2E23', incChart:'#4FAF7A', exp:'#FF8A7A', expSoft:'#36201E', expChart:'#E06E60',
+        'c-gul':'#EC7898', 'c-mor':'#A98BEE', 'c-mavi':'#64A4E2', 'c-camgobegi':'#45C4C6', 'c-amber':'#EDA748', 'c-turuncu':'#F28D5C', 'c-kahve':'#BF9270' }
+    };
+    const t = T[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+
+    const daily = [7680,240,0,620,310,95,1260,420,380,560,920,285,410,130,720,230,0,340];
+    const today = 18, picked = 16, H = 200, max = 8000;
+    const days = [];
+    for (let d = 1; d <= 31; d++) {
+      const v = d <= today ? daily[d - 1] : 0;
+      const mon = [5, 12, 19, 26].indexOf(d) >= 0;
+      let col = mon ? 'box-shadow: inset 1px 0 0 var(--border)' : '';
+      if (d === picked) col = 'background: var(--s2); border-radius: 6px 6px 0 0';
+      days.push({
+        h: v ? Math.max(3, Math.round(v / max * H)) : 0,
+        op: d === today || d === picked ? 1 : 0.6,
+        col,
+        label: [1, 5, 10, 15, 20, 25, 30].indexOf(d) >= 0 ? String(d) : ''
+      });
+    }
+    const avgB = Math.round(811 / max * H);
+
+    const C = 2 * Math.PI * 70;
+    const raw = [
+      ['Kira', 7500, 'var(--c-kahve)', '₺7.500,00'],
+      ['Market', 2840, 'var(--c-turuncu)', '₺2.840,00'],
+      ['Faturalar', 1260, 'var(--c-amber)', '₺1.260,00'],
+      ['Yemek', 1180, 'var(--c-gul)', '₺1.180,00'],
+      ['Ulaşım', 640, 'var(--c-mavi)', '₺640,00'],
+      ['Abonelikler', 420, 'var(--c-mor)', '₺420,00'],
+      ['Diğerleri (3)', 760, 'color-mix(in srgb, var(--text2) 45%, var(--surface))', '₺760,00']
+    ];
+    const total = 14600;
+    let cum = 0;
+    const segs = raw.map((r) => {
+      const len = r[1] / total * C;
+      const s = { name: r[0], color: r[2], amount: r[3], pct: '%' + Math.round(r[1] / total * 100), dash: Math.max(0, len - 2).toFixed(2) + ' ' + C.toFixed(2), off: (-cum).toFixed(2) };
+      cum += len;
+      return s;
+    });
+
+    const sel = 5, MH = 196, mmax = 24000;
+    const months = [
+      ['Mayıs', 18000, 15200], ['Haziran', 18000, 13900], ['Temmuz', 19500, 17100],
+      ['Ağustos', 18000, 16400], ['Eylül', 21000, 14800], ['Ekim', 20500, 14600]
+    ].map((m, i) => ({
+      label: m[0],
+      aria: m[0] + ': gelir ₺' + m[1].toLocaleString('tr-TR') + ', gider ₺' + m[2].toLocaleString('tr-TR'),
+      gh: Math.round(m[1] / mmax * MH), xh: Math.round(m[2] / mmax * MH),
+      op: i === sel ? 1 : 0.5,
+      lc: i === sel ? 'var(--text)' : 'var(--text2)',
+      lw: i === sel ? 600 : 500
+    }));
+
+    return { vars, days, avgB, avgL: avgB + 4, segs, months };
+  }
+}
+</script>
+</body>
+</html>

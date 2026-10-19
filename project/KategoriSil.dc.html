@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kategori silme onayı</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; font-family: Inter, system-ui, sans-serif; color: #1C1B19; font-size: 15px; line-height: 22px">
+<div aria-hidden="true" style="position: absolute; inset: 0">
+<dc-import name="KategorilerMobil" hint-size="390px,1100px"></dc-import>
+</div>
+<div style="position: absolute; inset: 0; background: rgba(17,18,20,0.45)"></div>
+<div role="alertdialog" aria-labelledby="sil-baslik" aria-describedby="sil-metin" style="position: absolute; left: 24px; right: 24px; top: 260px; background: #FFFFFF; border-radius: 20px; padding: 24px; box-shadow: 0 16px 40px rgba(28,27,25,0.22); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="sil-baslik" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 600">'Eğlence' silinsin mi?</h2>
+<p id="sil-metin" style="margin: 0; color: #6B6862">'Eğlence' kategorisinde 14 işlem ve 1 sabit işlem var. Bunlar 'Diğer' kategorisine taşınacak.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<button style="height: 48px; border: 0; border-radius: 12px; background: #C2453A; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Taşı ve sil</button>
+<button style="height: 48px; border: 0; border-radius: 12px; background: #F0EFEC; color: #1C1B19; font: inherit; font-weight: 600; cursor: pointer">Vazgeç</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

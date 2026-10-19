@@ -1,0 +1,90 @@
+/* DESIGN §4 renk token'ları. Bileşenlerde ham hex kullanılmaz; Tailwind teması
+   bu değişkenlere bağlıdır (src/index.css). */
+:root {
+  color-scheme: light;
+
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f0efec;
+  --border: #e6e4df;
+  --text: #1c1b19;
+  --text-2: #6b6862;
+  --accent: #3d4ed8;
+  --on-accent: #ffffff;
+  --income: #237a4b;
+  --income-soft: #e5f3ea;
+  --income-chart: #6cc08f;
+  --expense: #c2453a;
+  --on-expense: #ffffff;
+  --expense-soft: #fbeae7;
+  --expense-chart: #ee8577;
+
+  /* Bileşen kartlarından (project/Bilesenler.dc.html) türetilenler */
+  --switch-off: #d9d7d2;
+  --toast: #1c1b19;
+  --on-toast: #f2f1ee;
+  --toast-accent: #8c98ff;
+  --scrim: rgb(17 18 20 / 0.35);
+  --shadow: rgb(28 27 25 / 0.18);
+
+  /* DESIGN §6.2: gider tutarının rengi tek yerden. Nötr varyant için var(--text). */
+  --amount-expense: var(--expense);
+
+  /* DESIGN §4 kategori paleti (SPEC §4 PaletteKey) */
+  --c-gul: #d14d72;
+  --c-fusya: #b9479f;
+  --c-mor: #8257d1;
+  --c-civit: #5560cc;
+  --c-mavi: #3478be;
+  --c-gok: #2696c7;
+  --c-camgobegi: #16999c;
+  --c-petrol: #2a7980;
+  --c-zeytin: #77862a;
+  --c-hardal: #ae8b1f;
+  --c-amber: #cf7f12;
+  --c-turuncu: #d9662f;
+  --c-kahve: #93633f;
+  --c-arduvaz: #66717f;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #111214;
+  --surface: #1a1b1e;
+  --surface-2: #232428;
+  --border: #2c2d31;
+  --text: #f2f1ee;
+  --text-2: #a3a19b;
+  --accent: #8c98ff;
+  --on-accent: #111214;
+  --income: #6fd39a;
+  --income-soft: #1b2e23;
+  --income-chart: #4faf7a;
+  --expense: #ff8a7a;
+  --on-expense: #111214;
+  --expense-soft: #36201e;
+  --expense-chart: #e06e60;
+
+  --switch-off: #3a3b40;
+  --toast: #f2f1ee;
+  --on-toast: #1c1b19;
+  --toast-accent: #3d4ed8;
+  --scrim: rgb(0 0 0 / 0.5);
+  --shadow: rgb(0 0 0 / 0.55);
+
+  --c-gul: #ec7898;
+  --c-fusya: #da79c9;
+  --c-mor: #a98bee;
+  --c-civit: #8990ec;
+  --c-mavi: #64a4e2;
+  --c-gok: #5bbde6;
+  --c-camgobegi: #45c4c6;
+  --c-petrol: #57a9b0;
+  --c-zeytin: #a7b652;
+  --c-hardal: #d6b550;
+  --c-amber: #eda748;
+  --c-turuncu: #f28d5c;
+  --c-kahve: #bf9270;
+  --c-arduvaz: #96a0ad;
+}

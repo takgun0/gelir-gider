@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kategoriler · mobil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 390px; height: 1100px; position: relative; overflow: hidden; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px">
+<main style="display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 120px">
+<h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Kategoriler</h1>
+<div role="tablist" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--s2); border-radius: 12px; padding: 3px">
+<button role="tab" aria-selected="true" style="border: 0; font: inherit; cursor: pointer; height: 38px; border-radius: 10px; background: var(--surface); color: var(--text); font-weight: 600">Gider</button>
+<button role="tab" aria-selected="false" style="border: 0; font: inherit; cursor: pointer; height: 38px; border-radius: 10px; background: none; color: var(--text2); font-weight: 500">Gelir</button>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; height: 44px">
+<div style="display: flex; align-items: center; gap: 4px; margin-left: -12px">
+<button aria-label="Önceki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button style="border: 0; background: none; padding: 0 4px; font: inherit; color: var(--text); font-size: 17px; font-weight: 600; height: 44px; cursor: pointer">Ekim 2026</button>
+<button aria-label="Sonraki ay" style="border: 0; background: none; padding: 0; color: var(--text2); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+</div>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); font-variant-numeric: tabular-nums">Toplam <span style="color: var(--text); font-weight: 600">−₺14.600,00</span></span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="10">
+<a href="KategoriDuzenle.dc.html" style="background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; color: inherit">
+<span style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: {{c.color}}; background: color-mix(in srgb, {{c.color}} 16%, transparent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{c.icon}}" as="p" hint-placeholder-count="3"><path d="{{p.d}}"></path></sc-for></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">{{c.name}}</span>
+<span style="font-size: 16px; line-height: 22px; font-weight: 600; font-variant-numeric: tabular-nums; color: {{c.ac}}">{{c.amount}}</span>
+</span>
+<span aria-hidden="true" style="height: 4px; border-radius: 2px; background: var(--s2); overflow: hidden; display: flex"><span style="width: {{c.pct}}%; background: var(--expChart); border-radius: 2px"></span></span>
+</a>
+</sc-for>
+<button style="border: 1.5px dashed var(--border); background: none; font: inherit; color: var(--text2); cursor: pointer; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 138px; font-weight: 500">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Kategori ekle
+</button>
+</div>
+</main>
+
+<nav aria-label="Ana menü" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); box-shadow: inset 0 1px 0 var(--border); padding: 6px 4px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end">
+<sc-for list="{{navL}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+<div style="display: flex; justify-content: center; height: 52px; align-items: flex-start">
+<a href="IslemEkle.dc.html" aria-label="İşlem ekle" style="width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; background: var(--accent); color: var(--onAccent); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px var(--shadow)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></a>
+</div>
+<sc-for list="{{navR}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      light: { bg:'#F7F7F5', surface:'#FFFFFF', s2:'#F0EFEC', border:'#D9D7D2', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', expChart:'#EE8577',
+        'c-gul':'#D14D72', 'c-fusya':'#B9479F', 'c-mor':'#8257D1', 'c-mavi':'#3478BE', 'c-gok':'#2696C7', 'c-camgobegi':'#16999C', 'c-amber':'#CF7F12', 'c-turuncu':'#D9662F', 'c-kahve':'#93633F', 'c-arduvaz':'#66717F' },
+      dark: { bg:'#111214', surface:'#1A1B1E', s2:'#232428', border:'#3A3B40', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', expChart:'#E06E60',
+        'c-gul':'#EC7898', 'c-fusya':'#DA79C9', 'c-mor':'#A98BEE', 'c-mavi':'#64A4E2', 'c-gok':'#5BBDE6', 'c-camgobegi':'#45C4C6', 'c-amber':'#EDA748', 'c-turuncu':'#F28D5C', 'c-kahve':'#BF9270', 'c-arduvaz':'#96A0AD' }
+    };
+    const t = T[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+    const P = (a) => a.map((d) => ({ d }));
+    const I = {
+      house: P(['M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8', 'M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z']),
+      cart: P(['M7 21a1 1 0 1 0 2 0a1 1 0 1 0 -2 0', 'M18 21a1 1 0 1 0 2 0a1 1 0 1 0 -2 0', 'M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12']),
+      receipt: P(['M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z', 'M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8', 'M12 17.5v-11']),
+      utensils: P(['M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2', 'M7 2v20', 'M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7']),
+      bus: P(['M8 6v6', 'M15 6v6', 'M2 12h19.6', 'M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3', 'M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0', 'M9 18h5', 'M14 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0']),
+      monitor: P(['M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z', 'M12 17v4', 'M8 21h8']),
+      ticket: P(['M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z', 'M13 5v2', 'M13 17v2', 'M13 11v2']),
+      heart: P(['M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z', 'M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27']),
+      ellipsis: P(['M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0', 'M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0', 'M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0']),
+      book: P(['M12 7v14', 'M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z'])
+    };
+    const total = 14600;
+    const fmt = (v) => '−₺' + v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const cats = [
+      ['Kira', 7500, 'house', 'kahve'], ['Market', 2840, 'cart', 'turuncu'], ['Faturalar', 1260, 'receipt', 'amber'],
+      ['Yemek', 1180, 'utensils', 'gul'], ['Ulaşım', 640, 'bus', 'mavi'], ['Abonelikler', 420, 'monitor', 'mor'],
+      ['Eğlence', 380, 'ticket', 'fusya'], ['Sağlık', 250, 'heart', 'camgobegi'], ['Diğer', 130, 'ellipsis', 'arduvaz'],
+      ['Eğitim', 0, 'book', 'gok']
+    ].map((c) => ({
+      name: c[0], icon: I[c[2]], color: 'var(--c-' + c[3] + ')',
+      amount: c[1] ? fmt(c[1]) : '—', ac: c[1] ? 'var(--text)' : 'var(--text2)',
+      pct: Math.max(c[1] ? 2 : 0, Math.round(c[1] / total * 100))
+    }));
+
+    const N = {
+      ozet: P(['M4 3h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 3h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 12h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z', 'M4 16h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z']),
+      islem: P(['M3 12h.01', 'M3 18h.01', 'M3 6h.01', 'M8 12h13', 'M8 18h13', 'M8 6h13']),
+      kat: P(['M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z', 'M4 14h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z', 'M14 17.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0']),
+      ayar: P(['M20 7h-9', 'M14 17H5', 'M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0', 'M4 7a3 3 0 1 0 6 0a3 3 0 1 0 -6 0'])
+    };
+    const activeTab = 2;
+    const nav = [['Özet', 'ozet', 'Main.dc.html'], ['İşlemler', 'islem', 'IslemlerMobil.dc.html'], ['Kategoriler', 'kat', 'KategorilerMobil.dc.html'], ['Ayarlar', 'ayar', 'AyarlarMobil.dc.html']]
+      .map((n, i) => ({ label: n[0], icon: N[n[1]], href: n[2], color: i === activeTab ? 'var(--accent)' : 'var(--text2)', weight: i === activeTab ? 600 : 500 }));
+
+    return { vars, cats, navL: nav.slice(0, 2), navR: nav.slice(2) };
+  }
+}
+</script>
+</body>
+</html>

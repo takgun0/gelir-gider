@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Ayarlar · mobil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="{{vars}}; width: 390px; height: 1240px; position: relative; overflow: hidden; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 22px">
+<main style="display: flex; flex-direction: column; gap: 24px; padding: 16px 16px 120px">
+<h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600">Ayarlar</h1>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--text2)">Görünüm</h2>
+<div style="background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-weight: 500">Tema</span>
+<div role="radiogroup" aria-label="Tema" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--s2); border-radius: 12px; padding: 3px">
+<button role="radio" aria-checked="false" style="border: 0; font: inherit; cursor: pointer; height: 38px; border-radius: 10px; background: none; color: var(--text2); font-weight: 500">Açık</button>
+<button role="radio" aria-checked="false" style="border: 0; font: inherit; cursor: pointer; height: 38px; border-radius: 10px; background: none; color: var(--text2); font-weight: 500">Koyu</button>
+<button role="radio" aria-checked="true" style="border: 0; font: inherit; cursor: pointer; height: 38px; border-radius: 10px; background: var(--surface); color: var(--text); font-weight: 600">Sistem</button>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--text2)">Verilerin</h2>
+<div style="background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; gap: 12px; padding: 12px; border-radius: 12px; background: var(--s2); margin-bottom: 8px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--text2); margin-top: 1px"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+<p style="margin: 0; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Verilerin yalnızca bu cihazda, bu tarayıcıda saklanır. Tarayıcı verilerini silersen ya da cihaz değiştirirsen kaybolur. Düzenli yedek al.</p>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; height: 48px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--text2)"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+<span style="flex: 1; color: var(--text2)">Son yedek</span>
+<span style="font-weight: 500">12 gün önce</span>
+</div>
+<button style="border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; background: var(--s2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Yedek indir</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">gelir-gider-yedek-2026-10-18.json</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--text2)"><path d="m9 18 6-6-6-6"></path></svg>
+</button>
+<button style="border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; background: var(--s2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M8 13h2"></path><path d="M14 13h2"></path><path d="M8 17h2"></path><path d="M14 17h2"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">CSV olarak dışa aktar</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Excel'de açılır, geri yüklenemez</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--text2)"><path d="m9 18 6-6-6-6"></path></svg>
+</button>
+<a href="GeriYukle.dc.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; min-height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 50%; flex: none; background: var(--s2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5"></path><path d="M12 3v12"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">Yedekten geri yükle</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">Bir .json yedek dosyası seç</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--text2)"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--exp)">Tehlikeli bölge</h2>
+<div style="background: var(--expSoft); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text)">Tüm işlemler, kategoriler ve sabit işlemler silinir. Bu işlem geri alınamaz.</p>
+<a href="TumunuSil.dc.html" style="align-self: flex-start; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 12px; background: var(--surface); color: var(--exp); text-decoration: none; font-weight: 600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>Tüm verileri sil</a>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--text2)">Hakkında</h2>
+<div style="background: var(--surface); border-radius: 16px; padding: 4px 16px">
+<div style="display: flex; align-items: center; height: 52px"><span style="flex: 1">Sürüm</span><span style="color: var(--text2); font-variant-numeric: tabular-nums">1.0.0</span></div>
+<div style="display: flex; gap: 12px; padding: 12px 0 14px; box-shadow: inset 0 1px 0 var(--border)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--text2); margin-top: 1px"><path d="M12 2v13"></path><path d="m16 6-4-4-4 4"></path><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path></svg>
+<span style="display: flex; flex-direction: column"><span style="font-weight: 500">Ana ekrana ekle</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--text2)">iPhone'da Paylaş › Ana Ekrana Ekle. Uygulama tarayıcı çubuğu olmadan açılır.</span></span>
+</div>
+</div>
+</section>
+</main>
+
+<sc-if value="{{hata}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: absolute; left: 16px; right: 16px; bottom: 98px; background: var(--toast); color: var(--onToast); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px var(--shadow); font-weight: 500">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--toastErr)"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+Bu dosya geçerli bir yedek değil.
+</div>
+</sc-if>
+
+<nav aria-label="Ana menü" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); box-shadow: inset 0 1px 0 var(--border); padding: 6px 4px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end">
+<sc-for list="{{navL}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+<div style="display: flex; justify-content: center; height: 52px; align-items: flex-start">
+<a href="IslemEkle.dc.html" aria-label="İşlem ekle" style="width: 56px; height: 56px; margin-top: -22px; border-radius: 50%; background: var(--accent); color: var(--onAccent); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px var(--shadow)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></a>
+</div>
+<sc-for list="{{navR}}" as="n" hint-placeholder-count="2">
+<a href="{{n.href}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; height: 52px; justify-content: center; text-decoration: none; color: {{n.color}}; font-size: 12px; line-height: 16px; font-weight: {{n.weight}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><sc-for list="{{n.icon}}" as="p" hint-placeholder-count="4"><path d="{{p.d}}"></path></sc-for></svg>{{n.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"hata":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const T = {
+      light: { bg:'#F7F7F5', surface:'#FFFFFF', s2:'#F0EFEC', border:'#E6E4DF', text:'#1C1B19', text2:'#6B6862', accent:'#3D4ED8', onAccent:'#FFFFFF', shadow:'rgba(28,27,25,0.18)', exp:'#C2453A', expSoft:'#FBEAE7', toast:'#1C1B19', onToast:'#F2F1EE', toastErr:'#FF8A7A' },
+      dark: { bg:'#111214', surface:'#1A1B1E', s2:'#232428', border:'#2C2D31', text:'#F2F1EE', text2:'#A3A19B', accent:'#8C98FF', onAccent:'#111214', shadow:'rgba(0,0,0,0.55)', exp:'#FF8A7A', expSoft:'#36201E', toast:'#F2F1EE', onToast:'#1C1B19', toastErr:'#C2453A' }
+    };
+    const t = T[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const vars = Object.keys(t).map((k) => '--' + k + ': ' + t[k]).join('; ');
+    const P = (a) => a.map((d) => ({ d }));
+    const N = {
+      ozet: P(['M4 3h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 3h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M15 12h5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z', 'M4 16h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z']),
+      islem: P(['M3 12h.01', 'M3 18h.01', 'M3 6h.01', 'M8 12h13', 'M8 18h13', 'M8 6h13']),
+      kat: P(['M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z', 'M4 14h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z', 'M14 17.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0']),
+      ayar: P(['M20 7h-9', 'M14 17H5', 'M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0', 'M4 7a3 3 0 1 0 6 0a3 3 0 1 0 -6 0'])
+    };
+    const activeTab = 3;
+    const nav = [['Özet', 'ozet', 'Main.dc.html'], ['İşlemler', 'islem', 'IslemlerMobil.dc.html'], ['Kategoriler', 'kat', 'KategorilerMobil.dc.html'], ['Ayarlar', 'ayar', 'AyarlarMobil.dc.html']]
+      .map((n, i) => ({ label: n[0], icon: N[n[1]], href: n[2], color: i === activeTab ? 'var(--accent)' : 'var(--text2)', weight: i === activeTab ? 600 : 500 }));
+    const hata = this.props.hata === true || this.props.hata === 'true';
+    return { vars, hata, navL: nav.slice(0, 2), navR: nav.slice(2) };
+  }
+}
+</script>
+</body>
+</html>
