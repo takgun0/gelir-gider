@@ -244,6 +244,20 @@ Gruplu liste; her grup başlıklı bir kart. Sıra: Görünüm, Verilerin, Tehli
 #### Hakkında
 - Sürüm numarası. Uygulama ana ekrana eklenmemişse "Ana ekrana ekle" yönergesi (iOS'ta Paylaş › Ana Ekrana Ekle).
 
+### 6.7 Tanıtım (ilk giriş)
+Sonradan eklendi (proje sahibinin isteği). Siteye ilk kez girene birkaç adımda uygulamayı tanıtır.
+
+- İlk açılışta Özet'in üstünde açılır; mobilde alttan sayfa, 640 px ve üstünde ortada kart.
+- Adımlar:
+  1. Hoş geldin: hesap gerekmez, internetsiz çalışır.
+  2. İşlem ekleme: + → tutar → kategori → Kaydet; gelir mi gider mi üstteki seçiciden.
+  3. Açıklama ve not; "Her ay tekrarla".
+  4. Kendi kategorilerin; silinen kategorinin işlemleri "Diğer"e taşınır.
+  5. Yedek almanın önemi (uyarı tonunda).
+- Üstte adım sayacı ("2 / 5") ve "Geç"; altta adım noktaları, "Geri" ve "İleri" (son adımda "Başla").
+- ← → ile adımlar arasında gezilir, Esc ve "Geç" kapatır. Kapandıktan sonra bir daha kendiliğinden açılmaz.
+- Ayarlar › Hakkında'da "Tanıtımı yeniden göster" satırıyla yeniden açılır.
+
 ## 7. Sabit işlem kuralları
 Bu kurallar arayüzde görünen her sabit işlem davranışını belirler; tasarımcı ve geliştirici aynı tabloya bakmalı.
 

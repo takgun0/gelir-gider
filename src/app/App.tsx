@@ -6,6 +6,7 @@ import { RecurringPage } from '../ui/pages/RecurringPage';
 import { TransactionsPage } from '../ui/pages/TransactionsPage';
 import { GenerationWatcher } from './generation';
 import { Layout } from './Layout';
+import { TourProvider } from './onboarding';
 import { SelectedMonthProvider } from './month';
 import { PrefsProvider } from './prefs';
 import { UpdateWatcher } from './pwa';
@@ -23,16 +24,18 @@ export function App({ generated }: { generated: number }) {
             <UpdateWatcher />
             <HashRouter>
               <TxSheetProvider>
-                <Routes>
-                  <Route element={<Layout />}>
-                    <Route index element={<SummaryPage />} />
-                    <Route path="islemler" element={<TransactionsPage />} />
-                    <Route path="islemler/sabit" element={<RecurringPage />} />
-                    <Route path="kategoriler" element={<CategoriesPage />} />
-                    <Route path="ayarlar" element={<SettingsPage />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                  </Route>
-                </Routes>
+                <TourProvider>
+                  <Routes>
+                    <Route element={<Layout />}>
+                      <Route index element={<SummaryPage />} />
+                      <Route path="islemler" element={<TransactionsPage />} />
+                      <Route path="islemler/sabit" element={<RecurringPage />} />
+                      <Route path="kategoriler" element={<CategoriesPage />} />
+                      <Route path="ayarlar" element={<SettingsPage />} />
+                      <Route path="*" element={<Navigate to="/" replace />} />
+                    </Route>
+                  </Routes>
+                </TourProvider>
               </TxSheetProvider>
             </HashRouter>
           </ToastProvider>

@@ -6,6 +6,7 @@ import { Download } from 'lucide-react';
 import { FileSpreadsheet } from 'lucide-react';
 import { History } from 'lucide-react';
 import { Info } from 'lucide-react';
+import { Map as MapIcon } from 'lucide-react';
 import { SquarePlus } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 import { Upload } from 'lucide-react';
@@ -13,6 +14,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useId, useRef, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import { isIos, isStandalone, saveFile } from '../../app/download';
+import { useTour } from '../../app/onboarding';
 import { useSelectedMonth } from '../../app/month';
 import { usePrefs } from '../../app/prefs';
 import type { ThemePref } from '../../app/theme';
@@ -67,6 +69,7 @@ interface PendingRestore {
 
 export function SettingsPage() {
   const { theme, setTheme } = usePrefs();
+  const { openTour } = useTour();
   const today = useToday();
   const toast = useToast();
   const navigate = useNavigate();
@@ -221,6 +224,18 @@ export function SettingsPage() {
               <span className="flex-1">{copy.settings.version}</span>
               <span className="text-text-2 tabular-nums">{__APP_VERSION__}</span>
             </div>
+            <button
+              type="button"
+              className="flex min-h-14 items-center gap-3 py-2 text-left shadow-[inset_0_1px_0_var(--border)]"
+              onClick={openTour}
+            >
+              <MapIcon size={20} className="shrink-0 text-text-2" aria-hidden="true" />
+              <span className="flex flex-1 flex-col">
+                <span className="font-medium">{copy.tour.replay}</span>
+                <span className="text-[13px] leading-[18px] font-medium text-text-2">{copy.tour.replayHint}</span>
+              </span>
+              <ChevronRight size={18} className="shrink-0 text-text-2" aria-hidden="true" />
+            </button>
             {installHint && (
               <div className="flex gap-3 pt-3 pb-3.5 shadow-[inset_0_1px_0_var(--border)]">
                 <SquarePlus size={20} className="shrink-0 text-text-2" aria-hidden="true" />

@@ -286,6 +286,39 @@ export const copy = {
     welcomeBody: 'Gelir ve giderlerini ekledikçe ayın özeti burada oluşacak.',
     welcomeAction: 'İlk işlemini ekle',
   },
+  /** ✱ İlk girişte gösterilen tanıtım (kullanıcı isteğiyle eklendi; DESIGN §6.7). */
+  tour: {
+    label: 'Tanıtım',
+    stepOf: (n: number, total: number) => `${n} / ${total}`,
+    skip: 'Geç',
+    back: 'Geri',
+    next: 'İleri',
+    start: 'Başla',
+    replay: 'Tanıtımı yeniden göster',
+    replayHint: 'Uygulamanın kısa turu',
+    steps: [
+      {
+        title: 'Hoş geldin!',
+        body: 'Gelir Gider, aylık gelirini ve giderini tek yerde tutar. Hesap açman gerekmez, internet olmadan da çalışır.',
+      },
+      {
+        title: 'İşlem eklemek üç dokunuş',
+        body: "+ butonuna dokun, tutarı yaz, kategoriyi seç ve Kaydet'e bas. Gelir mi gider mi olduğunu en üstteki seçiciden belirlersin.",
+      },
+      {
+        title: 'Açıklama ve not',
+        body: "Açıklama kısa bir başlıktır, ör. \"Migros\". Ayrıntı için \"+ Not ekle\"ye dokun. Kira, maaş gibi her ay tekrar edenler için \"Her ay tekrarla\"yı aç; kayıt her ay kendiliğinden eklenir.",
+      },
+      {
+        title: 'Kendi kategorilerin',
+        body: 'Kategoriler sekmesinden yeni kategori ekleyebilir, ad, renk ve ikon seçebilirsin. Bir kategoriyi silersen işlemleri "Diğer"e taşınır, hiçbiri kaybolmaz.',
+      },
+      {
+        title: 'Yedek almayı unutma',
+        body: "Verilerin sunucuda değil, yalnızca bu cihazda, bu tarayıcıda saklanır. Tarayıcı verilerini silersen ya da cihaz değiştirirsen kaybolur. Ayarlar'dan düzenli yedek al; yedek dosyasıyla başka cihaza da taşıyabilirsin.",
+      },
+    ],
+  },
   toast: {
     undo: 'Geri al',
     generated: (n: number) => `${n} sabit işlem eklendi`,

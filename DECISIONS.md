@@ -172,3 +172,10 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Sürüm 1.0.0.
 - `index.html`'de public dosyalara kök yoluyla (`/theme-init.js`) başvurulur; Vite hem geliştirmede hem derlemede `base`'i kendisi ekler (`%BASE_URL%` geliştirme sunucusunda yolu ikiledi).
 - Son tarama: beş ekran ve gelecek ay Özet'i, 390/768/1440 px × açık/koyu temada yatay taşma olmadan açıldı; konsolda hata yok.
+
+## Sonradan: Tanıtım
+- Proje sahibinin isteğiyle ilk girişe 5 adımlık tanıtım eklendi (DESIGN §6.7): hoş geldin, işlem ekleme (gelir/gider), açıklama-not ve tekrar, kategoriler, yedeğin önemi. Metinler `copy.tour`'da (✱).
+- "Görüldü" bilgisi tema gibi cihaza özgü tercih: localStorage `tourSeen`; yedeğe girmez. Depolama kapalıysa tur her açılışta gösterilir.
+- Tur yalnızca "Geç", Esc ya da "Başla" ile kapanır; arka plana dokunmak kapatmaz (yanlışlıkla atlanmasın).
+- Ayarlar › Hakkında'ya "Tanıtımı yeniden göster" satırı eklendi.
+- "Tüm verileri sil" turu yeniden göstermez (tercihler korunur).
