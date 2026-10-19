@@ -156,6 +156,7 @@ export function TxRow({ title, subtitle, amount, type, category, note = '', recu
           </span>
           <Amount kurus={amount} type={type} className="text-base leading-[22px] font-semibold" />
         </button>
+        {!onDelete && !isMobile && <span aria-hidden="true" className="ml-1 w-9 shrink-0" />}
         {onDelete && !isMobile && (
           <div className="relative ml-1 shrink-0">
             <button

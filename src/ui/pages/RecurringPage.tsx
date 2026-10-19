@@ -51,7 +51,7 @@ export function RecurringPage() {
           {c && <CategoryIcon icon={c.icon} color={c.color} />}
           <span className="flex min-w-0 flex-1 flex-col">
             <span className="truncate font-medium">{name}</span>
-            <span className="line-clamp-2 text-[13px] leading-[18px] font-medium text-text-2">{sub}</span>
+            <span className="text-[13px] leading-[18px] font-medium text-text-2">{sub}</span>
           </span>
           <Amount kurus={r.amount} type={r.type} className="text-base leading-[22px] font-semibold" />
         </button>

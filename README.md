@@ -4,6 +4,16 @@ Aylık gelirini ve giderini kaydetmek için sade, Türkçe bir web uygulaması. 
 
 **Uygulamayı aç:** <https://takgun0.github.io/para-yonetimi/>
 
+## Ekran görüntüleri
+
+| Özet | İşlem ekle | Sabit işlemler | Koyu tema |
+|---|---|---|---|
+| <img src="docs/ekran-goruntuleri/02-ozet-mobil.png" width="200" alt="Özet ekranı"> | <img src="docs/ekran-goruntuleri/05-islem-ekle-mobil.png" width="200" alt="İşlem ekleme formu"> | <img src="docs/ekran-goruntuleri/06-sabit-islemler-mobil.png" width="200" alt="Sabit işlemler"> | <img src="docs/ekran-goruntuleri/03-ozet-mobil-koyu.png" width="200" alt="Koyu temada Özet"> |
+
+<img src="docs/ekran-goruntuleri/07-ozet-masaustu.png" alt="Masaüstünde Özet ekranı">
+
+Diğer görüntüler: [docs/ekran-goruntuleri](docs/ekran-goruntuleri).
+
 ## Özellikler
 
 - **Özet:**
