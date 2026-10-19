@@ -5,7 +5,7 @@ import type { AppDB } from '../db';
 import { withLock, type OpContext } from '../context';
 import { isConstraintError } from '../errors';
 
-const LOCK_NAME = 'gelir-gider:sabit-uretim';
+const LOCK_NAME = 'para-yonetimi:sabit-uretim';
 
 /**
  * Tek bir sabit kaydın vadesi gelen dönemlerini üretir. Çağıran, transactions ve

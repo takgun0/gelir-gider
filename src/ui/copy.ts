@@ -2,7 +2,7 @@
 // tasarım belgesinde olmayan metinler (✱ ile işaretli) aynı tonda yazılır ve docs/kararlar.md'ye eklenir.
 
 export const copy = {
-  appName: 'Gelir Gider',
+  appName: 'Para Yönetimi',
   nav: {
     summary: 'Özet',
     transactions: 'İşlemler',
@@ -307,7 +307,7 @@ export const copy = {
     steps: [
       {
         title: 'Hoş geldin!',
-        body: 'Gelir Gider, aylık gelirini ve giderini tek yerde tutar. Hesap açman gerekmez, internet olmadan da çalışır.',
+        body: 'Para Yönetimi, aylık gelirini ve giderini tek yerde tutar. Hesap açman gerekmez, internet olmadan da çalışır.',
       },
       {
         title: 'İşlem eklemek üç dokunuş',

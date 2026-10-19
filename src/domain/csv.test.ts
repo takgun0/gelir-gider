@@ -51,7 +51,7 @@ describe('CSV biçimi', () => {
   });
 
   it('dosya adı', () => {
-    expect(csvFileName('2026-10-18')).toBe('gelir-gider-islemler-2026-10-18.csv');
+    expect(csvFileName('2026-10-18')).toBe('para-yonetimi-islemler-2026-10-18.csv');
   });
 });
 

@@ -6,7 +6,9 @@ import { MAX_AMOUNT } from './money';
 import { categoryNameKey } from './text';
 import { ICON_KEYS, PALETTE_KEYS, type Category, type DateStr, type Period, type Recurring, type Transaction } from './types';
 
-export const APP_ID = 'gelir-gider';
+export const APP_ID = 'para-yonetimi';
+/** Uygulamanın eski adıyla alınmış yedekler de kabul edilir. */
+export const LEGACY_APP_IDS: readonly string[] = ['gelir-gider'];
 export const FORMAT_VERSION = 1;
 /** 10 MB */
 export const MAX_FILE_BYTES = 10 * 1024 * 1024;
@@ -43,7 +45,7 @@ export function serializeBackup(backup: BackupFile): string {
 }
 
 export function backupFileName(today: DateStr): string {
-  return `gelir-gider-yedek-${today}.json`;
+  return `para-yonetimi-yedek-${today}.json`;
 }
 
 // --- Şemalar ---
@@ -139,7 +141,7 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
  * sürüm eklendiğinde buraya bir adım eklenir.
  */
 export function migrate(raw: Record<string, unknown>): Record<string, unknown> {
-  return raw;
+  return { ...raw, app: APP_ID };
 }
 
 function hasIntegrity(data: BackupData): boolean {
@@ -197,7 +199,9 @@ export function parseBackup(text: string): RestoreResult {
   } catch {
     return { ok: false, error: 'invalid' };
   }
-  if (!isPlainObject(raw) || raw.app !== APP_ID) return { ok: false, error: 'invalid' };
+  if (!isPlainObject(raw) || (raw.app !== APP_ID && !LEGACY_APP_IDS.includes(String(raw.app)))) {
+    return { ok: false, error: 'invalid' };
+  }
 
   const version = raw.formatVersion;
   if (typeof version !== 'number' || !Number.isInteger(version) || version < 1) return { ok: false, error: 'invalid' };

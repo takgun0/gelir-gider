@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 
 // Yayın yolu yalnızca burada tanımlanır. Custom domain kullanılırsa '/' yapılır
 // ya da derleme sırasında BASE_PATH ortam değişkeniyle verilir.
-const BASE = process.env.BASE_PATH ?? '/gelir-gider/';
+const BASE = process.env.BASE_PATH ?? '/para-yonetimi/';
 
 const { version } = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string };
 
@@ -28,7 +28,7 @@ const CSP = [
 
 function cspMeta(): Plugin {
   return {
-    name: 'gelir-gider-csp',
+    name: 'para-yonetimi-csp',
     apply: 'build',
     transformIndexHtml: {
       order: 'pre',
@@ -52,8 +52,8 @@ export default defineConfig({
       injectRegister: null,
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'theme-init.js'],
       manifest: {
-        name: 'Gelir Gider',
-        short_name: 'Gelir Gider',
+        name: 'Para Yönetimi',
+        short_name: 'Para Yönetimi',
         description: 'Aylık gelir ve giderini çevrimdışı takip et.',
         lang: 'tr',
         dir: 'ltr',

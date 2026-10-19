@@ -20,7 +20,7 @@ Küçük uygulama kararları, her biri tek satır (Gereksinimler §2). En yenisi
 - Kartlarda çizilmeyen ekranlar (sabit işlem formu, yeni kategori, takvim, ay-yıl seçici, kategori filtresi, "⋯" menüsü, 640–1023 yerleşimi) mevcut bileşenlerden türetilir.
 
 ## Faz 1
-- Yayın yolu `vite.config.ts` içinde tek yerden: `BASE_PATH` ortam değişkeni, yoksa `/gelir-gider/`.
+- Yayın yolu `vite.config.ts` içinde tek yerden: `BASE_PATH` ortam değişkeni, yoksa `/para-yonetimi/`.
 - `npm test`, `scripts/test.mjs` ile Vitest'i iki kez başlatır; `src/test/timezone.test.ts` TZ'nin uygulandığını doğrular.
 - Tema, ilk render öncesi `public/theme-init.js` (inline olmayan, modül olmayan script) ile uygulanır; Vite'ın "can't be bundled" uyarısı beklenen bir durum.
 - Tema "Sistem" iken localStorage'a değer yazılmaz (anahtar silinir).
@@ -180,3 +180,8 @@ Küçük uygulama kararları, her biri tek satır (Gereksinimler §2). En yenisi
 - Ayarlar › Hakkında'ya "Tanıtımı yeniden göster" satırı eklendi.
 - "Tüm verileri sil" turu yeniden göstermez (tercihler korunur).
 - Tanıtıma ikinci adım olarak "Ana ekrana ekle" eklendi (iOS'ta veriler Safari ile ayrı tutulabildiği için erken gösteriliyor). Platform kullanıcı aracısından anlaşılır (iOS, iPadOS dahil; Android; diğerleri bilgisayar); uygulama zaten kuruluysa adım atlanır. Adımlar numaralı listeyle gösterilir; tur paneli kısa ekranlarda kaydırılabilir.
+
+## Sonradan: Yeni ad
+- Uygulamanın adı "Para Yönetimi" oldu; repo ve yayın yolu `para-yonetimi`. Yedek dosyaları `para-yonetimi-yedek-…json`, CSV `para-yonetimi-islemler-…csv` adını alır; yedekteki `app` alanı `para-yonetimi`.
+- Eski adla (`"app": "gelir-gider"`) alınmış yedekler geri yüklenebilir; doğrulamadan önce yeni kimliğe çevrilir.
+- IndexedDB adı (`gelir-gider`) ve localStorage anahtarları değişmedi: site aynı origin'de (`takgun0.github.io`) kaldığı için mevcut veriler yeni adreste de görünür.

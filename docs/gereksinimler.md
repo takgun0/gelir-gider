@@ -1,4 +1,4 @@
-# Gelir Gider — Gereksinimler
+# Para Yönetimi — Gereksinimler
 
 ## 0. Belgeler ve öncelik sırası
 Proje iki ana belgeyle yürür:
@@ -17,7 +17,7 @@ Tek kişinin aylık gelir ve giderini kaydettiği, hesap gerektirmeyen, tamamen 
 - GitHub Pages'te statik olarak yayınlanır ve PWA olarak telefona kurulur.
 - Arayüz Türkçe, para birimi yalnızca TL.
 - Uygulama hiçbir koşulda ağa veri göndermez.
-- Uygulamanın adı henüz belirlenmedi; şimdilik "Gelir Gider" kullanılır.
+- Uygulamanın adı "Para Yönetimi"dir.
 
 ## 2. Geliştirme ilkeleri
 1. Geliştirme Bölüm 10'daki fazlarla ilerler; her fazda iki belgeye de geri dönülür.
@@ -341,9 +341,10 @@ Silme:
 #### JSON yedeği
 - Biçim:
   ```json
-  { "app": "gelir-gider", "formatVersion": 1, "exportedAt": "<ISO-8601>", "data": { "categories": [], "transactions": [], "recurrings": [] } }
+  { "app": "para-yonetimi", "formatVersion": 1, "exportedAt": "<ISO-8601>", "data": { "categories": [], "transactions": [], "recurrings": [] } }
   ```
-- Dosya adı: `gelir-gider-yedek-YYYY-MM-DD.json` (yerel tarih).
+- Dosya adı: `para-yonetimi-yedek-YYYY-MM-DD.json` (yerel tarih).
+- Uygulamanın eski adıyla (`"app": "gelir-gider"`) alınmış yedekler de geri yüklenebilir.
 - Yedek başarıyla alınınca `lastBackupAt` güncellenir.
 
 #### Geri yükleme
@@ -379,7 +380,7 @@ Veritabanına ham JSON nesneleri değil, zod'un ürettiği çıktı yazılır.
 İçerik ve dosya:
 - Tüm işlemler dışa aktarılır.
 - Sütunlar: Tarih, Tür, Kategori, Açıklama, Not, Tutar.
-- Dosya adı: `gelir-gider-islemler-YYYY-MM-DD.csv`.
+- Dosya adı: `para-yonetimi-islemler-YYYY-MM-DD.csv`.
 
 Biçim — dosya Excel'in Türkçe ayarlarında doğrudan açılmalı:
 - UTF-8 BOM, `;` ayırıcı, CRLF satır sonu.
@@ -526,7 +527,7 @@ Her grafiğin görsel olarak gizli bir metin karşılığı vardır (Tasarım §
 ## 7. PWA ve yayın
 
 ### Manifest
-- `name`: "Gelir Gider"
+- `name`: "Para Yönetimi"
 - `lang`: "tr"
 - `display`: "standalone"
 - `start_url` ve `scope`: base yoluyla uyumlu
@@ -715,7 +716,7 @@ Bir kararı değiştirmek istersen ilgili maddeyi güncellemen yeterli.
 - CSV dışa aktarma:
   - tüm işlemleri içerir,
   - gider tutarlarını negatif sayı olarak yazar,
-  - dosya adı `gelir-gider-islemler-YYYY-MM-DD.csv`'dir.
+  - dosya adı `para-yonetimi-islemler-YYYY-MM-DD.csv`'dir.
 - Bir sabit işlem silinince ondan üretilmiş kayıtların bağı kaldırılır. Bu kayıtlar tekrar ikonunu ve "Sabit işlemi düzenle" bağlantısını kaybeder.
 - Geri yüklemeden sonra sabit işlem üretimi çalışır.
-- Uygulamanın adı geçici olarak "Gelir Gider"dir.
+- Uygulamanın adı "Para Yönetimi"dir (önceki çalışma adı "Gelir Gider").

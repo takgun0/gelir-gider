@@ -10,7 +10,7 @@ const EOL = '\r\n';
 export const CSV_HEADER = ['Tarih', 'Tür', 'Kategori', 'Açıklama', 'Not', 'Tutar'] as const;
 
 export function csvFileName(today: DateStr): string {
-  return `gelir-gider-islemler-${today}.csv`;
+  return `para-yonetimi-islemler-${today}.csv`;
 }
 
 /** Formül enjeksiyonuna karşı: = + - @ sekme ya da satır başıyla başlayan metne ' eklenir. */

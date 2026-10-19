@@ -80,10 +80,10 @@ const rejected = { ok: false, error: 'invalid' };
 describe('yedek oluşturma', () => {
   it('biçim ve dosya adı', () => {
     const file = buildBackup(fixture(), now);
-    expect(file.app).toBe('gelir-gider');
+    expect(file.app).toBe('para-yonetimi');
     expect(file.formatVersion).toBe(1);
     expect(file.exportedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
-    expect(backupFileName('2026-10-18')).toBe('gelir-gider-yedek-2026-10-18.json');
+    expect(backupFileName('2026-10-18')).toBe('para-yonetimi-yedek-2026-10-18.json');
   });
 });
 
@@ -97,6 +97,13 @@ describe('kabul edilenler', () => {
     const plain = result.backup.data.transactions[0];
     expect(plain && 'recurringId' in plain).toBe(false);
     expect(plain && 'period' in plain).toBe(false);
+  });
+
+  it('eski adla (gelir-gider) alınmış yedek de kabul edilir', () => {
+    const text = serializeBackup(buildBackup(fixture(), now)).replace('"app": "para-yonetimi"', '"app": "gelir-gider"');
+    const result = parseBackup(text);
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.backup.app).toBe('para-yonetimi');
   });
 
   it('önizleme: sayılar, yedek tarihi ve kapsadığı aralık', () => {

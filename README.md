@@ -1,8 +1,8 @@
-# Gelir Gider
+# Para Yönetimi
 
 Aylık gelirini ve giderini kaydetmek için sade, Türkçe bir web uygulaması. Hesap açmadan kullanılır, internet olmadan da çalışır. Telefonuna uygulama olarak kurabilirsin.
 
-**Uygulamayı aç:** <https://takgun0.github.io/gelir-gider/>
+**Uygulamayı aç:** <https://takgun0.github.io/para-yonetimi/>
 
 ## Özellikler
 
@@ -71,12 +71,12 @@ Gereksinim: Node.js 22.12 veya üstü. CI'da `.nvmrc` dosyasındaki 24 sürümü
 
 ```bash
 npm install        # bağımlılıkları kurar
-npm run dev        # geliştirme sunucusu: http://localhost:5173/gelir-gider/
+npm run dev        # geliştirme sunucusu: http://localhost:5173/para-yonetimi/
 npm test           # testler, iki saat diliminde (Europe/Istanbul, America/Los_Angeles)
 npm run typecheck  # TypeScript denetimi
 npm run lint       # ESLint
 npm run build      # production derlemesi: dist/
-npm run preview    # derlemeyi sunar: http://localhost:4173/gelir-gider/
+npm run preview    # derlemeyi sunar: http://localhost:4173/para-yonetimi/
 ```
 
 **Teknolojiler:**
@@ -114,7 +114,7 @@ Testler ilgili dosyanın yanında `*.test.ts` olarak durur.
 
 1. Depoda *Settings › Pages › Build and deployment › Source* olarak **GitHub Actions**'ı seç.
 2. `main` dalına yapılan her push'ta `.github/workflows/deploy.yml` önce typecheck, lint, test ve build çalıştırır, ardından `dist/` klasörünü yayınlar.
-3. Yayın yolu [`vite.config.ts`](vite.config.ts) içinde tek yerden tanımlıdır (varsayılan `/gelir-gider/`). Depo adı değişirse bu değeri güncelle ya da derlerken ver:
+3. Yayın yolu [`vite.config.ts`](vite.config.ts) içinde tek yerden tanımlıdır (varsayılan `/para-yonetimi/`). Depo adı değişirse bu değeri güncelle ya da derlerken ver:
    ```bash
    BASE_PATH=/yeni-ad/ npm run build
    ```

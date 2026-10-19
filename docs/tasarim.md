@@ -1,4 +1,4 @@
-# Gelir Gider — Tasarım Belgesi
+# Para Yönetimi — Tasarım Belgesi
 
 > Bölüm numaraları docs/gereksinimler.md'deki "Tasarım §x" atıflarıyla eşleşir. Görsel karşılıklar [`tasarim-kartlari/`](tasarim-kartlari) klasöründeki tasarım kartlarındadır.
 
@@ -225,7 +225,7 @@ Gruplu liste; her grup başlıklı bir kart. Sıra: Görünüm, Verilerin, Tehli
 #### Verilerin
 - Bilgi notu (ikonlu, nötr zemin): "Verilerin yalnızca bu cihazda, bu tarayıcıda saklanır. Tarayıcı verilerini silersen ya da cihaz değiştirirsen kaybolur. Düzenli yedek al."
 - "Son yedek: 12 gün önce" satırı. Hiç yoksa "Henüz yedek almadın"; 30 günü geçtiyse satır vurgu renginde ve ikonlu.
-- Yedek indir (JSON): dosya adı gelir-gider-yedek-2026-10-18.json.
+- Yedek indir (JSON): dosya adı para-yonetimi-yedek-2026-10-18.json.
 - CSV olarak dışa aktar: Excel'de açılabilen işlem listesi; geri yüklenemez, yalnızca okumak için.
 - Yedekten geri yükle: dosya seçici, ardından onay ekranı.
 

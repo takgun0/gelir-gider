@@ -3,6 +3,7 @@ import Dexie, { type EntityTable } from 'dexie';
 import { defaultCategoryRecords } from '../domain/categories';
 import type { Category, Recurring, Settings, Transaction } from '../domain/types';
 
+// Uygulamanın eski adı; mevcut verilerin kaybolmaması için veritabanı adı değişmez.
 export const DB_NAME = 'gelir-gider';
 
 export class AppDB extends Dexie {
