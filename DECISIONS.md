@@ -61,3 +61,16 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - 10 MB sınırı hem dosya boyutunda (`isFileTooLarge`) hem okunan metnin uzunluğunda uygulanır.
 - `migrate()` şimdilik kimlik fonksiyonu; yeni biçim sürümü gelince adım eklenecek.
 - CSV satırları tarihe göre eskiden yeniye; aynı gün içinde `createdAt` sırası. Tür ve tarih hücreleri kaçışa girmez, kategori, açıklama ve not girer.
+
+## Faz 4
+- Varsayılan kategoriler, ızgara sıralaması, varsayılan renk ve ad doğrulaması `src/domain/categories.ts`'te (saf, test edilebilir).
+- DB işlemleri `db` örneğini ve `OpContext` (`now`, `today`, `newId`) parametre olarak alır; testler sabit gün ve ayrı fake-indexeddb veritabanı kullanır.
+- Üretim her sabit kayıt için ayrı bir rw transaction'da: önce `[recurringId+period]` ile varlık kontrolü, sonra ekleme; yine de gelen `ConstraintError` yakalanır ve dönem üretilmiş sayılır. Yakalanan hatanın transaction'ı iptal etmediği testle doğrulandı.
+- Üretim bookkeeping'i (`lastGeneratedPeriod`) `updatedAt`'i değiştirmez; `updatedAt` yalnızca kullanıcı düzenlemesinde güncellenir.
+- `navigator.locks` yoksa kilit atlanır; eşzamanlı iki çalıştırmanın mükerrer üretmediği testle doğrulandı.
+- Açıklama ve not kaydedilirken kırpılır; açıklamada satır sonu reddedilir.
+- Sabit işlem düzenlenirken tür de değişebilir (kategori yeni türe uygun olmalı); `startDate` değişmez.
+- Durdurma ve "Bitti" kayıtlar için anahtar işlemi yok sayılır (`setRecurringActive` 0 döner).
+- Üretilmiş bir kaydın "Geri al"ı sırasında sabit işlem silinmişse ya da dönem doluysa kayıt bağsız geri yazılır.
+- Geri yükleme ayarları (`lastBackupAt`) korur; "Tüm verileri sil" ayarları da siler.
+- ESLint: `_` önekli yıkım değişkenleri (alan atmak için) kullanılmamış sayılmaz.

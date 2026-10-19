@@ -20,6 +20,11 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
+      // Alan atmak için yapılan yıkımlarda (`const { period: _p, ...rest }`) "_" öneki.
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { varsIgnorePattern: '^_', argsIgnorePattern: '^_', ignoreRestSiblings: true },
+      ],
       // SPEC §5.7: kullanıcı girdisi yalnızca metin düğümü olarak basılır.
       'no-eval': 'error',
       'no-implied-eval': 'error',
