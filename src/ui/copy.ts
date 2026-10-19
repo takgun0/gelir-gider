@@ -145,6 +145,28 @@ export const copy = {
     /** ✱ */
     deleteConfirm: 'Sil',
   },
+  categories: {
+    total: 'Toplam',
+    add: 'Kategori ekle',
+    unused: '—',
+    transactionsLink: 'Bu kategorinin işlemleri →',
+    delete: 'Kategoriyi sil',
+    deleteTitle: (name: string) => `'${name}' silinsin mi?`,
+    /** "'Eğlence' kategorisinde 14 işlem ve 1 sabit işlem var. Bunlar 'Diğer' kategorisine taşınacak." */
+    deleteBody: (name: string, usage: string, target: string) =>
+      `'${name}' kategorisinde ${usage} var. Bunlar '${target}' kategorisine taşınacak.`,
+    deleteConfirm: 'Sil',
+    moveAndDelete: 'Taşı ve sil',
+    /** "14 işlem", "1 sabit işlem", "14 işlem ve 1 sabit işlem" */
+    usage: (transactions: number, recurrings: number) =>
+      [transactions > 0 ? `${transactions} işlem` : '', recurrings > 0 ? `${recurrings} sabit işlem` : '']
+        .filter(Boolean)
+        .join(' ve '),
+    /** ✱ hiçbir şey taşınmadıysa */
+    deleted: 'Kategori silindi',
+    /** "Kategori silindi, 14 işlem Diğer kategorisine taşındı" */
+    deletedMoved: (usage: string, target: string) => `Kategori silindi, ${usage} ${target} kategorisine taşındı`,
+  },
   categoryEditor: {
     newTitle: 'Yeni kategori',
     editTitle: 'Kategoriyi düzenle',

@@ -134,3 +134,11 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Grafik animasyonları 400 ms; "hareketi azalt" tercihinde kapalı.
 - Ay kaydırma (← →) art arda basışlarda kaybolmasın diye fonksiyonel state güncellemesiyle yapılır.
 - Paket boyutu Recharts ile ~820 kB'a çıktı (gzip ~250 kB); uyarı şimdilik kabul edildi, Faz 10'da parçalara ayırma değerlendirilecek.
+
+## Faz 8
+- Kategoriler ekranında Gider/Gelir seçimi segment olarak (ekran içi filtre); toplam ve kart tutarları seçili ayın, kart tutarı işaretli ama nötr renkte (kart), kullanılmayanlarda "—".
+- Kart altındaki ince çubuk o türün toplamındaki pay; en az %2 genişlik, renk türün grafik dolgusu.
+- Silme onayı ve bildirim metinleri işlem ve sabit işlem sayısına göre kurulur: "14 işlem", "1 sabit işlem" ya da "14 işlem ve 1 sabit işlem". Hedef kategorinin adı sistem "Diğer"inin güncel adından alınır (yeniden adlandırılabildiği için).
+- Kullanılmayan kategoride onay yalnızca başlık ve "Sil / Vazgeç"; taşıma olunca "Taşı ve sil".
+- Kategori silinince açık düzenleme sayfası da kapanır; "Bu kategorinin işlemleri →" İşlemler'i tür ve kategori filtresiyle açar.
+- Sistem kategorisinin düzenleme sayfasında "Kategoriyi sil" gösterilmez.
