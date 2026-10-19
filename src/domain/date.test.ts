@@ -8,6 +8,7 @@ import {
   dayMonth,
   daysInPeriod,
   diffDays,
+  fullDate,
   isValidDate,
   isValidPeriod,
   longDate,
@@ -138,6 +139,7 @@ describe('etiketler', () => {
     expect(monthShort('2026-08')).toBe('Ağu');
     expect(shortDate('2026-10-16')).toBe('16 Eki');
     expect(dayMonth('2026-11-01')).toBe('1 Kasım');
+    expect(fullDate('2026-10-06')).toBe('6 Ekim 2026');
   });
 });
 

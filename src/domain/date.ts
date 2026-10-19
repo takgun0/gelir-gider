@@ -191,6 +191,12 @@ export function dayMonth(date: DateStr): string {
   return `${d} ${MONTHS[m - 1]}`;
 }
 
+/** "6 Ekim 2026" */
+export function fullDate(date: DateStr): string {
+  const { y, m, d } = partsOf(date);
+  return `${d} ${MONTHS[m - 1]} ${y}`;
+}
+
 /** "16 Ekim Cuma"; bugünün yılından farklıysa "16 Ekim 2025 Perşembe". */
 export function longDate(date: DateStr, today: DateStr): string {
   const { y, m, d } = partsOf(date);

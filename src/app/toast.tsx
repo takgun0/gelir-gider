@@ -1,10 +1,13 @@
 // Bildirimler (SPEC §6, DESIGN §8): aynı anda tek bildirim, yenisi eskisinin yerini
 // alır ve eskisinin "Geri al" fırsatı biter. 3 sn; "Geri al" içerenlerde 6 sn.
+import { CircleAlert } from 'lucide-react';
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 
 export interface ToastInput {
   message: string;
   action?: { label: string; onAction: () => void };
+  /** Hata bildirimi ikonla gösterilir (ör. geçersiz yedek dosyası). */
+  tone?: 'error';
 }
 
 interface ActiveToast extends ToastInput {
@@ -43,6 +46,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             key={toast.id}
             className="pointer-events-auto flex min-h-[52px] w-full max-w-[420px] items-center gap-2 rounded-xl bg-toast py-1 pr-1 pl-4 font-medium text-on-toast shadow-[0_8px_24px_var(--shadow)] sm:w-[360px]"
           >
+            {toast.tone === 'error' && <CircleAlert size={20} className="shrink-0 text-expense" aria-hidden="true" />}
             <span className="flex-1 py-2">{toast.message}</span>
             {toast.action && (
               <button

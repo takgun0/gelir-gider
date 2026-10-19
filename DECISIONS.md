@@ -142,3 +142,14 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Kullanılmayan kategoride onay yalnızca başlık ve "Sil / Vazgeç"; taşıma olunca "Taşı ve sil".
 - Kategori silinince açık düzenleme sayfası da kapanır; "Bu kategorinin işlemleri →" İşlemler'i tür ve kategori filtresiyle açar.
 - Sistem kategorisinin düzenleme sayfasında "Kategoriyi sil" gösterilmez.
+
+## Faz 9
+- Sürüm numarası `package.json`'dan `__APP_VERSION__` olarak derlemeye gömülür (Faz 11'de 1.0.0'a çekilecek).
+- "Son yedek": hiç yoksa "Henüz yedek almadın", aynı gün "Bugün" ✱, bir gün önce "Dün" ✱, diğerleri "N gün önce". Hiç yedek yoksa ya da 30 günü geçtiyse satır vurgu renginde ve uyarı ikonlu.
+- İndirme: Blob + `download` bağlantısı; iOS'ta ana ekrandan açılan uygulamada `navigator.canShare({ files })` destekleniyorsa dosya doğrudan paylaşım sayfasıyla verilir. Paylaşım iptal edilirse yedek alınmış sayılmaz (`lastBackupAt` güncellenmez).
+- CSV indirilince "CSV dosyası indirildi" ✱ bildirimi; `lastBackupAt` değişmez.
+- Geçersiz, okunamayan ya da 10 MB'tan büyük dosyada "Bu dosya geçerli bir yedek değil.", daha yeni sürümde ayrı mesaj; ikisi de hata ikonlu bildirim (kart). Onay ekranı açılmaz.
+- Geri yükleme onayı mobilde tam sayfa (alt sayfanın tam ekran hali), masaüstünde 480 px modal. "Önce yedeğimi indir" işaretliyken indirme iptal edilirse geri yükleme yapılmaz. Bu ön yedek de bir JSON yedeği olduğu için `lastBackupAt` güncellenir.
+- Yedek tarihi gün adı olmadan "6 Ekim 2026" (`fullDate`).
+- "Tüm verileri sil" ikinci adımında buton "SİL" Türkçe büyük-küçük harf kuralıyla eşleşince etkinleşir (alanda Enter de çalışır); sonrasında seçili ay bu aya döner ve Özet'in ilk açılış durumu gösterilir.
+- "Ana ekrana ekle" yönergesi kurulu değilken: iOS'ta kart metni, diğer platformlarda "Tarayıcı menüsünden Uygulamayı yükle. …" ✱.

@@ -17,10 +17,12 @@ interface SheetProps {
   initialFocusRef?: RefObject<HTMLElement | null> | undefined;
   /** Masaüstü genişliği (px) */
   width?: number;
+  /** Mobilde tam sayfa (ör. geri yükleme onayı) */
+  fullScreen?: boolean;
   children: ReactNode;
 }
 
-export function Sheet({ title, onRequestClose, footer, initialFocusRef, width = 480, children }: SheetProps) {
+export function Sheet({ title, onRequestClose, footer, initialFocusRef, width = 480, fullScreen = false, children }: SheetProps) {
   const titleId = useId();
   const isMobile = useIsMobile();
   const keyboard = useKeyboardInset();
@@ -57,8 +59,13 @@ export function Sheet({ title, onRequestClose, footer, initialFocusRef, width = 
       panelStyle={{
         maxWidth: isMobile ? undefined : width,
         maxHeight: isMobile
-          ? `calc(100dvh - ${keyboard}px - env(safe-area-inset-top) - 12px)`
+          ? fullScreen
+            ? '100dvh'
+            : `calc(100dvh - ${keyboard}px - env(safe-area-inset-top) - 12px)`
           : 'min(880px, calc(100dvh - 48px))',
+        height: isMobile && fullScreen ? '100dvh' : undefined,
+        borderRadius: isMobile && fullScreen ? 0 : undefined,
+        paddingTop: isMobile && fullScreen ? 'env(safe-area-inset-top)' : undefined,
         marginBottom: isMobile ? keyboard : undefined,
         transform: dragY ? `translateY(${dragY}px)` : undefined,
         transition: dragY ? 'none' : undefined,
