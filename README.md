@@ -64,7 +64,6 @@ Uygulama kurulduktan sonra internet olmadan da açılır. Yeni bir sürüm yayı
 
 - `kullanici.github.io` altındaki tüm GitHub Pages projeleri aynı tarayıcı depolamasını paylaşır.
 - O hesaptaki başka bir sayfada bulunacak bir güvenlik açığı bu verilere erişebilir.
-- Tam ayrım için uygulamayı kendi alan adında yayınla (aşağıda "Kendi alan adın" bölümüne bak).
 
 ## Geliştirme
 
@@ -119,13 +118,6 @@ Testler ilgili dosyanın yanında `*.test.ts` olarak durur.
    ```bash
    BASE_PATH=/yeni-ad/ npm run build
    ```
-
-### Kendi alan adın
-
-1. *Settings › Pages › Custom domain* alanına alan adını yaz.
-2. DNS'te `kullanici.github.io` hedefli bir CNAME kaydı aç.
-3. Yayın yolunu `/` yap: iş akışındaki build adımına `BASE_PATH: /` ekle ya da `vite.config.ts` içindeki varsayılanı değiştir.
-4. Yeniden yayınla ve *Enforce HTTPS*'i aç.
 
 ## Güvenlik
 
