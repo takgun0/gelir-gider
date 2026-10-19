@@ -1,4 +1,4 @@
-// Tutar alanının yazma ve yapıştırma mantığı (SPEC §5.1, DESIGN §6.3). Saf fonksiyonlar;
+// Tutar alanının yazma ve yapıştırma mantığı (Gereksinimler §5.1, Tasarım §6.3). Saf fonksiyonlar;
 // bileşen yalnızca beforeinput/paste olaylarını bu fonksiyonlara bağlar.
 import { digitsToKurus, splitKurus } from './money';
 
@@ -127,7 +127,7 @@ function countOf(text: string, char: string): number {
 
 /**
  * Yapıştırılan metni kuruşa çevirir; geçersizse null döner ve yapıştırma yok sayılır.
- * Kurallar SPEC §5.1 "Yapıştırma kuralları"ndadır.
+ * Kurallar Gereksinimler §5.1 "Yapıştırma kuralları"ndadır.
  */
 export function parsePastedAmount(raw: string): number | null {
   const text = raw

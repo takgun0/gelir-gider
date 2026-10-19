@@ -1,4 +1,4 @@
-// Geri yükleme onayı (DESIGN §6.6): önizleme, karşılaştırma, uyarı ve onay kutusu.
+// Geri yükleme onayı (Tasarım §6.6): önizleme, karşılaştırma, uyarı ve onay kutusu.
 // Mobilde tam sayfa, masaüstünde modal.
 import { ArrowRight } from 'lucide-react';
 import { FileJson } from 'lucide-react';

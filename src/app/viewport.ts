@@ -1,4 +1,4 @@
-// Görünüm alanı yardımcıları: kırılım noktası ve ekran klavyesi (SPEC §6).
+// Görünüm alanı yardımcıları: kırılım noktası ve ekran klavyesi (Gereksinimler §6).
 import { useEffect, useState, useSyncExternalStore } from 'react';
 
 export function useMediaQuery(query: string): boolean {
@@ -13,7 +13,7 @@ export function useMediaQuery(query: string): boolean {
   );
 }
 
-/** DESIGN §5: 640 px altı mobil. */
+/** Tasarım §5: 640 px altı mobil. */
 export function useIsMobile(): boolean {
   return !useMediaQuery('(min-width: 640px)');
 }

@@ -1,4 +1,4 @@
-// Kategoriler (DESIGN §6.4): düzenleme yeri ve "paramı nereye harcadım" sorusunun
+// Kategoriler (Tasarım §6.4): düzenleme yeri ve "paramı nereye harcadım" sorusunun
 // kategori bazlı cevabı. Toplamlar seçili aya göre.
 import { Plus } from 'lucide-react';
 import { useMemo, useState } from 'react';

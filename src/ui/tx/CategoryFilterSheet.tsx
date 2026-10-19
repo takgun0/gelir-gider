@@ -1,4 +1,4 @@
-// "Kategori" çipinin çoklu seçimli alt sayfası (DESIGN §6.2).
+// "Kategori" çipinin çoklu seçimli alt sayfası (Tasarım §6.2).
 import { Check } from 'lucide-react';
 import { sortForGrid } from '../../domain/categories';
 import type { Category } from '../../domain/types';

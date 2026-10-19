@@ -1,4 +1,4 @@
-// Onay diyaloğu (DESIGN §6, bileşen kartı): ortada kart, butonlar alt alta.
+// Onay diyaloğu (Tasarım §6, bileşen kartı): ortada kart, butonlar alt alta.
 // Yıkıcı eylemde birincil buton expense renginde; açılınca odak Vazgeç'tedir.
 import { useId, useRef, type ReactNode } from 'react';
 import { Button } from './Button';

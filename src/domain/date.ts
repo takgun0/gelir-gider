@@ -1,4 +1,4 @@
-// Tüm tarih mantığı burada (SPEC §5.2). Tarihler yerel saatle "YYYY-MM-DD", dönemler
+// Tüm tarih mantığı burada (Gereksinimler §5.2). Tarihler yerel saatle "YYYY-MM-DD", dönemler
 // "YYYY-MM" string'idir. new Date('YYYY-MM-DD'), toISOString ve Date.parse kullanılmaz.
 import type { DateStr, Period } from './types';
 
@@ -13,7 +13,7 @@ export const MONTHS = [
 
 export const MONTHS_SHORT = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'] as const;
 
-/** Pazartesi başlar (SPEC §5.2). */
+/** Pazartesi başlar (Gereksinimler §5.2). */
 export const WEEKDAYS = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'] as const;
 export const WEEKDAYS_SHORT = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'] as const;
 
@@ -161,7 +161,7 @@ export function startOfWeek(date: DateStr): DateStr {
   return addDays(date, -weekdayIndex(date));
 }
 
-// --- Etiketler (DESIGN §4) ---
+// --- Etiketler (Tasarım §4) ---
 
 /** "Ekim 2026" */
 export function monthLabel(period: Period): string {

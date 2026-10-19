@@ -1,4 +1,4 @@
-// Yedek, geri yükleme, CSV ve tüm verileri silme (SPEC §5.5, DESIGN §6.6).
+// Yedek, geri yükleme, CSV ve tüm verileri silme (Gereksinimler §5.5, Tasarım §6.6).
 import { buildBackup, type BackupData, type BackupFile } from '../../domain/backup';
 import { defaultCategoryRecords } from '../../domain/categories';
 import { buildCsv } from '../../domain/csv';

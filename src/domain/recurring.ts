@@ -1,9 +1,9 @@
-// Sabit işlem kuralları (SPEC §5.3, DESIGN §7). Saf fonksiyonlar; DB katmanı bunları
+// Sabit işlem kuralları (Gereksinimler §5.3, Tasarım §7). Saf fonksiyonlar; DB katmanı bunları
 // transaction içinde uygular.
 import { addMonths, clampDay, monthsBetween, periodOf } from './date';
 import type { DateStr, Period, Recurring, Transaction } from './types';
 
-/** Gelecekte en fazla kaç ay ileri planlanan gösterilir (DESIGN §5). */
+/** Gelecekte en fazla kaç ay ileri planlanan gösterilir (Tasarım §5). */
 export const MAX_MONTHS_AHEAD = 12;
 
 type Schedule = Pick<Recurring, 'dayOfMonth'>;

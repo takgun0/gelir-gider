@@ -1,4 +1,4 @@
-// Son 6 ay (DESIGN §6.1 madde 7): her ayda gelir ve gider çubuğu yan yana; seçili ay
+// Son 6 ay (Tasarım §6.1 madde 7): her ayda gelir ve gider çubuğu yan yana; seçili ay
 // tam renk, diğerleri %50. Bir aya dokununca o aya geçilir.
 import { Bar, BarChart, Cell, XAxis, YAxis } from 'recharts';
 import { useSelectedMonth } from '../../app/month';

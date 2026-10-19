@@ -1,4 +1,4 @@
-// ‹ Ekim 2026 › (DESIGN §5 "Ay seçimi"): ortadaki etiket ay-yıl seçiciyi açar,
+// ‹ Ekim 2026 › (Tasarım §5 "Ay seçimi"): ortadaki etiket ay-yıl seçiciyi açar,
 // bu ay dışındayken "Bu ay" kısa yolu belirir. En fazla 12 ay ileri.
 import { ChevronLeft } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';

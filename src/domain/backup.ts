@@ -1,4 +1,4 @@
-// JSON yedeği ve geri yükleme doğrulaması (SPEC §5.5). Dosya veritabanına yazılmadan
+// JSON yedeği ve geri yükleme doğrulaması (Gereksinimler §5.5). Dosya veritabanına yazılmadan
 // önce baştan sona doğrulanır; DB'ye ham JSON değil zod'un çıktısı yazılır.
 import { z } from 'zod';
 import { isValidDate, isValidPeriod, periodOf, toDateStr } from './date';
@@ -31,7 +31,7 @@ export function buildBackup(data: BackupData, now: Date): BackupFile {
   return {
     app: APP_ID,
     formatVersion: FORMAT_VERSION,
-    // Bir tarih string'i değil, ISO-8601 zaman damgası (SPEC §5.5 biçimi).
+    // Bir tarih string'i değil, ISO-8601 zaman damgası (Gereksinimler §5.5 biçimi).
     // eslint-disable-next-line no-restricted-properties
     exportedAt: now.toISOString(),
     data,

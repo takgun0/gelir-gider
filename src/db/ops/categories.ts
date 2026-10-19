@@ -1,4 +1,4 @@
-// Kategori ekleme, düzenleme ve silme (SPEC §5.4, DESIGN §6.4).
+// Kategori ekleme, düzenleme ve silme (Gereksinimler §5.4, Tasarım §6.4).
 import { findSystemCategory, validateCategoryName } from '../../domain/categories';
 import { ICON_KEYS, PALETTE_KEYS, type Category, type IconKey, type PaletteKey, type TxType } from '../../domain/types';
 import type { AppDB } from '../db';

@@ -1,4 +1,4 @@
-// Bileşen dışı tutar metinleri; tutar gizleme tercihine uyar (SPEC §5.1).
+// Bileşen dışı tutar metinleri; tutar gizleme tercihine uyar (Gereksinimler §5.1).
 import { useCallback } from 'react';
 import { usePrefs } from '../../app/prefs';
 import { MASKED_AMOUNT, formatShort, formatSigned, formatTRY, formatWhole } from '../../domain/format';

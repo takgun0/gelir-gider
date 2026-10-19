@@ -1,4 +1,4 @@
-// Kategori dağılımı (DESIGN §6.1 madde 6): Gider/Gelir anahtarı, donut ve liste.
+// Kategori dağılımı (Tasarım §6.1 madde 6): Gider/Gelir anahtarı, donut ve liste.
 // Liste donut'un metin karşılığıdır; dilimler arasında 2 px yüzey boşluğu.
 import { useState } from 'react';
 import { useNavigate } from 'react-router';

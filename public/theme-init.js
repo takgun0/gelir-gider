@@ -1,4 +1,4 @@
-// İlk render'dan önce temayı uygular (SPEC §6). CSP inline script'e izin vermediği
+// İlk render'dan önce temayı uygular (Gereksinimler §6). CSP inline script'e izin vermediği
 // için ayrı dosyadır. Mantık src/app/theme.ts ile aynıdır; birini değiştirirsen
 // diğerini de güncelle.
 (function () {

@@ -1,4 +1,4 @@
-// İşlem listesinin saf yardımcıları: filtre, arama ve gruplama (DESIGN §6.2).
+// İşlem listesinin saf yardımcıları: filtre, arama ve gruplama (Tasarım §6.2).
 import { periodOf } from '../../domain/date';
 import { signedAmount } from '../../domain/format';
 import { includesTr } from '../../domain/text';

@@ -1,4 +1,4 @@
-// Tutarlar kuruş cinsinden pozitif tamsayıdır (SPEC §4). Hiçbir hesapta float yok.
+// Tutarlar kuruş cinsinden pozitif tamsayıdır (Gereksinimler §4). Hiçbir hesapta float yok.
 
 /** ₺999.999.999,99 */
 export const MAX_AMOUNT = 99_999_999_999;

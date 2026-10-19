@@ -1,4 +1,4 @@
-// Tutar alanı (SPEC §5.1 "Form girişi", DESIGN §6.3). Yazma kuralları saf fonksiyonlarda
+// Tutar alanı (Gereksinimler §5.1 "Form girişi", Tasarım §6.3). Yazma kuralları saf fonksiyonlarda
 // (domain/amount-input); burada yalnızca olaylar bağlanır. beforeinput iptal edilemezse
 // (bazı Android klavyeleri) input olayında önceki ve yeni değer karşılaştırılır.
 import { useEffect, useLayoutEffect, useRef, type RefObject } from 'react';

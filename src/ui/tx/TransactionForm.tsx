@@ -1,4 +1,4 @@
-// İşlem ekle/düzenle ve sabit işlemi düzenle formu (DESIGN §6.3, §6.5).
+// İşlem ekle/düzenle ve sabit işlemi düzenle formu (Tasarım §6.3, §6.5).
 // Hedef: sık yapılan bir gideri, tutar dışında üç dokunuşla kaydetmek.
 import { CalendarDays } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';

@@ -16,7 +16,7 @@ export function contextFrom(clock: Clock = systemClock): OpContext {
 }
 
 /**
- * Sekmeler arası tekilleştirme (SPEC §5.3). navigator.locks yoksa doğrudan çalışır;
+ * Sekmeler arası tekilleştirme (Gereksinimler §5.3). navigator.locks yoksa doğrudan çalışır;
  * yine de unique index ve ConstraintError yakalama mükerrer kaydı engeller.
  */
 export async function withLock<T>(name: string, fn: () => Promise<T>): Promise<T> {

@@ -1,4 +1,4 @@
-// Kategori ekle/düzenle (DESIGN §6.4): canlı önizleme, ad, 14 renk, gruplu ikonlar.
+// Kategori ekle/düzenle (Tasarım §6.4): canlı önizleme, ad, 14 renk, gruplu ikonlar.
 import { Search } from 'lucide-react';
 import { useId, useMemo, useRef, useState, type ReactNode } from 'react';
 import { DEFAULT_ICON, NAME_MAX, defaultColor, validateCategoryName } from '../../domain/categories';

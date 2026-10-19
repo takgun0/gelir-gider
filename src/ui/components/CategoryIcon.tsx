@@ -1,4 +1,4 @@
-// Kategori ikonu: renkli yumuşak daire (%16), ikon tam renkte (DESIGN §4).
+// Kategori ikonu: renkli yumuşak daire (%16), ikon tam renkte (Tasarım §4).
 // Renk palet anahtarından türetilen CSS değişkenidir; stile kullanıcı string'i girmez.
 import type { IconKey, PaletteKey } from '../../domain/types';
 import { iconEntry } from '../icons';

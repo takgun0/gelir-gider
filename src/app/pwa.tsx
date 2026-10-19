@@ -1,4 +1,4 @@
-// Güncelleme akışı (SPEC §7): registerType 'prompt'. Yeni sürüm hazır olunca
+// Güncelleme akışı (Gereksinimler §7): registerType 'prompt'. Yeni sürüm hazır olunca
 // "Yeni sürüm hazır · Yenile" bildirimi; başka sekme veritabanı sürümünü yükseltirse
 // bağlantı kapatılır ve yenileme istenir.
 import { useEffect } from 'react';

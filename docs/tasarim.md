@@ -1,6 +1,6 @@
 # Gelir Gider — Tasarım Belgesi
 
-> Bölüm numaraları SPEC.md'deki "DESIGN §x" atıflarıyla eşleşir. Görsel karşılıklar `project/` klasöründeki tasarım kartlarındadır.
+> Bölüm numaraları docs/gereksinimler.md'deki "Tasarım §x" atıflarıyla eşleşir. Görsel karşılıklar [`tasarim-kartlari/`](tasarim-kartlari) klasöründeki tasarım kartlarındadır.
 
 ## 2. Ürün özeti ve kısıtlar
 Tek kişinin aylık gelir ve giderini kaydettiği, hesap gerektirmeyen, tamamen çevrimdışı çalışan bir web uygulaması. Birincil kullanım mobil tarayıcı ve ana ekrana eklenmiş PWA; masaüstü ikincil ama eksiksiz.

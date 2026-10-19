@@ -1,4 +1,4 @@
-// SPEC §9: testler iki saat diliminde çalışır. npm script'inde `TZ=...` yazımı
+// Gereksinimler §9: testler iki saat diliminde çalışır. npm script'inde `TZ=...` yazımı
 // Windows'ta çalışmadığı için Vitest buradan, ortam değişkeniyle başlatılır.
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';

@@ -1,84 +1,135 @@
 # Gelir Gider
 
-Tek kişinin aylık gelir ve giderini kaydettiği, hesap gerektirmeyen ve tamamen çevrimdışı çalışan bir web uygulaması. Veriler yalnızca cihazındaki tarayıcıda (IndexedDB) tutulur. Uygulama hiçbir sunucuya veri göndermez.
+Aylık gelirini ve giderini kaydetmek için sade, Türkçe bir web uygulaması. Hesap açmadan kullanılır, internet olmadan da çalışır. Telefonuna uygulama olarak kurabilirsin.
 
-Yayındaki adres: <https://takgun0.github.io/gelir-gider/>
+**Uygulamayı aç:** <https://takgun0.github.io/gelir-gider/>
 
-Belgeler:
-- [SPEC.md](SPEC.md): veri modeli, kurallar, mimari, güvenlik
-- [DESIGN.md](DESIGN.md): görsel dil, ekranlar, metinler
-- [DECISIONS.md](DECISIONS.md): geliştirme sırasında verilen küçük kararlar
-- [`project/`](project): tasarım kartları
+## Özellikler
 
-## Gereksinimler ve komutlar
+- **Özet:**
+  - Ayın kalanı ve ay sonu tahmini
+  - Gelir ve gider toplamları
+  - Bugün ve bu hafta yapılan harcama
+  - Günlük harcama grafiği, kategori dağılımı ve son 6 ay grafiği
+- **İşlemler:**
+  - Tutar, kategori, tarih, açıklama ve not ile gelir ya da gider kaydı
+  - Arama ve tür/kategori filtreleri
+  - Kaydırarak silme ve "Geri al"
+- **Sabit işlemler:** Kira, maaş, abonelik gibi her ay tekrar eden kayıtlar kendiliğinden eklenir. Durdurulabilir ve bitiş ayı verilebilir.
+- **Kategoriler:** Ad, renk ve ikonla kendi kategorilerini oluşturabilirsin. Kategori bazında aylık toplamlar görünür.
+- **Yedek:**
+  - JSON yedeği alma ve yedekten geri yükleme
+  - Excel'de açılan CSV dışa aktarma
+- **Görünüm ve gizlilik:**
+  - Açık ve koyu tema
+  - Tutarları gizleme
+  - İlk girişte kısa bir tanıtım
+- **Çevrimdışı ve gizli:** Veriler yalnızca cihazındaki tarayıcıda tutulur. Uygulama hiçbir sunucuya veri göndermez; analitik ya da izleme yoktur.
 
-Node.js 22.12 veya üstü gerekir (CI'da `.nvmrc` dosyasındaki sürüm, yani 24 kullanılır).
+## Telefona kurulum
+
+- **iPhone / iPad (Safari):**
+  1. Paylaş düğmesine dokun.
+  2. **Ana Ekrana Ekle**'yi seç.
+  3. **Ekle**'ye dokun.
+- **Android (Chrome):**
+  1. Menüyü (⋮) aç.
+  2. **Uygulamayı yükle**'ye dokun.
+  3. **Yükle** ile onayla.
+- **Bilgisayar (Chrome, Edge):** Adres çubuğundaki yükle simgesine tıkla.
+
+iPhone'da önce uygulamayı ana ekrana ekle, verilerini oradan gir. Safari ile ana ekrandaki uygulama verileri ayrı tutabilir.
+
+Uygulama kurulduktan sonra internet olmadan da açılır. Yeni bir sürüm yayınlandığında "Yeni sürüm hazır · Yenile" bildirimi çıkar.
+
+## Verilerin ve yedek
+
+- Verilerin bu cihazda, bu tarayıcıda (IndexedDB) saklanır. Uygulama, ilk kaydında tarayıcıdan kalıcı depolama izni ister.
+- Veriler şu durumlarda kaybolur:
+  - tarayıcı ya da site verilerini silersen,
+  - gizli pencere kullanırsan,
+  - uygulamayı ana ekrandan kaldırırsan,
+  - cihaz değiştirirsen.
+
+  **Ayarlar › Yedek indir** ile düzenli yedek al. "Son yedek" satırı 30 günü geçince vurgulanır.
+- **Başka cihaza taşımak için:**
+  1. Eski cihazda yedeği indir.
+  2. Dosyayı yeni cihaza aktar.
+  3. Yeni cihazda **Ayarlar › Yedekten geri yükle**'yi seç.
+
+  Geri yükleme o cihazdaki verilerin tamamını yedektekilerle değiştirir.
+- Yedek dosyası şifresizdir ve finansal bilgilerini içerir; nerede sakladığına ve kiminle paylaştığına dikkat et.
+
+### Aynı adres altındaki diğer siteler
+
+- `kullanici.github.io` altındaki tüm GitHub Pages projeleri aynı tarayıcı depolamasını paylaşır.
+- O hesaptaki başka bir sayfada bulunacak bir güvenlik açığı bu verilere erişebilir.
+- Tam ayrım için uygulamayı kendi alan adında yayınla (aşağıda "Kendi alan adın" bölümüne bak).
+
+## Geliştirme
+
+Gereksinim: Node.js 22.12 veya üstü. CI'da `.nvmrc` dosyasındaki 24 sürümü kullanılır.
 
 ```bash
 npm install        # bağımlılıkları kurar
 npm run dev        # geliştirme sunucusu: http://localhost:5173/gelir-gider/
-npm test           # testleri iki saat diliminde çalıştırır (Europe/Istanbul, America/Los_Angeles)
+npm test           # testler, iki saat diliminde (Europe/Istanbul, America/Los_Angeles)
+npm run typecheck  # TypeScript denetimi
+npm run lint       # ESLint
 npm run build      # production derlemesi: dist/
 npm run preview    # derlemeyi sunar: http://localhost:4173/gelir-gider/
 ```
 
-Ek komutlar: `npm run typecheck`, `npm run lint`. İkonları yeniden üretmek için `node scripts/make-icons.mjs` çalıştırılır.
+**Teknolojiler:**
+- Vite, React, TypeScript
+- Tailwind CSS
+- Dexie (IndexedDB)
+- Recharts, lucide-react
+- zod
+- vite-plugin-pwa
+- Vitest ve fake-indexeddb
 
-## GitHub Pages
+### Proje yapısı
 
-1. **Kaynağı ayarla:** Depoda *Settings › Pages › Build and deployment › Source* için **GitHub Actions** seç. `.github/workflows/deploy.yml`, `main` dalına yapılan her push'ta önce typecheck, lint, test ve build çalıştırır, ardından `dist/` klasörünü Pages'e yayınlar.
-2. **`base` yolunu ayarla:** Yayın yolu yalnızca [`vite.config.ts`](vite.config.ts) dosyasında tanımlıdır. Varsayılan `/gelir-gider/`, yani depo adıdır. Depo adını değiştirirsen bu değeri de değiştir ya da derlerken ortam değişkeniyle ver:
+```
+src/
+  domain/   saf iş kuralları: para, tarih, sabit işlemler, istatistik, yedek, CSV
+  db/       Dexie şeması ve transaction'lı veritabanı işlemleri
+  ui/       bileşenler, ekranlar, ikon kataloğu, arayüz metinleri (copy.ts)
+  app/      yönlendirme, tema, seçili ay, bildirimler, PWA, tanıtım
+public/     ikonlar ve tema ön yüklemesi
+scripts/    test çalıştırıcısı ve ikon üretici
+docs/       gereksinimler, tasarım, kararlar ve tasarım kartları
+```
+
+Testler ilgili dosyanın yanında `*.test.ts` olarak durur.
+
+### Belgeler
+
+- [Gereksinimler](docs/gereksinimler.md): veri modeli, iş kuralları, güvenlik, test
+- [Tasarım](docs/tasarim.md): görsel dil, ekranlar, metinler
+- [Kararlar](docs/kararlar.md): geliştirme sırasında verilen uygulama kararları
+- [Tasarım kartları](docs/tasarim-kartlari)
+
+## Yayın (GitHub Pages)
+
+1. Depoda *Settings › Pages › Build and deployment › Source* olarak **GitHub Actions**'ı seç.
+2. `main` dalına yapılan her push'ta `.github/workflows/deploy.yml` önce typecheck, lint, test ve build çalıştırır, ardından `dist/` klasörünü yayınlar.
+3. Yayın yolu [`vite.config.ts`](vite.config.ts) içinde tek yerden tanımlıdır (varsayılan `/gelir-gider/`). Depo adı değişirse bu değeri güncelle ya da derlerken ver:
    ```bash
    BASE_PATH=/yeni-ad/ npm run build
    ```
-   PWA manifest'indeki `start_url` ve `scope` da bu değerden üretilir.
-3. **Custom domain bağla:**
-   - *Settings › Pages › Custom domain* alanına alan adını yaz (ör. `gelir.ornek.com`).
-   - DNS'te bu ad için `takgun0.github.io` hedefli bir CNAME kaydı aç.
-   - `base` değerini `/` yap: ya `vite.config.ts` içindeki varsayılanı değiştir ya da iş akışındaki build adımına `BASE_PATH: /` ortam değişkenini ekle.
-   - Yeniden yayınla ve *Enforce HTTPS* seçeneğini aç.
 
-## Telefona kurulum
+### Kendi alan adın
 
-- **Android / Chrome:** Siteyi aç, menüden **Uygulamayı yükle**'ye dokun.
-- **iOS / Safari:** Siteyi aç, **Paylaş › Ana Ekrana Ekle**'ye dokun.
-- **Önemli:** iOS'ta ana ekrana eklenen uygulama, Safari'deki siteyle aynı depolamayı paylaşmayabilir. Bu yüzden önce uygulamayı kur, verileri kurduğun uygulamaya gir.
+1. *Settings › Pages › Custom domain* alanına alan adını yaz.
+2. DNS'te `kullanici.github.io` hedefli bir CNAME kaydı aç.
+3. Yayın yolunu `/` yap: iş akışındaki build adımına `BASE_PATH: /` ekle ya da `vite.config.ts` içindeki varsayılanı değiştir.
+4. Yeniden yayınla ve *Enforce HTTPS*'i aç.
 
-Uygulama kurulduktan sonra ağ olmadan da açılır. Yeni bir sürüm yayınlandığında "Yeni sürüm hazır · Yenile" bildirimi çıkar.
+## Güvenlik
 
-## Cihazlar arası taşıma
-
-1. Eski cihazda **Ayarlar › Yedek indir** ile `gelir-gider-yedek-YYYY-MM-DD.json` dosyasını al.
-2. Dosyayı yeni cihaza aktar (e-posta, bulut sürücü, kablo vb.).
-3. Yeni cihazda **Ayarlar › Yedekten geri yükle** ile dosyayı seç ve onayla.
-
-- Geri yükleme, o cihazdaki mevcut verilerin **tamamını** yedektekilerle değiştirir; birleştirme yapılmaz. Onay ekranındaki kutu işaretliyse önce mevcut verilerin yedeği indirilir.
-- Yedek dosyası **şifresiz** finansal veri içerir. Paylaştığın ve sakladığın yere dikkat et.
-- **CSV olarak dışa aktar** yalnızca okumak içindir (Excel'in Türkçe ayarlarında doğrudan açılır); geri yüklenemez.
-
-## Origin uyarısı
-
-- `kullanici.github.io` altındaki tüm GitHub Pages projeleri aynı origin'i, dolayısıyla aynı IndexedDB'yi paylaşır.
-- O hesaptaki herhangi bir sayfada bulunacak tek bir XSS açığı bu veriyi okuyabilir.
-- Tam izolasyon için uygulamayı projeye özel bir alt alan adında yayınla (bkz. "Custom domain bağla").
-
-## Veri kaybı riskleri
-
-- **Kalıcı depolama:** Tarayıcılar yer açmak için site verilerini kendiliğinden silebilir. Uygulama ilk işlem kaydedildiğinde tarayıcıdan kalıcı depolama ister (`navigator.storage.persist()`). Tarayıcı bu isteği reddedebilir ya da hiç sormayabilir; izin verilse bile veriler aşağıdaki durumlarda kaybolur.
-- **Veriler şu durumlarda kaybolur:**
-  - tarayıcı verilerini ya da site verilerini silersen,
-  - gizli pencere kullanırsan,
-  - uygulamayı ana ekrandan kaldırırsan (iOS),
-  - cihaz değiştirirsen ya da cihaz bozulursa.
-- **Düzenli yedek al.** Veriler sunucuda tutulmadığı için tek güvence yedek dosyasıdır. Ayarlar'daki "Son yedek" satırı 30 günü geçince vurgulanır.
-
-## Geliştirme notları
-
-- Klasör yapısı:
-  - `src/domain`: saf TypeScript
-  - `src/db`: Dexie şeması ve transaction'lı işlemler
-  - `src/ui`: bileşenler ve ekranlar
-  - `src/app`: yönlendirme, tema, seçili ay, bildirimler, PWA
-- Testler ilgili dosyanın yanında `*.test.ts` olarak durur. DB testleri `fake-indexeddb` kullanır.
-- Arayüz metinlerinin tamamı [`src/ui/copy.ts`](src/ui/copy.ts) dosyasındadır.
-- Production derlemesinde CSP `<meta>` etiketi bulunur. Uygulama hiçbir dış kaynağa (CDN, analitik, yazı tipi servisi) istek yapmaz.
+- Production derlemesi katı bir İçerik Güvenlik Politikası (CSP) ile gelir.
+- Uygulama dış kaynak yüklemez: CDN, yazı tipi servisi ya da analitik yoktur. Inter yazı tipi pakete dahildir.
+- Kullanıcı girdisi yalnızca metin olarak gösterilir.
+- Yedek dosyaları geri yüklenmeden önce baştan sona doğrulanır.

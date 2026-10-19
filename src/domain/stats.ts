@@ -1,4 +1,4 @@
-// Özet hesapları (SPEC §6 "Hesaplamalar"). Saf fonksiyonlar; toplamlar tamsayıdır.
+// Özet hesapları (Gereksinimler §6 "Hesaplamalar"). Saf fonksiyonlar; toplamlar tamsayıdır.
 // Planlanan örnekler hiçbir toplama girmez; yalnızca ay sonu tahmininde kullanılır.
 import {
   addMonths,
@@ -200,7 +200,7 @@ export function totalsByCategory(txs: readonly Pick<Transaction, 'amount' | 'cat
 }
 
 /**
- * Kategoriler ekranı sıralaması (DESIGN §6.4): bu ayki toplama göre azalan,
+ * Kategoriler ekranı sıralaması (Tasarım §6.4): bu ayki toplama göre azalan,
  * o ay kullanılmayanlar sonda ve alfabetik.
  */
 export function sortByUsage<C extends Pick<Category, 'id' | 'name'>>(categories: readonly C[], sums: Map<string, number>): C[] {

@@ -1,4 +1,4 @@
-// Günlük harcama grafiği (DESIGN §6.1 madde 5, SPEC §6 "Grafikler").
+// Günlük harcama grafiği (Tasarım §6.1 madde 5, Gereksinimler §6 "Grafikler").
 // Çubuklar ve eksenler Recharts; gün sütunları, pazartesi çizgileri, ortalama etiketi ve
 // baloncuk aynı geometriyle HTML olarak üstüne çizilir. Dokunma alanı günün tüm sütunu.
 import { useState, type KeyboardEvent } from 'react';

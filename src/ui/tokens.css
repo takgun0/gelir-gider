@@ -1,4 +1,4 @@
-/* DESIGN §4 renk token'ları. Bileşenlerde ham hex kullanılmaz; Tailwind teması
+/* Tasarım §4 renk token'ları. Bileşenlerde ham hex kullanılmaz; Tailwind teması
    bu değişkenlere bağlıdır (src/index.css). */
 :root {
   color-scheme: light;
@@ -19,7 +19,7 @@
   --expense-soft: #fbeae7;
   --expense-chart: #ee8577;
 
-  /* Bileşen kartlarından (project/Bilesenler.dc.html) türetilenler */
+  /* Bileşen kartlarından (docs/tasarim-kartlari/Bilesenler.dc.html) türetilenler */
   --switch-off: #d9d7d2;
   --toast: #1c1b19;
   --on-toast: #f2f1ee;
@@ -27,10 +27,10 @@
   --scrim: rgb(17 18 20 / 0.35);
   --shadow: rgb(28 27 25 / 0.18);
 
-  /* DESIGN §6.2: gider tutarının rengi tek yerden. Nötr varyant için var(--text). */
+  /* Tasarım §6.2: gider tutarının rengi tek yerden. Nötr varyant için var(--text). */
   --amount-expense: var(--expense);
 
-  /* DESIGN §4 kategori paleti (SPEC §4 PaletteKey) */
+  /* Tasarım §4 kategori paleti (Gereksinimler §4 PaletteKey) */
   --c-gul: #d14d72;
   --c-fusya: #b9479f;
   --c-mor: #8257d1;

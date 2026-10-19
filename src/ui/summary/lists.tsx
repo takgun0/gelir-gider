@@ -1,4 +1,4 @@
-// Özet listeleri (DESIGN §6.1 madde 8–9): yaklaşan ya da planlanan sabit işlemler ve son işlemler.
+// Özet listeleri (Tasarım §6.1 madde 8–9): yaklaşan ya da planlanan sabit işlemler ve son işlemler.
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
 import { dayMonth, dayHeading, diffDays, shortDate } from '../../domain/date';

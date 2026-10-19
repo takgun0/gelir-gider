@@ -1,4 +1,4 @@
-// Ay-yıl seçici (SPEC §6: projede yazılır). Seçili ay ve "Bitiş" alanı için ortak.
+// Ay-yıl seçici (Gereksinimler §6: projede yazılır). Seçili ay ve "Bitiş" alanı için ortak.
 import { ChevronLeft } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 import { useState, type ReactNode } from 'react';

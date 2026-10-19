@@ -1,4 +1,4 @@
-// Kategori kuralları (SPEC §5.4, DESIGN §6.4 ve §10).
+// Kategori kuralları (Gereksinimler §5.4, Tasarım §6.4 ve §10).
 import { categoryNameKey, compareTr } from './text';
 import { PALETTE_KEYS, type Category, type IconKey, type PaletteKey, type TxType } from './types';
 
@@ -8,7 +8,7 @@ export const DEFAULT_ICON: IconKey = 'tag';
 
 type CategorySeed = Pick<Category, 'name' | 'type' | 'icon' | 'color' | 'isSystem'>;
 
-/** DESIGN §10: ilk açılışta gelen 14 kategori. */
+/** Tasarım §10: ilk açılışta gelen 14 kategori. */
 export const DEFAULT_CATEGORIES: readonly CategorySeed[] = [
   { type: 'expense', name: 'Market', icon: 'shopping-cart', color: 'turuncu', isSystem: false },
   { type: 'expense', name: 'Kira', icon: 'house', color: 'kahve', isSystem: false },

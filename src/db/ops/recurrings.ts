@@ -1,4 +1,4 @@
-// Sabit işlem düzenleme, durdurma ve silme (SPEC §5.3 "Düzenleme ve yaşam döngüsü").
+// Sabit işlem düzenleme, durdurma ve silme (Gereksinimler §5.3 "Düzenleme ve yaşam döngüsü").
 import { isEnded, lastPeriodOnReactivate } from '../../domain/recurring';
 import type { Period, Recurring, TxType } from '../../domain/types';
 import type { AppDB } from '../db';

@@ -1,4 +1,4 @@
-// Alt sayfa, modal ve onay diyaloğunun ortak altyapısı (SPEC §6): portal, odak hapsi,
+// Alt sayfa, modal ve onay diyaloğunun ortak altyapısı (Gereksinimler §6): portal, odak hapsi,
 // Esc ile kapanma, aria-modal, arka planı inert yapma ve kapanınca odağı açan öğeye
 // geri verme. Üst üste açılan katmanlarda yalnızca en üstteki etkindir.
 import { useEffect, useRef, type CSSProperties, type ReactNode, type RefObject } from 'react';

@@ -11,7 +11,7 @@ const BASE = process.env.BASE_PATH ?? '/gelir-gider/';
 
 const { version } = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string };
 
-// SPEC §5.7: CSP yalnızca production build'e eklenir.
+// Gereksinimler §5.7: CSP yalnızca production build'e eklenir.
 const CSP = [
   "default-src 'self'",
   "script-src 'self'",
@@ -37,7 +37,7 @@ function cspMeta(): Plugin {
   };
 }
 
-/** Android açılış ekranı tek renk: iki temada da göze batmayan nötr ton (DECISIONS). */
+/** Android açılış ekranı tek renk: iki temada da göze batmayan nötr ton (docs/kararlar.md). */
 const SPLASH_BACKGROUND = '#6B6862';
 
 export default defineConfig({
@@ -48,7 +48,7 @@ export default defineConfig({
     cspMeta(),
     VitePWA({
       registerType: 'prompt',
-      // Kayıt uygulama kodundan yapılır; inline script üretilmez (SPEC §5.7).
+      // Kayıt uygulama kodundan yapılır; inline script üretilmez (Gereksinimler §5.7).
       injectRegister: null,
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'theme-init.js'],
       manifest: {

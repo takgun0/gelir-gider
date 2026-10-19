@@ -1,4 +1,4 @@
-// İşlem ekleme, düzenleme, silme ve geri al (SPEC §5.3 "Oluşturma", DESIGN §6.3).
+// İşlem ekleme, düzenleme, silme ve geri al (Gereksinimler §5.3 "Oluşturma", Tasarım §6.3).
 import { periodOf } from '../../domain/date';
 import type { Recurring, Transaction } from '../../domain/types';
 import type { AppDB } from '../db';

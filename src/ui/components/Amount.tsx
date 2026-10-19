@@ -1,4 +1,4 @@
-// Ekrandaki her tutar bu bileşenden geçer (SPEC §5.1).
+// Ekrandaki her tutar bu bileşenden geçer (Gereksinimler §5.1).
 // - tabular-nums
 // - kahraman varyantında ₺ ve kuruş bir kademe küçük, text-2 renginde
 // - tutar gizleme açıkken "₺•••••" (ekran okuyucu metni de gizli)

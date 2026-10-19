@@ -1,4 +1,4 @@
-// Özet'ten İşlemler'e geçerken router state ile taşınan filtre (SPEC §6).
+// Özet'ten İşlemler'e geçerken router state ile taşınan filtre (Gereksinimler §6).
 import type { DateStr, TxType } from '../domain/types';
 
 export interface TransactionsNavState {

@@ -1,14 +1,14 @@
 # Kararlar
 
-Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en altta.
+Küçük uygulama kararları, her biri tek satır (Gereksinimler §2). En yenisi en altta.
 
 ## Faz 0
-- DESIGN.md kullanıcının verdiği metinden oluşturuldu; yapıştırmada kaybolan "+ butonu" ve "2. adım" madde başları onarıldı.
+- Tasarım belgesi proje sahibinin verdiği metinden oluşturuldu; aktarımda kaybolan "+ butonu" ve "2. adım" madde başları onarıldı.
 - TypeScript `~6.0`: typescript-eslint 8.x en fazla TS 6.0'ı destekliyor (TS 7 çıkmış olsa da).
 - Inter `@fontsource-variable/inter` ile paketlenir; `src/ui/fonts.css` yalnızca latin ve latin-ext yüzlerini tanımlar.
 - `react-is`, Recharts'ın eş bağımlılığı olduğu için doğrudan eklendi.
 - vite-plugin-pwa Faz 10'da eklenecek; PNG ikon üretimi için ek araç gerekirse o zaman sorulacak.
-- Kırılımlar DESIGN §5'e göre: <640 alt çubuk, 640–1023 72 px ikon şeridi, ≥1024 200 px kenar çubuğu.
+- Kırılımlar Tasarım §5'e göre: <640 alt çubuk, 640–1023 72 px ikon şeridi, ≥1024 200 px kenar çubuğu.
 - Gider tutarı rengi varsayılan kırmızı (teslim kartları); `--amount-expense` token'ı tek satırla nötre çevrilir.
 - "Tüm verileri sil": bütün tablolar (settings dahil, yani `lastBackupAt` da) tek transaction'da temizlenir, varsayılan kategoriler yeniden yüklenir; localStorage tercihleri (tema, gizleme) korunur.
 - "Ayın kaçında" varsayılanı işlem tarihinin günü; ilk tekrar her zaman sonraki ayda.
@@ -16,7 +16,7 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Kategori silme bildirimi taşınanlara göre kurulur: hiçbir şey taşınmadıysa "Kategori silindi"; sabit işlem de varsa "Kategori silindi, 14 işlem ve 1 sabit işlem Diğer kategorisine taşındı".
 - Sabit işlem silme onayının başlığı "'İnternet' silinsin mi?"; korunacak kayıt yoksa ikinci cümle yazılmaz.
 - Ay sonu tahmini standart biçimde; negatifse U+2212 eksi ve expense rengiyle (Özet kartı "eksi" durumu).
-- Not sayacı DESIGN §6.3'e göre 400 karakterden sonra görünür (kart her zaman gösteriyor; metin esas).
+- Not sayacı Tasarım §6.3'e göre 400 karakterden sonra görünür (kart her zaman gösteriyor; metin esas).
 - Kartlarda çizilmeyen ekranlar (sabit işlem formu, yeni kategori, takvim, ay-yıl seçici, kategori filtresi, "⋯" menüsü, 640–1023 yerleşimi) mevcut bileşenlerden türetilir.
 
 ## Faz 1
@@ -24,9 +24,9 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - `npm test`, `scripts/test.mjs` ile Vitest'i iki kez başlatır; `src/test/timezone.test.ts` TZ'nin uygulandığını doğrular.
 - Tema, ilk render öncesi `public/theme-init.js` (inline olmayan, modül olmayan script) ile uygulanır; Vite'ın "can't be bundled" uyarısı beklenen bir durum.
 - Tema "Sistem" iken localStorage'a değer yazılmaz (anahtar silinir).
-- Tailwind'in hazır renk ve font paleti `--color-*: initial` ile kapatıldı; yalnızca DESIGN token'ları sınıf olarak kullanılabilir.
+- Tailwind'in hazır renk ve font paleti `--color-*: initial` ile kapatıldı; yalnızca tasarım token'ları sınıf olarak kullanılabilir.
 - Bileşen kartlarındaki ek token'lar (switch-off, toast, on-toast, toast-accent, scrim, shadow, on-expense) `tokens.css`'e eklendi.
-- ESLint, SPEC §5.2/§5.7 yasaklarını kural olarak uygular (innerHTML, dangerouslySetInnerHTML, eval, Date.parse, toISOString, `new Date('...')`).
+- ESLint, Gereksinimler §5.2/§5.7 yasaklarını kural olarak uygular (innerHTML, dangerouslySetInnerHTML, eval, Date.parse, toISOString, `new Date('...')`).
 - Domain testleri varsayılan olarak `node` ortamında; DOM gereken testler dosya başında `@vitest-environment jsdom` ile işaretlenir.
 - Rotalar: `/`, `/islemler`, `/islemler/sabit`, `/kategoriler`, `/ayarlar`; bilinmeyen rota Özet'e döner.
 - CI Node sürümü `.nvmrc` (24) üzerinden; PR'larda CI çalışır, deploy yalnızca `main`'de.
@@ -57,7 +57,7 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Günlük ortalama kuruşa yuvarlanır; baloncuktaki "n işlem" yalnızca o günün gider işlemlerini sayar.
 - Kategori dağılımında eşit tutarlar Türkçe alfabeye göre sıralanır; 6'dan fazla kategori varsa geri kalanların hepsi (tek bile olsa) "Diğerleri (n)" dilimine girer.
 - Yedekte kimlikler UUID olmalı; `exportedAt` ISO-8601 zaman damgası (`toISOString` yalnızca burada, gerekçesiyle izinli).
-- Yedek bütünlüğüne SPEC listesine ek olarak "aynı türde aynı adlı iki kategori olamaz" kontrolü eklendi (uygulamanın kendi kuralı).
+- Yedek bütünlüğüne gereksinimlerdeki listeye ek olarak "aynı türde aynı adlı iki kategori olamaz" kontrolü eklendi (uygulamanın kendi kuralı).
 - 10 MB sınırı hem dosya boyutunda (`isFileTooLarge`) hem okunan metnin uzunluğunda uygulanır.
 - `migrate()` şimdilik kimlik fonksiyonu; yeni biçim sürümü gelince adım eklenecek.
 - CSV satırları tarihe göre eskiden yeniye; aynı gün içinde `createdAt` sırası. Tür ve tarih hücreleri kaçışa girmez, kategori, açıklama ve not girer.
@@ -125,7 +125,7 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Gün baloncuğu çubuğun ya da ortalama çizgisinin üstünde, yatayda %28–72 arasında tutulur; baloncuğa dokunmak İşlemler'i o günün grubuna kaydırarak açar.
 - Geçmiş aylarda "bugün" çubuğu yoktur; seçili gün tam renk, diğerleri %60.
 - Kategori dağılımı listesi donut'un metin karşılığıdır; tutarlar işaretsiz (kart). "Diğerleri (n)" satırına ya da "Tümünü göster"e dokununca tüm kategoriler tek tek listelenir, donut aynı kalır. Seçili türde veri yoksa boş halka ve ₺0,00.
-- dataviz doğrulayıcısı kategori paletinde bitişik çiftlerde düşük CVD ayrımı ve gelir/gider grafik renklerinde düşük kontrast bildirdi. Renkler DESIGN'dan geldiği için değiştirilmedi; karşılığı: donut dilimleri arasında 2 px yüzey boşluğu, her dilimin listede adı ve tutarı, 6 ay grafiğinde sabit sıra (gelir solda) + lejant + ekran okuyucu metni.
+- Renk doğrulamasında kategori paletinin bitişik çiftlerinde renk körlüğü ayrımının ve gelir/gider grafik renklerinde kontrastın düşük olduğu görüldü. Renkler tasarım belgesinden geldiği için değiştirilmedi; karşılığı: donut dilimleri arasında 2 px yüzey boşluğu, her dilimin listede adı ve tutarı, 6 ay grafiğinde sabit sıra (gelir solda) + lejant + ekran okuyucu metni.
 - Gelecek ayda Kalan, gelir ve gider planlanan toplamlardan hesaplanır ve "Planlanan" rozeti taşır; grafikler ve son işlemler yerine "Planlanan sabit işlemler" listesi (kartlardaki açıklama metniyle) gösterilir.
 - Bu ay kayıt yoksa kartlar ₺0,00, grafikler yerine "Ekim 2026 için kayıt yok." + "İşlem ekle"; içinde bulunulan ayda yaklaşanlar yine görünür.
 - İlk açılış: hiç işlem ve sabit işlem yoksa; illüstrasyon özgün satır içi SVG.
@@ -160,7 +160,7 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - vite-plugin-pwa `generateSW`, `registerType: 'prompt'`, `injectRegister: null`; kayıt `virtual:pwa-register/react` ile uygulama kodundan. Uygulama kabuğu, yazı tipleri, ikonlar ve `theme-init.js` precache'te.
 - "Yeni sürüm hazır · Yenile" ve "başka sekmede güncellendi" bildirimleri kendiliğinden kapanmaz (`persistent`); güncellemeyi kaçırmamak için 6 sn kuralının istisnası. Yeni bildirim yine yerlerini alır.
 - Dexie `versionchange`: bağlantı kapatılır, "Uygulama başka bir sekmede güncellendi. Devam etmek için sayfayı yenile." ✱ + "Yenile".
-- CSP, SPEC'teki yönergelerle değiştirilmeden yalnızca build'e `<meta>` olarak (head'in başına) eklenir; hiçbir yönergenin gevşetilmesi gerekmedi. `vite preview`'da ekranlar, alt sayfalar, diyaloglar ve grafikler gezildi: CSP ihlali ve konsol hatası yok, tüm istekler aynı kaynağa.
+- CSP, gereksinimlerdeki yönergelerle değiştirilmeden yalnızca build'e `<meta>` olarak (head'in başına) eklenir; hiçbir yönergenin gevşetilmesi gerekmedi. `vite preview`'da ekranlar, alt sayfalar, diyaloglar ve grafikler gezildi: CSP ihlali ve konsol hatası yok, tüm istekler aynı kaynağa.
 - Sunucu kapatılıp sayfa yenilendiğinde uygulama önbellekten açıldı (uçak modu senaryosu); güncelleme bildirimi ve "Yenile" uçtan uca denendi.
 - Paket parçalara ayrıldı (`codeSplitting` grupları: charts, react, data); 500 kB uyarısı kalktı.
 - Dokunma alanları: görsel olarak küçük kontrollere (çip, anahtar, küçük segment, metin bağlantıları, "⋯", temizle) görünmez `hit-area` ile en az 44×44 px.
@@ -168,13 +168,13 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Erişilebilir ad taraması: tüm ekranlarda ve işlem formunda adı olmayan etkileşimli öğe yok.
 
 ## Faz 11
-- README SPEC §12 başlıklarıyla yazıldı (komutlar, Pages, custom domain, kurulum, taşıma, origin uyarısı, veri kaybı riskleri).
+- README Gereksinimler §12 başlıklarıyla yazıldı (komutlar, Pages, custom domain, kurulum, taşıma, origin uyarısı, veri kaybı riskleri).
 - Sürüm 1.0.0.
 - `index.html`'de public dosyalara kök yoluyla (`/theme-init.js`) başvurulur; Vite hem geliştirmede hem derlemede `base`'i kendisi ekler (`%BASE_URL%` geliştirme sunucusunda yolu ikiledi).
 - Son tarama: beş ekran ve gelecek ay Özet'i, 390/768/1440 px × açık/koyu temada yatay taşma olmadan açıldı; konsolda hata yok.
 
 ## Sonradan: Tanıtım
-- Proje sahibinin isteğiyle ilk girişe 5 adımlık tanıtım eklendi (DESIGN §6.7): hoş geldin, işlem ekleme (gelir/gider), açıklama-not ve tekrar, kategoriler, yedeğin önemi. Metinler `copy.tour`'da (✱).
+- Proje sahibinin isteğiyle ilk girişe 5 adımlık tanıtım eklendi (Tasarım §6.7): hoş geldin, işlem ekleme (gelir/gider), açıklama-not ve tekrar, kategoriler, yedeğin önemi. Metinler `copy.tour`'da (✱).
 - "Görüldü" bilgisi tema gibi cihaza özgü tercih: localStorage `tourSeen`; yedeğe girmez. Depolama kapalıysa tur her açılışta gösterilir.
 - Tur yalnızca "Geç", Esc ya da "Başla" ile kapanır; arka plana dokunmak kapatmaz (yanlışlıkla atlanmasın).
 - Ayarlar › Hakkında'ya "Tanıtımı yeniden göster" satırı eklendi.

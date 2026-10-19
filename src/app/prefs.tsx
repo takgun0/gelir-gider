@@ -1,4 +1,4 @@
-// Cihaza özgü tercihler (SPEC §4): tema ve tutar gizleme. localStorage'da tutulur,
+// Cihaza özgü tercihler (Gereksinimler §4): tema ve tutar gizleme. localStorage'da tutulur,
 // yedeğe girmez; ilk render'dan önce okunur.
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { applyTheme, readThemePref, watchSystemTheme, writeThemePref, type ThemePref } from './theme';

@@ -1,4 +1,4 @@
-// Tanıtım (DESIGN §6.7): birkaç adımda işlem ekleme, not ve tekrar, kategoriler ve
+// Tanıtım (Tasarım §6.7): birkaç adımda işlem ekleme, not ve tekrar, kategoriler ve
 // yedeğin önemi. Mobilde alttan açılan sayfa, 640 px ve üstünde ortada kart.
 // ← → ile adımlar arasında gezilir, Esc ve "Geç" kapatır.
 import type { LucideIcon } from 'lucide-react';

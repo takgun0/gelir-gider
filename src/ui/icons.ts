@@ -1,4 +1,4 @@
-// Kategori ikon kataloğu (SPEC §5.4, DESIGN §6.4). Her ikon ayrı import edilir.
+// Kategori ikon kataloğu (Gereksinimler §5.4, Tasarım §6.4). Her ikon ayrı import edilir.
 // "repeat" ve "sticky-note" katalogda yok; yalnızca durum ikonu olarak kullanılır.
 import type { LucideIcon } from 'lucide-react';
 import { Apple } from 'lucide-react';

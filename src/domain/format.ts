@@ -1,4 +1,4 @@
-// Tüm tutar biçimlendirmesi burada (SPEC §5.1). Ekranda her tutar <Amount>'tan geçer.
+// Tüm tutar biçimlendirmesi burada (Gereksinimler §5.1). Ekranda her tutar <Amount>'tan geçer.
 import { toDecimalString } from './money';
 import type { TxType } from './types';
 

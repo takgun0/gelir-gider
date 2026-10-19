@@ -1,4 +1,4 @@
-// İşlemler › Sabit (DESIGN §6.5): aktifler sonraki tarihe göre; durdurulan ve bitenler soluk.
+// İşlemler › Sabit (Tasarım §6.5): aktifler sonraki tarihe göre; durdurulan ve bitenler soluk.
 import { Plus } from 'lucide-react';
 import { Repeat } from 'lucide-react';
 import { useMemo } from 'react';

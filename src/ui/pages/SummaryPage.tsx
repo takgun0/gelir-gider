@@ -1,4 +1,4 @@
-// Özet (DESIGN §6.1): önce Kalan, sonra gelir ve gider, sonra ayrıntı.
+// Özet (Tasarım §6.1): önce Kalan, sonra gelir ve gider, sonra ayrıntı.
 import { CalendarX2 } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { EyeOff } from 'lucide-react';

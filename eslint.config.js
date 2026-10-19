@@ -25,26 +25,26 @@ export default defineConfig([
         'error',
         { varsIgnorePattern: '^_', argsIgnorePattern: '^_', ignoreRestSiblings: true },
       ],
-      // SPEC §5.7: kullanıcı girdisi yalnızca metin düğümü olarak basılır.
+      // Gereksinimler §5.7: kullanıcı girdisi yalnızca metin düğümü olarak basılır.
       'no-eval': 'error',
       'no-implied-eval': 'error',
       'no-new-func': 'error',
       'no-restricted-properties': [
         'error',
-        { property: 'innerHTML', message: 'SPEC §5.7: innerHTML kullanılmaz.' },
-        { property: 'outerHTML', message: 'SPEC §5.7: outerHTML kullanılmaz.' },
-        { object: 'Date', property: 'parse', message: 'SPEC §5.2: Date.parse yasak; src/domain/date.ts kullan.' },
-        { property: 'toISOString', message: 'SPEC §5.2: tarih string\'i src/domain/date.ts ile üretilir.' },
+        { property: 'innerHTML', message: 'Gereksinimler §5.7: innerHTML kullanılmaz.' },
+        { property: 'outerHTML', message: 'Gereksinimler §5.7: outerHTML kullanılmaz.' },
+        { object: 'Date', property: 'parse', message: 'Gereksinimler §5.2: Date.parse yasak; src/domain/date.ts kullan.' },
+        { property: 'toISOString', message: 'Gereksinimler §5.2: tarih string\'i src/domain/date.ts ile üretilir.' },
       ],
       'no-restricted-syntax': [
         'error',
         {
           selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
-          message: 'SPEC §5.7: dangerouslySetInnerHTML kullanılmaz.',
+          message: 'Gereksinimler §5.7: dangerouslySetInnerHTML kullanılmaz.',
         },
         {
           selector: "NewExpression[callee.name='Date'][arguments.length=1][arguments.0.type='Literal']",
-          message: "SPEC §5.2: new Date('YYYY-MM-DD') yasak; new Date(y, m - 1, d) kullan.",
+          message: "Gereksinimler §5.2: new Date('YYYY-MM-DD') yasak; new Date(y, m - 1, d) kullan.",
         },
       ],
     },

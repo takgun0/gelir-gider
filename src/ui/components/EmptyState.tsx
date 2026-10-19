@@ -6,7 +6,7 @@ interface EmptyStateProps {
   action?: { label: string; onClick: () => void } | undefined;
 }
 
-/** Boş durum (DESIGN §8): ikon, tek cümle, tek eylem. */
+/** Boş durum (Tasarım §8): ikon, tek cümle, tek eylem. */
 export function EmptyState({ icon: Icon, message, action }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center gap-4 rounded-2xl bg-surface px-6 py-10 text-center">

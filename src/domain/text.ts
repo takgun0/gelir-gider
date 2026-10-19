@@ -1,4 +1,4 @@
-// Türkçe metin karşılaştırma ve sıralama (SPEC §5.2, DESIGN §9).
+// Türkçe metin karşılaştırma ve sıralama (Gereksinimler §5.2, Tasarım §9).
 
 const collator = new Intl.Collator('tr');
 

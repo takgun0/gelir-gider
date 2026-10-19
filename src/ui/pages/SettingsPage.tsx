@@ -1,4 +1,4 @@
-// Ayarlar (DESIGN §6.6): Görünüm, Verilerin, Tehlikeli bölge, Hakkında.
+// Ayarlar (Tasarım §6.6): Görünüm, Verilerin, Tehlikeli bölge, Hakkında.
 import type { LucideIcon } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 import { CircleAlert } from 'lucide-react';
@@ -33,7 +33,7 @@ import { Page, PageTitle } from '../components/Page';
 import { copy } from '../copy';
 import { RestoreSheet } from '../settings/RestoreSheet';
 
-/** Bu kadar günü geçen yedek vurgulanır (DESIGN §6.6). */
+/** Bu kadar günü geçen yedek vurgulanır (Tasarım §6.6). */
 const STALE_DAYS = 30;
 
 function Section({ title, danger = false, children }: { title: string; danger?: boolean; children: ReactNode }) {

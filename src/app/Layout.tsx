@@ -1,4 +1,4 @@
-// Uygulama kabuğu (DESIGN §5): <640 alt çubuk, 640–1023 72 px ikon şeridi,
+// Uygulama kabuğu (Tasarım §5): <640 alt çubuk, 640–1023 72 px ikon şeridi,
 // ≥1024 200 px kenar çubuğu. Masaüstü kısayolları: N, /, ← →.
 import { LayoutDashboard } from 'lucide-react';
 import { List } from 'lucide-react';

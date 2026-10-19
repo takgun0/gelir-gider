@@ -1,43 +1,35 @@
-# Gelir Gider — Geliştirme Spesifikasyonu
+# Gelir Gider — Gereksinimler
 
 ## 0. Belgeler ve öncelik sırası
-Bu proje iki belgeyle yürür:
-- **SPEC.md** (bu belge): veri modeli, iş kuralları, mimari, güvenlik, test ve yayın.
-- **DESIGN.md** (tasarım belgesi): görsel dil, yerleşim, ekranlar, arayüz metinleri ve durumlar.
+Proje iki ana belgeyle yürür:
+- **Gereksinimler** (bu belge): veri modeli, iş kuralları, mimari, güvenlik, test ve yayın.
+- **[Tasarım](tasarim.md)**: görsel dil, yerleşim, ekranlar, arayüz metinleri ve durumlar.
 
 Hangi belgenin esas olduğu konuya göre değişir:
-- Görünüm, etkileşim ve arayüz metinlerinde DESIGN.md esastır.
-- Veri, iş kuralı, güvenlik ve testte SPEC.md esastır.
-- İki belge arasındaki bilinen çelişkiler bu belgede çözülmüştür. Çözümler, DESIGN.md'nin ilgili bölümüne atıfla verilir (ör. "DESIGN §6.3"). Yeni bir çelişki bulursan bana sor.
-- Arayüz metinlerini DESIGN.md'den birebir al. Yeni bir metin yazman gerekirse aynı tonda yaz ("sen" dili, samimi ama ölçülü) ve `DECISIONS.md`'ye ekle.
+- Görünüm, etkileşim ve arayüz metinlerinde tasarım belgesi esastır.
+- Veri, iş kuralı, güvenlik ve testte bu belge esastır.
+- İki belge arasındaki bilinen çelişkiler bu belgede çözülmüştür; çözümler tasarım belgesinin ilgili bölümüne atıfla verilir (ör. "Tasarım §6.3").
+- Arayüz metinleri tasarım belgesinden birebir alınır. Yeni bir metin gerekirse aynı tonda yazılır ("sen" dili, samimi ama ölçülü) ve [kararlar](kararlar.md) belgesine eklenir.
 
 ## 1. Amaç ve sınırlar
-Tek kişinin aylık gelir ve giderini kaydettiği, hesap gerektirmeyen, tamamen çevrimdışı çalışan bir web uygulaması (DESIGN §2).
+Tek kişinin aylık gelir ve giderini kaydettiği, hesap gerektirmeyen, tamamen çevrimdışı çalışan bir web uygulaması (Tasarım §2).
 - Sunucu, giriş ve senkronizasyon yok; tüm veri tarayıcıda, IndexedDB'de tutulur.
 - GitHub Pages'te statik olarak yayınlanır ve PWA olarak telefona kurulur.
 - Arayüz Türkçe, para birimi yalnızca TL.
 - Uygulama hiçbir koşulda ağa veri göndermez.
 - Uygulamanın adı henüz belirlenmedi; şimdilik "Gelir Gider" kullanılır.
 
-## 2. Çalışma şekli
-1. Bu belgeyi `SPEC.md`, tasarım belgesini `DESIGN.md` adıyla repo köküne koy. Her fazda ikisine de geri dön.
-2. Kod yazmadan önce şunları göster ve onayımı bekle:
-   - klasör yapısı,
-   - sürüm aralıklarıyla bağımlılık listesi,
-   - faz planı,
-   - iki belgede belirsiz ya da çelişkili bulduğun noktalar.
-3. Fazları (Bölüm 10) sırayla uygula. Her faz sonunda:
-   - `typecheck`, `lint`, `test` ve `build` temiz geçmeli;
-   - ne yapıldığını, hangi kararların alındığını ve sıradaki fazı kısaca özetle;
-   - devam etmeden önce dur ve onayımı bekle.
-4. Spesifikasyonu ya da tasarımı değiştiren bir belirsizlikte bana sor. Küçük uygulama kararlarını kendin ver ve her birini `DECISIONS.md`'ye tek satırla yaz.
-5. İki belgede olmayan özellik ekleme (Bölüm 11). Listede olmayan bir bağımlılık gerekiyorsa önce gerekçesini söyle.
+## 2. Geliştirme ilkeleri
+1. Geliştirme Bölüm 10'daki fazlarla ilerler; her fazda iki belgeye de geri dönülür.
+2. Her faz sonunda `typecheck`, `lint`, `test` ve `build` temiz geçer.
+3. Spesifikasyonu ya da tasarımı değiştiren bir belirsizlik proje sahibiyle netleştirilir. Küçük uygulama kararları [kararlar](kararlar.md) belgesine tek satırla yazılır.
+4. İki belgede olmayan özellik eklenmez (Bölüm 11). Listede olmayan bir bağımlılık gerekiyorsa önce gerekçesi yazılır.
 
 ## 3. Teknoloji
 - Vite + React + TypeScript (`strict: true`) + ESLint
 - Dexie.js + `dexie-react-hooks` (`useLiveQuery`)
 - Recharts
-- Tailwind CSS: renkler DESIGN §4 token'larından üretilen CSS değişkenleriyle tanımlanır; karanlık mod class tabanlıdır.
+- Tailwind CSS: renkler Tasarım §4 token'larından üretilen CSS değişkenleriyle tanımlanır; karanlık mod class tabanlıdır.
 - lucide-react: yalnızca ikon kataloğundaki ikonlar, her biri ayrı import edilerek
 - zod: içe aktarma doğrulaması için
 - vite-plugin-pwa
@@ -151,14 +143,14 @@ Biçimlendirme fonksiyonları:
   - Tam sayı yüzde verir.
   - 0'dan büyük ama 0,01'den küçük oranlar için `<%1` döner.
 
-Hangi tutarın işaretli, hangisinin standart biçimde görüneceği DESIGN §4 ve §6'ya göre belirlenir.
+Hangi tutarın işaretli, hangisinin standart biçimde görüneceği Tasarım §4 ve §6'ya göre belirlenir.
 
 `<Amount>` bileşeninin davranışı:
 - `font-variant-numeric: tabular-nums` uygular.
 - Kahraman varyantında ₺ işaretini ve kuruş kısmını `formatToParts` ile ayırır, bir kademe küçük ve `text-2` renginde gösterir.
 - Tutar gizleme açıkken her yerde `₺•••••` gösterir. Grafik eksenleri, baloncuklar ve ekran okuyucu metinleri de buna dahildir.
 
-#### Form girişi (DESIGN §6.3)
+#### Form girişi (Tasarım §6.3)
 Yazarken uygulanacak kurallar:
 - Alana yalnızca rakam ve tek bir ondalık ayırıcı yazılabilir.
 - Kullanıcının yazdığı `.` ya da `,` ondalık ayırıcı sayılır ve ekranda `,` olarak görünür. `beforeinput` olayında `.` girişi `,` olarak işlenir.
@@ -180,7 +172,7 @@ Yapıştırma kuralları — yapıştırılan metin `parsePastedAmount` ile ayr�
 5. Kuruşa çevirme string işlemiyle yapılır; `parseFloat(x) * 100` yasaktır.
 
 Doğrulama:
-- Kaydet'e basılınca yapılan kontroller ve hata metinleri DESIGN §8'den alınır: boş tutar, sıfır tutar, üst sınır (`₺999.999.999,99`).
+- Kaydet'e basılınca yapılan kontroller ve hata metinleri Tasarım §8'den alınır: boş tutar, sıfır tutar, üst sınır (`₺999.999.999,99`).
 
 Gerçek cihaz testi:
 - Android Chrome'da Gboard ve Samsung klavyesiyle, ayrıca iOS Safari'de test edilir.
@@ -204,7 +196,7 @@ Gerçek cihaz testi:
 - Elle girilen bir işlemin tarihi en fazla bugün olabilir; takvimde ileri günler seçilemez.
 - Gelecek tarihli tutarlar yalnızca planlanan sabit işlemlerde görünür.
 
-#### Tarih etiketleri (DESIGN §4)
+#### Tarih etiketleri (Tasarım §4)
 - Liste başlıkları: "Bugün", "Dün", "16 Ekim Cuma".
 - Farklı yıldaki tarihler: "16 Ekim 2025 Perşembe".
 - Ay seçici: "Ekim 2026".
@@ -216,10 +208,10 @@ Gerçek cihaz testi:
   - "sil" yazımı "SİL"i karşılar.
 - Sıralama `Intl.Collator('tr')` ile yapılır.
 - Kategori adı tekilliği, adın kırpılmış ve tr-TR kurallarıyla küçük harfe çevrilmiş haliyle kontrol edilir.
-- Kullanıcının yazdığı adlar ve değişken tarihler ek almaz (DESIGN §9).
+- Kullanıcının yazdığı adlar ve değişken tarihler ek almaz (Tasarım §9).
 
 ### 5.3 Sabit işlemler
-Bu bölüm, DESIGN §7 tablosunun teknik karşılığıdır.
+Bu bölüm, Tasarım §7 tablosunun teknik karşılığıdır.
 
 **Tanım — oluşma tarihi:** Bir sabit kaydın P dönemindeki oluşma tarihi, P ayının `min(dayOfMonth, o ayın gün sayısı)` günüdür.
 
@@ -296,7 +288,7 @@ Arayüz kuralları:
 
 Sabit işlemi düzenleme:
 - Değişiklik yalnızca henüz üretilmemiş dönemleri etkiler; geçmiş kayıtlar değişmez.
-- `startDate` düzenlenemez; sabit işlem düzenleme formunda tarih alanı yoktur (DESIGN §6.5).
+- `startDate` düzenlenemez; sabit işlem düzenleme formunda tarih alanı yoktur (Tasarım §6.5).
 
 Pasife alma ve yeniden açma:
 - Pasif kayıt işlem üretmez.
@@ -307,7 +299,7 @@ Biten kayıtlar:
 - Bitiş uzatılırsa üretim sıradaki dönemden devam eder; aradaki aylar doldurulmaz.
 
 Silme:
-1. DESIGN §6.5'teki onay gösterilir.
+1. Tasarım §6.5'teki onay gösterilir.
 2. Sabit kayıt silinir. Ondan üretilmiş kayıtlar kalır, ancak bağları (`recurringId`, `period`) kaldırılır.
 3. "Sabit işlem silindi · Geri al" bildirimi 6 saniye görünür.
 4. "Geri al", sabit kaydı ve kaldırılan bağları tek transaction'da geri yazar.
@@ -315,7 +307,7 @@ Silme:
 ### 5.4 Kategoriler
 
 #### Varsayılanlar ve sistem kategorileri
-- Varsayılan kategoriler ilk açılışta yalnızca bir kez, Dexie `populate` ile yüklenir. Ad, ikon ve renk ailesi DESIGN §10'dan alınır.
+- Varsayılan kategoriler ilk açılışta yalnızca bir kez, Dexie `populate` ile yüklenir. Ad, ikon ve renk ailesi Tasarım §10'dan alınır.
 - İki "Diğer" kategorisi `isSystem: true` taşır. Sistem kategorileri:
   - silinemez;
   - adı, rengi ve ikonu değiştirilebilir;
@@ -324,17 +316,17 @@ Silme:
 #### Tür ve silme
 - Kategori türü yalnızca oluştururken seçilir, sonra değişmez.
 - Bir kategori silinince bağlı işlemler ve sabit kayıtlar tek transaction'da aynı türün "Diğer" kategorisine taşınır.
-- Onay ve bildirim metinleri DESIGN §6.4 ve §8'den alınır.
+- Onay ve bildirim metinleri Tasarım §6.4 ve §8'den alınır.
 
 #### Sıralama
 - İşlem formundaki ızgara Türkçe alfabeye göre sıralanır; "Diğer" en sonda yer alır.
-- Kategoriler ekranında sıralama DESIGN §6.4'e göredir:
+- Kategoriler ekranında sıralama Tasarım §6.4'e göredir:
   - önce bu ayki toplama göre azalan sırada,
   - o ay kullanılmayanlar sonda, alfabetik.
 
 #### İkon kataloğu (`src/ui/icons.ts`)
 - Yaklaşık 48 Lucide ikonu içerir. Her ikon `{ key, component, group, keywords }` yapısındadır:
-  - `group`: DESIGN §6.4'teki gruplardan biri,
+  - `group`: Tasarım §6.4'teki gruplardan biri,
   - `keywords`: Türkçe anahtar kelimeler (kahve, benzin, spor…).
 - Arama, anahtar kelimelerde ve grup adında tr-TR kurallarıyla yapılır.
 - `repeat` ve `sticky-note` katalogda yer almaz; bu ikonlar yalnızca durum ikonu olarak kullanılır.
@@ -376,14 +368,14 @@ Doğrulama adımları:
    - `[recurringId+period]` çifti tekrar etmez.
 
 Doğrulama başarılıysa:
-1. DESIGN §6.6'daki onay ekranı gösterilir: önizleme, karşılaştırma, uyarı ve onay kutusu.
+1. Tasarım §6.6'daki onay ekranı gösterilir: önizleme, karşılaştırma, uyarı ve onay kutusu.
 2. "Geri yüklemeden önce mevcut verilerimin yedeğini indir" kutusu varsayılan olarak işaretlidir. İşaretliyse önce mevcut verinin yedeği indirilir.
 3. Kullanıcı onaylayınca tüm tablolar tek bir `rw` transaction'ında temizlenip yeniden yazılır. Birleştirme yapılmaz; veri tamamen değiştirilir.
 4. Geri yüklemeden hemen sonra sabit işlem üretimi çalışır, böylece eski bir yedekte kaçırılan aylar dolar.
 
 Veritabanına ham JSON nesneleri değil, zod'un ürettiği çıktı yazılır.
 
-#### CSV dışa aktarma (DESIGN §6.6)
+#### CSV dışa aktarma (Tasarım §6.6)
 İçerik ve dosya:
 - Tüm işlemler dışa aktarılır.
 - Sütunlar: Tarih, Tür, Kategori, Açıklama, Not, Tutar.
@@ -406,8 +398,8 @@ CSV dışa aktarma `lastBackupAt` değerini güncellemez.
 - iOS'ta ana ekrandan açılan uygulamada indirme sorun çıkarabilir. Bu durumda `navigator.canShare({ files })` destekleniyorsa, paylaşım sayfasıyla kaydetme yedek yol olarak sunulur. Bu davranış gerçek cihazda test edilir.
 
 ### 5.6 Veri kalıcılığı
-- İlk işlem kaydedildiğinde, tarayıcı destekliyorsa `navigator.storage.persist()` istenir (DESIGN §9).
-- Ayarlar'daki "Son yedek" satırı ve 30 günlük eşik DESIGN §6.6'ya göre uygulanır.
+- İlk işlem kaydedildiğinde, tarayıcı destekliyorsa `navigator.storage.persist()` istenir (Tasarım §9).
+- Ayarlar'daki "Son yedek" satırı ve 30 günlük eşik Tasarım §6.6'ya göre uygulanır.
 
 ### 5.7 Güvenlik ve gizlilik
 
@@ -428,7 +420,7 @@ font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self';
 object-src 'none'; base-uri 'self'; form-action 'none'
 ```
 - Build'i `vite preview` ile açıp konsolda CSP ihlali olmadığını doğrula.
-- Bir yönergeyi gevşetmek gerekirse gerekçesini `DECISIONS.md`'ye yaz.
+- Bir yönergeyi gevşetmek gerekirse gerekçesini docs/kararlar.md'ye yaz.
 - PWA kayıt kodu inline script üretmemeli.
 
 #### CI/CD
@@ -439,20 +431,20 @@ object-src 'none'; base-uri 'self'; form-action 'none'
 - Teslim anında `npm audit` temiz olmalıdır.
 
 ## 6. Arayüz: teknik notlar
-DESIGN §3–§9 eksiksiz uygulanır. Bu bölüm, tasarımın teknik karşılıklarını ve tasarımın açık bıraktığı noktaları tanımlar.
+Tasarım §3–§9 eksiksiz uygulanır. Bu bölüm, tasarımın teknik karşılıklarını ve tasarımın açık bıraktığı noktaları tanımlar.
 
 ### Token'lar ve tema
-- DESIGN §4'teki token'lar `:root` ve `.dark` altında CSS değişkeni olarak tanımlanır.
+- Tasarım §4'teki token'lar `:root` ve `.dark` altında CSS değişkeni olarak tanımlanır.
 - Tailwind teması bu değişkenlere bağlanır; bileşenlerde ham hex kullanılmaz.
 - Kategori paletinin 14 rengi de açık ve koyu varyantlarıyla değişken olarak tanımlanır.
-- Gider tutarının rengi (kırmızı ya da nötr) tek bir token'dan gelir. DESIGN §6.2'deki karşılaştırmanın sonucuna göre tek satırla değiştirilebilmeli.
+- Gider tutarının rengi (kırmızı ya da nötr) tek bir token'dan gelir. Tasarım §6.2'deki karşılaştırmanın sonucuna göre tek satırla değiştirilebilmeli.
 - Tema ve tutar gizleme tercihi, ilk render'dan önce localStorage'dan okunur.
 - Tema "Sistem" iken `prefers-color-scheme` değişikliği dinlenir.
 - `<meta name="theme-color">` etkin temaya göre güncellenir.
-- Tüm arayüz metinleri `src/ui/copy.ts` dosyasında toplanır ve DESIGN'daki metinlerle birebir aynıdır.
+- Tüm arayüz metinleri `src/ui/copy.ts` dosyasında toplanır ve tasarım belgesindeki metinlerle birebir aynıdır.
 
 ### Yerleşim ve navigasyon
-- Kırılım noktaları ve navigasyon biçimleri DESIGN §5'teki gibidir.
+- Kırılım noktaları ve navigasyon biçimleri Tasarım §5'teki gibidir.
 - 320 px genişlikte yatay kaydırma olmaz.
 - `viewport-fit=cover` ayarlanır ve tüm sabit öğelere `env(safe-area-inset-*)` uygulanır.
 - Klavye açıldığında:
@@ -473,7 +465,7 @@ DESIGN §3–§9 eksiksiz uygulanır. Bu bölüm, tasarımın teknik karşılık
 - Odak hapsi uygulanır, Esc ile kapanır, `aria-modal` taşır.
 - Kapanınca odak, açan öğeye geri döner.
 - Mobilde aşağı çekerek kapatılabilir.
-- Kaydedilmemiş değişiklik varsa kapatmadan önce DESIGN §6.3'teki onay gösterilir.
+- Kaydedilmemiş değişiklik varsa kapatmadan önce Tasarım §6.3'teki onay gösterilir.
 
 **Takvim ve ay-yıl seçici:**
 - Projede yazılır; hafta Pazartesi başlar.
@@ -483,7 +475,7 @@ DESIGN §3–§9 eksiksiz uygulanır. Bu bölüm, tasarımın teknik karşılık
 - Pointer olaylarıyla yazılır.
 - Yatay hareket belirli bir eşiği geçmeden devreye girmez; böylece dikey kaydırmayla çakışmaz.
 - "Hareketi azalt" tercihinde animasyon kullanılmaz.
-- Hareketsiz karşılıklar DESIGN §9'daki gibidir.
+- Hareketsiz karşılıklar Tasarım §9'daki gibidir.
 
 **Bildirimler:**
 - Aynı anda tek bildirim gösterilir. Yeni bildirim eskisinin yerini alır ve eskisinin "Geri al" fırsatı biter.
@@ -509,14 +501,14 @@ Tüm hesaplamalar saf fonksiyonlardır.
 - **Sabit işlem özeti:** Aktif ve bitmemiş kayıtların aylık gelir ve gider toplamları.
 - **Filtre özeti:** ör. "12 işlem · −₺2.340,00".
 
-### Grafikler (Recharts, DESIGN §6.1)
+### Grafikler (Recharts, Tasarım §6.1)
 Günlük harcama grafiği:
 - Pazartesiler ve günlük ortalama `ReferenceLine` ile çizilir.
 - Özel bir çubuk şekli kullanılır: bugünün çubuğu tam renk, diğerleri %60 opaklıkta.
 - Dokunma alanı, günün tüm sütunudur.
 - Baloncuğa dokununca İşlemler ekranı o günün grubuna kaydırılmış olarak açılır.
 
-Her grafiğin görsel olarak gizli bir metin karşılığı vardır (DESIGN §9).
+Her grafiğin görsel olarak gizli bir metin karşılığı vardır (Tasarım §9).
 
 ### İşlem listesi
 - Ay görünümü, tarih aralığı sorgusuyla yüklenir.
@@ -541,7 +533,7 @@ Her grafiğin görsel olarak gizli bir metin karşılığı vardır (DESIGN §9)
 - İkonlar: 192 px, 512 px, maskable ve `apple-touch-icon`
 
 ### Açılış ekranı
-Android'de açılış ekranı manifest'teki tek bir `background_color` değerinden üretilir. Bu yüzden temaya göre iki ayrı açılış ekranı garanti edilemez. Her iki temada da rahatsız etmeyecek nötr bir renk seç ve `DECISIONS.md`'ye yaz.
+Android'de açılış ekranı manifest'teki tek bir `background_color` değerinden üretilir. Bu yüzden temaya göre iki ayrı açılış ekranı garanti edilemez. Her iki temada da rahatsız etmeyecek nötr bir renk seç ve docs/kararlar.md'ye yaz.
 
 ### Önbellek ve güncelleme
 - Uygulama kabuğu ve yazı tipleri precache edilir. İlk yüklemeden sonra uçak modunda her şey çalışır.
@@ -678,7 +670,7 @@ Kabul edilmesi gerekenler:
 
 ### Bitti sayılma kriterleri
 - typecheck, lint, test ve build temiz geçiyor.
-- DESIGN §12'deki her ekran durumu uygulamada oluşturulabiliyor. Her durum açık ve koyu temada, 390, 768 ve 1440 px genişlikte kontrol edildi.
+- Tasarım §12'deki her ekran durumu uygulamada oluşturulabiliyor. Her durum açık ve koyu temada, 390, 768 ve 1440 px genişlikte kontrol edildi.
 - `vite preview` ile açılan build'de konsol hatası ve CSP ihlali yok.
 - Uygulama kullanılırken DevTools Network sekmesinde dışarıya istek gitmiyor.
 - Uçak modunda sayfa yeniden yüklenebiliyor.
@@ -686,7 +678,7 @@ Kabul edilmesi gerekenler:
 - Tutar girişi gerçek bir Android ve bir iOS cihazda denendi.
 
 ## 11. Kapsam dışı (v1)
-- DESIGN §11'deki her şey.
+- Tasarım §11'deki her şey.
 - Yedek şifreleme.
 - CSV içe aktarma.
 
@@ -713,7 +705,7 @@ README şu başlıkları içerir:
   - kalıcı depolamanın nasıl çalıştığı,
   - düzenli yedek almanın neden gerektiği.
 
-## 13. DESIGN.md'de tanımsız olup bu belgede karara bağlananlar
+## 13. docs/tasarim.md'de tanımsız olup bu belgede karara bağlananlar
 Bir kararı değiştirmek istersen ilgili maddeyi güncellemen yeterli.
 - Elle girilen bir işlemin tarihi en fazla bugün olabilir. Bu yüzden ileride başlayacak bir sabit işlem, ilk ödemesi gerçekleştiğinde eklenir.
 - Planlanan bir satıra dokununca sabit işlem düzenleme formu açılır.

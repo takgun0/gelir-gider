@@ -20,7 +20,7 @@ function type(keys: string, from: AmountInputState = empty): AmountInputState {
   return state;
 }
 
-describe('yazarken (SPEC §9 tablosu)', () => {
+describe('yazarken (Gereksinimler §9 tablosu)', () => {
   it.each([
     ['12450', '12.450', 1245000],
     ['1250,5', '1.250,5', 125050],

@@ -14,7 +14,7 @@ export function useCategoryMap(): Map<string, Category> | undefined {
   return useMemo(() => (categories ? new Map(categories.map((c) => [c.id, c])) : undefined), [categories]);
 }
 
-/** Ay görünümü tarih aralığı sorgusuyla yüklenir (SPEC §6). */
+/** Ay görünümü tarih aralığı sorgusuyla yüklenir (Gereksinimler §6). */
 export function useMonthTransactions(period: Period): Transaction[] | undefined {
   return useLiveQuery(() => {
     const { start, end } = periodRange(period);

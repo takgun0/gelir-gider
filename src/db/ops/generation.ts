@@ -1,4 +1,4 @@
-// Sabit işlem üretimi (SPEC §5.3 "Üretim"). Açılışta ilk render'dan önce ve sayfa
+// Sabit işlem üretimi (Gereksinimler §5.3 "Üretim"). Açılışta ilk render'dan önce ve sayfa
 // yeniden görünür olduğunda çalışır.
 import { generateDue } from '../../domain/recurring';
 import type { AppDB } from '../db';

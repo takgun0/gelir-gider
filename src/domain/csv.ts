@@ -1,4 +1,4 @@
-// CSV dışa aktarma (SPEC §5.5): Excel'in Türkçe ayarlarında doğrudan açılır.
+// CSV dışa aktarma (Gereksinimler §5.5): Excel'in Türkçe ayarlarında doğrudan açılır.
 // UTF-8 BOM, ";" ayırıcı, CRLF satır sonu. Geri yüklenemez, yalnızca okumak için.
 import { splitKurus } from './money';
 import type { Category, DateStr, Transaction } from './types';

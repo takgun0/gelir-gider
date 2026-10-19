@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { copy } from './copy';
 
-describe('kategori silme metinleri (DESIGN §6.4, §8)', () => {
+describe('kategori silme metinleri (Tasarım §6.4, §8)', () => {
   it('kullanım özeti', () => {
     expect(copy.categories.usage(14, 1)).toBe('14 işlem ve 1 sabit işlem');
     expect(copy.categories.usage(14, 0)).toBe('14 işlem');

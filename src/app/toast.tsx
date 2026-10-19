@@ -1,4 +1,4 @@
-// Bildirimler (SPEC §6, DESIGN §8): aynı anda tek bildirim, yenisi eskisinin yerini
+// Bildirimler (Gereksinimler §6, Tasarım §8): aynı anda tek bildirim, yenisi eskisinin yerini
 // alır ve eskisinin "Geri al" fırsatı biter. 3 sn; "Geri al" içerenlerde 6 sn.
 import { CircleAlert } from 'lucide-react';
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';

@@ -1,4 +1,4 @@
-// Mobilde alttan açılan sayfa, 640 px ve üstünde modal (DESIGN §6.3, bileşen kartı).
+// Mobilde alttan açılan sayfa, 640 px ve üstünde modal (Tasarım §6.3, bileşen kartı).
 // Üst köşeler 20 px, tutamaç, aşağı çekince kapanır; Kaydet altta sabit.
 import { useId, useRef, useState, type PointerEvent, type ReactNode, type RefObject } from 'react';
 import { useIsMobile, useKeyboardInset } from '../../app/viewport';

@@ -1,4 +1,4 @@
-// Tema tercihi cihaza özgüdür ve localStorage'da tutulur (SPEC §4).
+// Tema tercihi cihaza özgüdür ve localStorage'da tutulur (Gereksinimler §4).
 // İlk render öncesi uygulama public/theme-init.js'tedir; mantık aynı kalmalı.
 
 export type ThemePref = 'light' | 'dark' | 'system';

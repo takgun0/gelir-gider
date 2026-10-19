@@ -1,4 +1,4 @@
-// Seçili ay uygulama genelinde tek bir state'tir (SPEC §6, DESIGN §5): açılışta bu ay,
+// Seçili ay uygulama genelinde tek bir state'tir (Gereksinimler §6, Tasarım §5): açılışta bu ay,
 // en fazla 12 ay ileri.
 import { createContext, useContext, useState, type ReactNode } from 'react';
 import { addMonths, periodOf } from '../domain/date';

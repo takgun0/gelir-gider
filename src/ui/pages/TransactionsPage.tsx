@@ -1,4 +1,4 @@
-// İşlemler › Kayıtlar (DESIGN §6.2).
+// İşlemler › Kayıtlar (Tasarım §6.2).
 import { ChevronDown } from 'lucide-react';
 import { ListPlus } from 'lucide-react';
 import { Search } from 'lucide-react';

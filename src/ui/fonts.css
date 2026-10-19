@@ -1,4 +1,4 @@
-/* SPEC §3: Inter uygulamayla paketlenir; yalnızca latin ve latin-ext alt kümeleri.
+/* Gereksinimler §3: Inter uygulamayla paketlenir; yalnızca latin ve latin-ext alt kümeleri.
    ı ve − latin'de; ğ, ş, İ ve ₺ (U+20BA) latin-ext'te. */
 @font-face {
   font-family: 'Inter Variable';

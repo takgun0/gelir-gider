@@ -1,4 +1,4 @@
-// Dosya indirme (SPEC §5.5 "İndirme"): Blob ve indirme bağlantısı. iOS'ta ana ekrandan
+// Dosya indirme (Gereksinimler §5.5 "İndirme"): Blob ve indirme bağlantısı. iOS'ta ana ekrandan
 // açılan uygulamada indirme sorun çıkarabildiği için, paylaşım destekleniyorsa
 // dosya paylaşım sayfasıyla kaydedilir.
 

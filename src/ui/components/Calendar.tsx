@@ -1,4 +1,4 @@
-// Takvim (SPEC §6: projede yazılır, yerel <input type="date"> kullanılmaz).
+// Takvim (Gereksinimler §6: projede yazılır, yerel <input type="date"> kullanılmaz).
 // Hafta Pazartesi başlar; bugünden sonraki günler seçilemez.
 import { ChevronLeft } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';

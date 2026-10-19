@@ -1,4 +1,4 @@
-// İlk işlem kaydedildiğinde kalıcı depolama istenir (SPEC §5.6, DESIGN §9); böylece
+// İlk işlem kaydedildiğinde kalıcı depolama istenir (Gereksinimler §5.6, Tasarım §9); böylece
 // tarayıcı yer açarken verileri kendiliğinden silmez.
 export async function requestPersistentStorage(): Promise<void> {
   try {

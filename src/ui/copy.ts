@@ -1,5 +1,5 @@
-// Tüm arayüz metinleri burada toplanır ve DESIGN.md ile birebir aynıdır (SPEC §6).
-// DESIGN'da olmayan metinler (✱ ile işaretli) aynı tonda yazılır ve DECISIONS.md'ye eklenir.
+// Tüm arayüz metinleri burada toplanır ve docs/tasarim.md ile birebir aynıdır (Gereksinimler §6).
+// tasarım belgesinde olmayan metinler (✱ ile işaretli) aynı tonda yazılır ve docs/kararlar.md'ye eklenir.
 
 export const copy = {
   appName: 'Gelir Gider',
@@ -286,7 +286,7 @@ export const copy = {
     welcomeBody: 'Gelir ve giderlerini ekledikçe ayın özeti burada oluşacak.',
     welcomeAction: 'İlk işlemini ekle',
   },
-  /** ✱ İlk girişte gösterilen tanıtım (kullanıcı isteğiyle eklendi; DESIGN §6.7). */
+  /** ✱ İlk girişte gösterilen tanıtım (kullanıcı isteğiyle eklendi; Tasarım §6.7). */
   tour: {
     label: 'Tanıtım',
     stepOf: (n: number, total: number) => `${n} / ${total}`,

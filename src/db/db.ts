@@ -1,4 +1,4 @@
-// Dexie şeması (SPEC §4). Şema yalnızca yeni bir sürüm ve upgrade() ile değişir.
+// Dexie şeması (Gereksinimler §4). Şema yalnızca yeni bir sürüm ve upgrade() ile değişir.
 import Dexie, { type EntityTable } from 'dexie';
 import { defaultCategoryRecords } from '../domain/categories';
 import type { Category, Recurring, Settings, Transaction } from '../domain/types';

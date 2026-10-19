@@ -1,4 +1,4 @@
-// Sabit işlem üretiminin uygulamadaki tetikleyicileri (SPEC §5.3): açılışta ilk
+// Sabit işlem üretiminin uygulamadaki tetikleyicileri (Gereksinimler §5.3): açılışta ilk
 // render'dan önce (main.tsx) ve sayfa yeniden görünür olduğunda. En az bir işlem
 // üretildiyse tek bildirim: "N sabit işlem eklendi".
 import { useEffect } from 'react';

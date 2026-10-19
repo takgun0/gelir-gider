@@ -1,4 +1,4 @@
-// Özet üst bölümü (DESIGN §6.1 madde 2–4): Kalan, gelir/gider kartları, bugün · bu hafta.
+// Özet üst bölümü (Tasarım §6.1 madde 2–4): Kalan, gelir/gider kartları, bugün · bu hafta.
 import { ArrowDown } from 'lucide-react';
 import { ArrowUp } from 'lucide-react';
 import type { TxType } from '../../domain/types';
@@ -91,7 +91,7 @@ export function TodayWeekLine({ today, week }: { today: number; week: number }) 
   );
 }
 
-/** İlk açılış: özgün, satır içi çizgi illüstrasyon (SPEC §6 "Diğer"). */
+/** İlk açılış: özgün, satır içi çizgi illüstrasyon (Gereksinimler §6 "Diğer"). */
 export function Welcome({ onAdd }: { onAdd: () => void }) {
   return (
     <section className="flex flex-col items-center gap-6 px-6 pt-10 pb-6 text-center">

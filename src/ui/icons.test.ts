@@ -3,7 +3,7 @@ import { ICON_KEYS } from '../domain/types';
 import { ICON_CATALOG, ICON_GROUPS, searchIcons } from './icons';
 
 describe('ikon kataloğu', () => {
-  it('her anahtar tam bir kez, gruplar DESIGN §6.4 sırasında', () => {
+  it('her anahtar tam bir kez, gruplar Tasarım §6.4 sırasında', () => {
     expect(ICON_CATALOG.map((e) => e.key)).toEqual([...ICON_KEYS]);
     expect(new Set(ICON_CATALOG.map((e) => e.group))).toEqual(new Set(ICON_GROUPS));
     expect(ICON_CATALOG.every((e) => typeof e.component === 'object' || typeof e.component === 'function')).toBe(true);

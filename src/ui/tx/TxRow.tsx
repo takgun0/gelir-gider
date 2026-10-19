@@ -1,4 +1,4 @@
-// İşlem satırı (DESIGN §6.2): 64 px; ikon, başlık ve durum ikonları, kategori, tutar.
+// İşlem satırı (Tasarım §6.2): 64 px; ikon, başlık ve durum ikonları, kategori, tutar.
 // Mobilde sola kaydırınca "Sil"; sonuna kadar kaydırmak doğrudan siler. Masaüstünde
 // üzerine gelince "⋯" menüsü (Düzenle, Sil). Odaktaki satırda Enter düzenler, Delete siler.
 import { Ellipsis } from 'lucide-react';

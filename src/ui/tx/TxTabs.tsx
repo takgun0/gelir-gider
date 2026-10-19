@@ -1,4 +1,4 @@
-// İşlemler › Kayıtlar / Sabit sekmeleri (DESIGN §6.2). Sekmeler ayrı adreslerdir.
+// İşlemler › Kayıtlar / Sabit sekmeleri (Tasarım §6.2). Sekmeler ayrı adreslerdir.
 import { NavLink } from 'react-router';
 import { copy } from '../copy';
 

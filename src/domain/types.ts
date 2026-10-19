@@ -1,4 +1,4 @@
-// SPEC §4 veri modeli tipleri. Saf TypeScript; React ve Dexie bağımlılığı yok.
+// Gereksinimler §4 veri modeli tipleri. Saf TypeScript; React ve Dexie bağımlılığı yok.
 
 export type TxType = 'income' | 'expense';
 
@@ -12,7 +12,7 @@ export type PaletteKey = (typeof PALETTE_KEYS)[number];
 /**
  * İkon kataloğunun anahtarları (Lucide adları). Bileşen eşlemesi, grup ve anahtar
  * kelimeler src/ui/icons.ts'tedir; yedek doğrulaması React'e bağlanmasın diye
- * liste burada durur. "repeat" ve "sticky-note" bilerek yok (SPEC §5.4).
+ * liste burada durur. "repeat" ve "sticky-note" bilerek yok (Gereksinimler §5.4).
  */
 export const ICON_KEYS = [
   // Alışveriş
