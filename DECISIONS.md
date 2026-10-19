@@ -45,3 +45,19 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Yapıştırmada ondalık kısmı 3+ basamak olan ya da ayraçla başlayan/biten metin (",5", "1.") reddedilir.
 - Tarih ve ay adları ile "Bugün"/"Dün" etiketleri domain katmanında (`date.ts`) durur; domain UI'ya bağımlı olmasın diye `copy.ts`'e taşınmadı.
 - Gün farkı `Date.UTC` ile hesaplanır, yaz saati geçişlerinden etkilenmez.
+
+## Faz 3
+- Veri modeli arayüzleri (`Category`, `Transaction`, `Recurring`, `Settings`) `src/domain/types.ts`'te; `exactOptionalPropertyTypes` açık olduğu için `recurringId`/`period` alanına `undefined` yazılamaz.
+- İkon anahtarları (48 Lucide adı) `types.ts`'teki `ICON_KEYS` listesinde; yedek doğrulaması React'e bağlanmasın diye. Gruplar: Alışveriş 6, Ev 5, Ulaşım 6, Yemek 5, Sağlık 4, Eğlence 6, Finans 8, Eğitim 4, Diğer 4. Bileşen, grup ve anahtar kelimeler Faz 8'de `src/ui/icons.ts`'e.
+- `generateDue` id ve zaman damgası olmayan taslaklar döndürür; DB katmanı ekler.
+- Sabit işlem düzenlenmeden, durdurulmadan ya da bitişi değiştirilmeden önce DB katmanı aynı transaction'da eski değerlerle üretimi çalıştırır; böylece bitiş uzatılınca aradaki aylar doldurulmaz.
+- Yeniden aktife almada `lastGeneratedPeriod` geri gitmez; bugünkü oluşma tarihi "önce" sayılmaz, üretilir.
+- "Sonraki" tarihi `lastGeneratedPeriod`'dan sonraki dönemin oluşma tarihidir; pasif, bitmiş ya da bitişi geçecek kayıtta yoktur.
+- Planlanan örnekler tarih sırasıyla döner; Yaklaşan listesindeki 5 satır sınırı arayüzde uygulanır.
+- Günlük ortalama kuruşa yuvarlanır; baloncuktaki "n işlem" yalnızca o günün gider işlemlerini sayar.
+- Kategori dağılımında eşit tutarlar Türkçe alfabeye göre sıralanır; 6'dan fazla kategori varsa geri kalanların hepsi (tek bile olsa) "Diğerleri (n)" dilimine girer.
+- Yedekte kimlikler UUID olmalı; `exportedAt` ISO-8601 zaman damgası (`toISOString` yalnızca burada, gerekçesiyle izinli).
+- Yedek bütünlüğüne SPEC listesine ek olarak "aynı türde aynı adlı iki kategori olamaz" kontrolü eklendi (uygulamanın kendi kuralı).
+- 10 MB sınırı hem dosya boyutunda (`isFileTooLarge`) hem okunan metnin uzunluğunda uygulanır.
+- `migrate()` şimdilik kimlik fonksiyonu; yeni biçim sürümü gelince adım eklenecek.
+- CSV satırları tarihe göre eskiden yeniye; aynı gün içinde `createdAt` sırası. Tür ve tarih hücreleri kaçışa girmez, kategori, açıklama ve not girer.
