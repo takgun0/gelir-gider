@@ -179,3 +179,4 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Tur yalnızca "Geç", Esc ya da "Başla" ile kapanır; arka plana dokunmak kapatmaz (yanlışlıkla atlanmasın).
 - Ayarlar › Hakkında'ya "Tanıtımı yeniden göster" satırı eklendi.
 - "Tüm verileri sil" turu yeniden göstermez (tercihler korunur).
+- Tanıtıma ikinci adım olarak "Ana ekrana ekle" eklendi (iOS'ta veriler Safari ile ayrı tutulabildiği için erken gösteriliyor). Platform kullanıcı aracısından anlaşılır (iOS, iPadOS dahil; Android; diğerleri bilgisayar); uygulama zaten kuruluysa adım atlanır. Adımlar numaralı listeyle gösterilir; tur paneli kısa ekranlarda kaydırılabilir.

@@ -250,11 +250,12 @@ Sonradan eklendi (proje sahibinin isteği). Siteye ilk kez girene birkaç adımd
 - İlk açılışta Özet'in üstünde açılır; mobilde alttan sayfa, 640 px ve üstünde ortada kart.
 - Adımlar:
   1. Hoş geldin: hesap gerekmez, internetsiz çalışır.
-  2. İşlem ekleme: + → tutar → kategori → Kaydet; gelir mi gider mi üstteki seçiciden.
-  3. Açıklama ve not; "Her ay tekrarla".
-  4. Kendi kategorilerin; silinen kategorinin işlemleri "Diğer"e taşınır.
-  5. Yedek almanın önemi (uyarı tonunda).
-- Üstte adım sayacı ("2 / 5") ve "Geç"; altta adım noktaları, "Geri" ve "İleri" (son adımda "Başla").
+  2. Ana ekrana ekle: platforma göre numaralı adımlar (iOS: Paylaş › Ana Ekrana Ekle › Ekle; Android: menü › Uygulamayı yükle › Yükle; bilgisayar: adres çubuğundaki yükle simgesi). iOS'ta "önce ana ekrana ekle, verilerini oradan gir" notu. Uygulama zaten kuruluysa bu adım gösterilmez.
+  3. İşlem ekleme: + → tutar → kategori → Kaydet; gelir mi gider mi üstteki seçiciden.
+  4. Açıklama ve not; "Her ay tekrarla".
+  5. Kendi kategorilerin; silinen kategorinin işlemleri "Diğer"e taşınır.
+  6. Yedek almanın önemi (uyarı tonunda).
+- Üstte adım sayacı ("2 / 6") ve "Geç"; altta adım noktaları, "Geri" ve "İleri" (son adımda "Başla").
 - ← → ile adımlar arasında gezilir, Esc ve "Geç" kapatır. Kapandıktan sonra bir daha kendiliğinden açılmaz.
 - Ayarlar › Hakkında'da "Tanıtımı yeniden göster" satırıyla yeniden açılır.
 

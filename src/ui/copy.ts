@@ -296,6 +296,14 @@ export const copy = {
     start: 'Başla',
     replay: 'Tanıtımı yeniden göster',
     replayHint: 'Uygulamanın kısa turu',
+    install: {
+      title: 'Ana ekrana ekle',
+      body: 'Uygulamayı telefonuna kur; tarayıcı çubuğu olmadan, kendi simgesiyle açılsın.',
+      ios: ["Safari'de alttaki Paylaş düğmesine dokun.", '"Ana Ekrana Ekle"yi seç.', 'Sağ üstte "Ekle"ye dokun.'],
+      iosNote: "iPhone'da önce ana ekrana ekle, verilerini oradan gir. Safari ile ana ekrandaki uygulama verileri ayrı tutabilir.",
+      android: ["Chrome'da sağ üstteki menüyü (⋮) aç.", '"Uygulamayı yükle"ye ya da "Ana ekrana ekle"ye dokun.', '"Yükle" ile onayla.'],
+      desktop: ['Adres çubuğunun sağındaki yükle simgesine tıkla.', '"Yükle" ile onayla.'],
+    },
     steps: [
       {
         title: 'Hoş geldin!',
