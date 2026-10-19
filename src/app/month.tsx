@@ -39,7 +39,7 @@ export function SelectedMonthProvider({ children }: { children: ReactNode }) {
     isCurrent: period === current,
     isFuture: period > current,
     setPeriod: (p) => setSelected(clampPeriod(p, max)),
-    shift: (months) => setSelected(clampPeriod(addMonths(period, months), max)),
+    shift: (months) => setSelected((p) => clampPeriod(addMonths(clampPeriod(p, max), months), max)),
   };
   return <MonthContext value={value}>{children}</MonthContext>;
 }

@@ -117,3 +117,20 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Sıfır tutar renklenmez (₺0,00 nötr).
 - Klavye algılaması yalnızca bir giriş alanı odaktayken çalışır; pencere yeniden boyutlanınca alt çubuk yanlışlıkla gizlenmez.
 - Özet'ten İşlemler'e geçişte router state (`type`, `categoryId`, `day`, `search`) her gezinmede bir kez uygulanır (`location.key`).
+
+## Faz 7
+- Grafiklerde Recharts yalnızca çubukları, donut'u ve eksenleri çizer; gün/ay sütunlarının dokunma alanları, pazartesi çizgileri, seçili gün vurgusu, ortalama etiketi ve baloncuk aynı geometriyle HTML katmanlar olarak çizilir. Grafik genişliği `ResizeObserver` ile ölçülür.
+- Gün ve ay sütunları düğmedir; ekran okuyucu "16 Ekim Cuma · −₺340,00 · 3 işlem" ve "Ekim: gelir ₺18.000, gider ₺14.200" okur. Günler arasında ← → ile gezilir (tek sekme durağı). Svg'ler `accessibilityLayer` kapalı ve ekran okuyucudan gizli.
+- Eksen üst sınırı 1/2/2,5/4/5/8/10 × 10ⁿ TL'ye yuvarlanır; üç çizgi (0, yarı, üst).
+- Gün baloncuğu çubuğun ya da ortalama çizgisinin üstünde, yatayda %28–72 arasında tutulur; baloncuğa dokunmak İşlemler'i o günün grubuna kaydırarak açar.
+- Geçmiş aylarda "bugün" çubuğu yoktur; seçili gün tam renk, diğerleri %60.
+- Kategori dağılımı listesi donut'un metin karşılığıdır; tutarlar işaretsiz (kart). "Diğerleri (n)" satırına ya da "Tümünü göster"e dokununca tüm kategoriler tek tek listelenir, donut aynı kalır. Seçili türde veri yoksa boş halka ve ₺0,00.
+- dataviz doğrulayıcısı kategori paletinde bitişik çiftlerde düşük CVD ayrımı ve gelir/gider grafik renklerinde düşük kontrast bildirdi. Renkler DESIGN'dan geldiği için değiştirilmedi; karşılığı: donut dilimleri arasında 2 px yüzey boşluğu, her dilimin listede adı ve tutarı, 6 ay grafiğinde sabit sıra (gelir solda) + lejant + ekran okuyucu metni.
+- Gelecek ayda Kalan, gelir ve gider planlanan toplamlardan hesaplanır ve "Planlanan" rozeti taşır; grafikler ve son işlemler yerine "Planlanan sabit işlemler" listesi (kartlardaki açıklama metniyle) gösterilir.
+- Bu ay kayıt yoksa kartlar ₺0,00, grafikler yerine "Ekim 2026 için kayıt yok." + "İşlem ekle"; içinde bulunulan ayda yaklaşanlar yine görünür.
+- İlk açılış: hiç işlem ve sabit işlem yoksa; illüstrasyon özgün satır içi SVG.
+- Yaklaşan satırında "25 Ekim · 7 gün sonra"; aynı gün için "· Bugün".
+- Son işlemler satırı İşlemler'deki satır bileşeniyle (silme ve ⋯ menüsü dahil); alt yazı "Market · Bugün/Dün/16 Eki".
+- Grafik animasyonları 400 ms; "hareketi azalt" tercihinde kapalı.
+- Ay kaydırma (← →) art arda basışlarda kaybolmasın diye fonksiyonel state güncellemesiyle yapılır.
+- Paket boyutu Recharts ile ~820 kB'a çıktı (gzip ~250 kB); uyarı şimdilik kabul edildi, Faz 10'da parçalara ayırma değerlendirilecek.

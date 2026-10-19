@@ -33,3 +33,8 @@ export function useTransactionCount(): number | undefined {
 export function useRecurrings(): Recurring[] | undefined {
   return useLiveQuery(() => db.recurrings.toArray(), []);
 }
+
+/** start ve end dahil tarih aralığındaki işlemler (ör. ay sınırını aşan hafta, son 6 ay). */
+export function useRangeTransactions(start: string, end: string): Transaction[] | undefined {
+  return useLiveQuery(() => db.transactions.where('date').between(start, end, true, true).toArray(), [start, end]);
+}

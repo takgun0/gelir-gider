@@ -125,6 +125,7 @@ export function categoryBreakdown(
   txs: readonly Pick<Transaction, 'type' | 'amount' | 'categoryId'>[],
   type: TxType,
   nameOf: (categoryId: string) => string,
+  top: number = BREAKDOWN_TOP,
 ): Breakdown {
   const sums = new Map<string, number>();
   let total = 0;
@@ -138,12 +139,12 @@ export function categoryBreakdown(
     .map(([categoryId, amount]) => ({ categoryId, amount, ratio: ratio(amount) }))
     .sort((a, b) => b.amount - a.amount || compareTr(nameOf(a.categoryId), nameOf(b.categoryId)));
 
-  if (sorted.length <= BREAKDOWN_TOP) return { total, slices: sorted, others: null };
-  const rest = sorted.slice(BREAKDOWN_TOP);
+  if (sorted.length <= top) return { total, slices: sorted, others: null };
+  const rest = sorted.slice(top);
   const amount = rest.reduce((s, x) => s + x.amount, 0);
   return {
     total,
-    slices: sorted.slice(0, BREAKDOWN_TOP),
+    slices: sorted.slice(0, top),
     others: { count: rest.length, amount, ratio: ratio(amount), categoryIds: rest.map((x) => x.categoryId) },
   };
 }
