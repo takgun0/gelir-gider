@@ -166,3 +166,9 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Dokunma alanları: görsel olarak küçük kontrollere (çip, anahtar, küçük segment, metin bağlantıları, "⋯", temizle) görünmez `hit-area` ile en az 44×44 px.
 - %200 yazı boyutu (≈200 px genişlik) denendi: Özet'te üst kartlar tek sütuna iner, kahraman tutar satır kırabilir, donut kabına göre küçülür; hiçbir ekranda yatay kaydırma yok.
 - Erişilebilir ad taraması: tüm ekranlarda ve işlem formunda adı olmayan etkileşimli öğe yok.
+
+## Faz 11
+- README SPEC §12 başlıklarıyla yazıldı (komutlar, Pages, custom domain, kurulum, taşıma, origin uyarısı, veri kaybı riskleri).
+- Sürüm 1.0.0.
+- `index.html`'de public dosyalara kök yoluyla (`/theme-init.js`) başvurulur; Vite hem geliştirmede hem derlemede `base`'i kendisi ekler (`%BASE_URL%` geliştirme sunucusunda yolu ikiledi).
+- Son tarama: beş ekran ve gelecek ay Özet'i, 390/768/1440 px × açık/koyu temada yatay taşma olmadan açıldı; konsolda hata yok.
