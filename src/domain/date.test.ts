@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   addDays,
+  calendarWeeks,
   addMonths,
   clampDay,
   dayHeading,
@@ -137,5 +138,21 @@ describe('etiketler', () => {
     expect(monthShort('2026-08')).toBe('Ağu');
     expect(shortDate('2026-10-16')).toBe('16 Eki');
     expect(dayMonth('2026-11-01')).toBe('1 Kasım');
+  });
+});
+
+describe('takvim ızgarası', () => {
+  it('Pazartesi başlar, ay dışı hücreler boş', () => {
+    // 1 Ekim 2026 Perşembe
+    const weeks = calendarWeeks('2026-10');
+    expect(weeks[0]).toEqual([null, null, null, '2026-10-01', '2026-10-02', '2026-10-03', '2026-10-04']);
+    expect(weeks).toHaveLength(5);
+    expect(weeks[4]).toEqual(['2026-10-26', '2026-10-27', '2026-10-28', '2026-10-29', '2026-10-30', '2026-10-31', null]);
+  });
+
+  it('Pazartesi başlayan Şubat', () => {
+    // 1 Şubat 2027 Pazartesi, 28 gün → tam 4 hafta
+    expect(calendarWeeks('2027-02')).toHaveLength(4);
+    expect(calendarWeeks('2027-02')[0]?.[0]).toBe('2027-02-01');
   });
 });

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  applyRawChange,
   deleteBackward,
   deleteForward,
   insertText,
@@ -158,5 +159,23 @@ describe('pasteAmount', () => {
 
   it('geçersiz yapıştırmayı yok sayar', () => {
     expect(pasteAmount('12', 2, 2, '1,2345')).toBeNull();
+  });
+});
+
+describe('applyRawChange (beforeinput yedeği)', () => {
+  it('eklenen karakteri bulur, noktayı virgül sayar', () => {
+    expect(applyRawChange('1.250', '1.2505')).toEqual({ display: '12.505', cursor: 6, kurus: 1250500 });
+    expect(applyRawChange('1.250', '1.250.')).toEqual({ display: '1.250,', cursor: 6, kurus: 125000 });
+    expect(applyRawChange('12', '12a')).toEqual({ display: '12', cursor: 2, kurus: 1200 });
+  });
+
+  it('ortadaki eklemede imleci korur', () => {
+    expect(applyRawChange('1.250', '19.250')).toEqual({ display: '19.250', cursor: 2, kurus: 1925000 });
+  });
+
+  it('silmeyi uygular; tek başına silinen binlik nokta soldaki rakamı götürür', () => {
+    expect(applyRawChange('12.450', '12.45')).toEqual({ display: '1.245', cursor: 5, kurus: 124500 });
+    expect(applyRawChange('12.450', '12450')).toEqual({ display: '1.450', cursor: 1, kurus: 145000 });
+    expect(applyRawChange('12.450', '')).toEqual({ display: '', cursor: 0, kurus: null });
   });
 });

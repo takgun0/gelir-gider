@@ -6,7 +6,7 @@ import { Plus } from 'lucide-react';
 import { Settings2 } from 'lucide-react';
 import { Shapes } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router';
 import { copy } from '../ui/copy';
 import { isModalOpen } from '../ui/components/modal-stack';
@@ -188,17 +188,18 @@ function Sidebar({ onAdd }: { onAdd: () => void }) {
 
 export function Layout() {
   const { openNew } = useTxSheet();
+  const openNewPlain = useCallback(() => openNew(), [openNew]);
   const keyboardOpen = useKeyboardOpen();
-  useShortcuts(openNew);
+  useShortcuts(openNewPlain);
 
   return (
     <div className="min-h-dvh sm:pl-[72px] lg:pl-[200px]">
       <div className="pt-[env(safe-area-inset-top)] pb-[calc(96px+env(safe-area-inset-bottom))] sm:pb-12">
         <Outlet />
       </div>
-      {!keyboardOpen && <BottomBar onAdd={openNew} />}
-      <Rail onAdd={openNew} />
-      <Sidebar onAdd={openNew} />
+      {!keyboardOpen && <BottomBar onAdd={openNewPlain} />}
+      <Rail onAdd={openNewPlain} />
+      <Sidebar onAdd={openNewPlain} />
     </div>
   );
 }

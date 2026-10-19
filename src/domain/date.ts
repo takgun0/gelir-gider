@@ -205,3 +205,15 @@ export function dayHeading(date: DateStr, today: DateStr): string {
   if (date === addDays(today, -1)) return 'Dün';
   return longDate(date, today);
 }
+
+/** Takvim ızgarası: Pazartesi başlayan haftalar; ay dışındaki hücreler null. */
+export function calendarWeeks(period: Period): (DateStr | null)[][] {
+  const { y, m } = periodPartsOf(period);
+  const first = makeDate(y, m, 1);
+  const cells: (DateStr | null)[] = Array.from({ length: weekdayIndex(first) }, () => null);
+  for (let d = 1; d <= daysInMonth(y, m); d++) cells.push(makeDate(y, m, d));
+  while (cells.length % 7 !== 0) cells.push(null);
+  const weeks: (DateStr | null)[][] = [];
+  for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+  return weeks;
+}

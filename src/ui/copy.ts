@@ -1,5 +1,5 @@
 // Tüm arayüz metinleri burada toplanır ve DESIGN.md ile birebir aynıdır (SPEC §6).
-// DESIGN'da olmayan metinler aynı tonda yazılır ve DECISIONS.md'ye eklenir.
+// DESIGN'da olmayan metinler (✱ ile işaretli) aynı tonda yazılır ve DECISIONS.md'ye eklenir.
 
 export const copy = {
   appName: 'Gelir Gider',
@@ -11,34 +11,175 @@ export const copy = {
     add: 'İşlem ekle',
     main: 'Ana menü',
   },
+  type: {
+    expense: 'Gider',
+    income: 'Gelir',
+    /** ✱ Tür seçicinin erişilebilir adı */
+    label: 'Tür',
+  },
   month: {
     prev: 'Önceki ay',
     next: 'Sonraki ay',
     thisMonth: 'Bu ay',
-    /** DESIGN'da yok: ay-yıl seçicinin başlığı */
+    /** ✱ */
     pickerTitle: 'Ay seç',
-    /** DESIGN'da yok: ay-yıl seçicide yıl düğmeleri */
+    /** ✱ */
     prevYear: 'Önceki yıl',
+    /** ✱ */
     nextYear: 'Sonraki yıl',
   },
   amount: {
     hide: 'Tutarları gizle',
     show: 'Tutarları göster',
-    /** DESIGN'da yok: gizli tutarın ekran okuyucu karşılığı */
+    /** ✱ gizli tutarın ekran okuyucu karşılığı */
     hiddenSr: 'Tutar gizli',
   },
   sheet: {
     cancel: 'Vazgeç',
     save: 'Kaydet',
-    newTransaction: 'Yeni işlem',
-    editTransaction: 'İşlemi düzenle',
+  },
+  form: {
+    newTitle: 'Yeni işlem',
+    editTitle: 'İşlemi düzenle',
+    recurringTitle: 'Sabit işlemi düzenle',
+    amount: 'Tutar',
+    category: 'Kategori',
+    newCategory: 'Yeni',
+    date: 'Tarih',
+    today: 'Bugün',
+    yesterday: 'Dün',
+    pickDate: 'Tarih seç',
+    description: 'Açıklama',
+    descriptionPlaceholder: 'Açıklama (isteğe bağlı)',
+    addNote: '+ Not ekle',
+    note: 'Not',
+    repeat: 'Her ay tekrarla',
+    repeatHint: 'Bu işlem her ay otomatik eklensin',
+    dayOfMonth: 'Ayın kaçında',
+    shortMonthNote: 'Kısa aylarda ayın son günü eklenir.',
+    end: 'Bitiş',
+    noEnd: 'Bitiş yok',
+    firstRepeat: (date: string) => `İlk tekrar: ${date}`,
+    lastRepeat: (month: string) => `Son: ${month}`,
+    linkedTitle: 'Bu kayıt bir sabit işlemden geldi',
+    linkedHint: 'Buradaki değişiklik yalnızca bu kaydı etkiler.',
+    editRecurring: 'Sabit işlemi düzenle →',
+    deleteTx: 'Bu işlemi sil',
+    recurringNote: 'Değişiklikler sonraki kayıtlardan itibaren geçerli. Geçmiş kayıtlar değişmez.',
+    /** ✱ */
+    deleteRecurring: 'Sabit işlemi sil',
+    unsavedTitle: 'Değişiklikler kaydedilmedi. Çıkılsın mı?',
+    unsavedBody: 'Yazdığın tutar ve seçtiğin kategori kaybolacak.',
+    unsavedExit: 'Çık',
+    unsavedBack: 'Düzenlemeye dön',
+    /** ✱ gün seçici düğmesinin değeri: "18" */
+    day: (d: number) => String(d),
+  },
+  errors: {
+    amountEmpty: 'Tutar gir.',
+    amountZero: 'Tutar sıfırdan büyük olmalı.',
+    amountMax: 'Tutar en fazla ₺999.999.999,99 olabilir.',
+    category: 'Bir kategori seç.',
+    end: 'Bitiş, ilk tekrardan sonra olmalı.',
+    categoryNameEmpty: 'Kategori adı gir.',
+    categoryNameDuplicate: 'Bu adda bir kategori zaten var.',
+    backupInvalid: 'Bu dosya geçerli bir yedek değil.',
+    backupNewer: 'Bu yedek uygulamanın daha yeni bir sürümüyle alınmış. Önce uygulamayı güncelle.',
+  },
+  calendar: {
+    /** ✱ */
+    prevMonth: 'Önceki ay',
+    /** ✱ */
+    nextMonth: 'Sonraki ay',
   },
   transactions: {
     tabRecords: 'Kayıtlar',
     tabRecurring: 'Sabit',
+    search: 'Ara',
+    searchPlaceholder: 'Açıklama, not ya da kategori',
+    searchPlaceholderDesktop: 'Açıklama, not ya da kategori ara',
+    clearSearch: 'Aramayı temizle',
+    all: 'Tümü',
+    categoryChip: 'Kategori',
+    /** ✱ birden çok kategori seçiliyken çip */
+    categoriesChip: (n: number) => `${n} kategori`,
+    /** ✱ kategori filtresi sayfasının düğmesi */
+    done: 'Tamam',
+    clear: 'Temizle',
+    summary: (count: number) => `${count} işlem`,
+    planned: 'Planlanan',
+    plannedNote: (count: number) => `${count} işlem · toplama girmez`,
+    delete: 'Sil',
+    edit: 'Düzenle',
+    moreActions: 'Diğer eylemler',
+    rowHint: 'Enter düzenler · Delete siler',
+    noteIcon: 'Notu var',
+    recurringIcon: 'Sabit işlem',
+    emptyAll: 'Henüz işlem yok.',
+    addFirst: 'İlk işlemini ekle',
+    emptyMonth: (month: string) => `${month} için kayıt yok.`,
+    add: 'İşlem ekle',
+    noResults: 'Bu aramayla eşleşen işlem yok.',
+    clearFilters: 'Filtreleri temizle',
+  },
+  recurring: {
+    add: 'Ekle',
+    monthlyIncome: 'Aylık sabit gelir',
+    monthlyExpense: 'Aylık sabit gider',
+    active: 'Aktif',
+    countLabel: (n: number) => `${n} sabit işlem`,
+    inactive: 'Durdurulan ve bitenler',
+    day: (d: number) => `Ayın ${d}. günü`,
+    next: (date: string) => `Sonraki: ${date}`,
+    paused: 'Durduruldu',
+    ended: (month: string) => `Bitti · ${month}`,
+    switchOn: (name: string) => `${name} aktif`,
+    switchOff: (name: string) => `${name} durduruldu`,
+    empty: 'Kira, maaş, abonelik gibi her ay tekrar edenleri buraya ekle.',
+    emptyAction: 'Sabit işlem ekle',
+    deleteTitle: (name: string) => `'${name}' silinsin mi?`,
+    deleteBody: (kept: number) =>
+      kept > 0
+        ? `Bundan sonra kayıt oluşturulmayacak. Daha önce eklenen ${kept} kayıt korunur.`
+        : 'Bundan sonra kayıt oluşturulmayacak.',
+    /** ✱ */
+    deleteConfirm: 'Sil',
+  },
+  categoryEditor: {
+    newTitle: 'Yeni kategori',
+    editTitle: 'Kategoriyi düzenle',
+    name: 'Ad',
+    color: 'Renk',
+    icon: 'İkon',
+    iconSearch: 'İkon ara',
+    iconSearchPlaceholder: 'İkon ara: kahve, benzin, spor',
+    /** ✱ */
+    typeLocked: (type: string) => `${type} kategorisi · tür sonradan değişmez`,
+    /** ✱ arama sonuçsuz */
+    noIcons: 'Bu aramayla eşleşen ikon yok.',
+  },
+  palette: {
+    gul: 'gül',
+    fusya: 'fuşya',
+    mor: 'mor',
+    civit: 'çivit',
+    mavi: 'mavi',
+    gok: 'gök mavisi',
+    camgobegi: 'camgöbeği',
+    petrol: 'petrol',
+    zeytin: 'zeytin',
+    hardal: 'hardal',
+    amber: 'amber',
+    turuncu: 'turuncu',
+    kahve: 'kahve',
+    arduvaz: 'arduvaz grisi',
   },
   toast: {
     undo: 'Geri al',
     generated: (n: number) => `${n} sabit işlem eklendi`,
+    saved: 'İşlem kaydedildi',
+    updated: 'Değişiklikler kaydedildi',
+    deleted: 'İşlem silindi',
+    recurringDeleted: 'Sabit işlem silindi',
   },
 } as const;

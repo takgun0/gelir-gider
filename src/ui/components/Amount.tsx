@@ -51,7 +51,7 @@ export function Amount({ kurus, type, signed = false, variant = 'inline', tone =
   }
 
   let color = '';
-  if (tone === 'auto') {
+  if (tone === 'auto' && value !== 0) {
     if (type === 'income') color = 'text-income';
     else if (type === 'expense') color = 'text-amount-expense';
     else if (value < 0) color = 'text-expense';

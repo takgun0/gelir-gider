@@ -14,7 +14,7 @@ interface SheetProps {
   onRequestClose: () => void;
   /** Altta sabit alan (ör. Kaydet butonu). */
   footer?: ReactNode;
-  initialFocusRef?: RefObject<HTMLElement | null>;
+  initialFocusRef?: RefObject<HTMLElement | null> | undefined;
   /** Masaüstü genişliği (px) */
   width?: number;
   children: ReactNode;

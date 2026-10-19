@@ -92,3 +92,28 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Context dosyaları (`src/app`) sağlayıcıyla birlikte hook da dışa aktardığı için react-refresh kuralı orada kapalı.
 - Nav ikonları: Özet `layout-dashboard`, İşlemler `list`, Kategoriler `shapes`, Ayarlar `settings-2` (kartlardaki çizimlerle aynı).
 - "+" ve N kısayolu şimdilik boş "Yeni işlem" sayfası açar; form Faz 6'da.
+
+## Faz 6
+- İkon kataloğu `src/ui/icons.ts`'te: her ikon ayrı import, Türkçe ad ve anahtar kelimeler; arama ad, anahtar kelime ve grup adında tr-TR kurallarıyla.
+- Kategori düzenleyici bu fazda yazıldı (işlem formundaki "+ Yeni" için); Kategoriler ekranı Faz 8'de aynı bileşeni kullanacak. Yeni kategoride varsayılan renk kategoriler yüklendikten sonra hesaplanır.
+- Tutar alanı yerel `beforeinput` dinler (React'in sentetik olayı `inputType` taşımaz); iptal edilemeyen olaylar (Android kompozisyonu) `input` olayında `applyRawChange` ile önceki/yeni değer karşılaştırılarak işlenir. Yapıştırma `paste` olayında.
+- Tutar alanının genişliği karakter sayısına göre (`ch`) ayarlanır; ₺ solda, alt çizgi odakta vurgu, hatada expense renginde.
+- Form durumu ilk değerle karşılaştırılarak "kaydedilmemiş değişiklik" anlaşılır; imleç konumu karşılaştırmaya girmez.
+- "Ayın kaçında" kullanıcı elle seçene kadar seçilen tarihin gününü izler.
+- Bitiş seçicide en erken ay ilk tekrarın ayıdır; altta "Bitiş yok" çipi bitişi kaldırır.
+- Sabit işlem düzenleme formunda özet satırı "İlk tekrar" yerine "Sonraki: 1 Kasım" gösterir (işlem zaten başlamış olduğu için); tarih alanı yok.
+- Kaydetten sonra tek bildirim: yeni işlemde "İşlem kaydedildi", düzenlemede "Değişiklikler kaydedildi"; kaçırılan aylar için ayrıca bildirim gösterilmez (tek bildirim kuralı).
+- Kalıcı depolama ilk işlem kaydedilirken (öncesinde hiç işlem yoksa) istenir.
+- Yeni metinler (✱ ile `copy.ts`'te): "Tür" (tür seçicinin adı), "Sabit işlemi sil", "Sil" (sabit işlem silme onayı), "N kategori" (çoklu kategori çipi), "Tamam" (kategori filtresi), "Bu aramayla eşleşen ikon yok.", "Gider kategorisi · tür sonradan değişmez" (kartta vardı), takvimde "Önceki ay"/"Sonraki ay".
+- Sabit işlem silme onayında korunacak kayıt yoksa ikinci cümle "Bundan sonra kayıt oluşturulmayacak." olarak kısalır.
+- Planlanan grubu yalnızca filtre ve arama yokken, bu ay ve gelecek aylarda gösterilir; satır "Kategori · 25 Eki" alt yazısı ve tekrar ikonu taşır, dokununca sabit işlem formu açılır.
+- Planlanan satır varken "… için kayıt yok." mesajı gösterilmez.
+- Arama tüm işlemleri belleğe alıp süzer (200 ms gecikmeli); masaüstünde arama alanı başlıkta hep açık, sorgu varken ay seçici gizlenir.
+- Tür çipi değişince başka türün seçili kategorileri bırakılır; kategori filtresi sayfası seçili türün kategorilerini gösterir.
+- Kaydırarak silme: yatay hareket 10 px'i ve dikey hareketi geçince başlar; 44 px'te "Sil" açık kalır, satır genişliğinin %60'ını geçince doğrudan siler. "Sil" alanı yalnızca satır kaydırılmışken çizilir. Açık satıra dokunmak satırı kapatır.
+- Masaüstünde "⋯" menüsü satırın üzerine gelince ya da odakta görünür; Esc ve dışarı tıklama kapatır. Klavyeyle odaklanan satırın alt yazısı "Enter düzenler · Delete siler" olur (kart).
+- Not ikonunun ipucu yalnızca 640 px ve üstünde, ilk iki satır.
+- Sabit listesinde alt yazı 2 satıra kadar kırılabilir (tutar ve anahtar dar ekranda yer kaplıyor); tutar asla kesilmez.
+- Sıfır tutar renklenmez (₺0,00 nötr).
+- Klavye algılaması yalnızca bir giriş alanı odaktayken çalışır; pencere yeniden boyutlanınca alt çubuk yanlışlıkla gizlenmez.
+- Özet'ten İşlemler'e geçişte router state (`type`, `categoryId`, `day`, `search`) her gezinmede bir kez uygulanır (`location.key`).

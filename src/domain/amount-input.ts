@@ -180,3 +180,27 @@ export function pasteAmount(display: string, selStart: number, selEnd: number, r
   const next = display.slice(0, selStart) + canonical + display.slice(selEnd);
   return normalizeAmountInput(next, selStart + canonical.length);
 }
+
+/**
+ * beforeinput güvenilmez olduğunda (bazı Android klavyeleri) yedek yol: önceki ve yeni
+ * değeri karşılaştırıp eklenen ya da silinen parçayı bulur ve aynı kurallarla uygular.
+ */
+export function applyRawChange(prev: string, next: string): AmountInputState {
+  let start = 0;
+  const maxPrefix = Math.min(prev.length, next.length);
+  while (start < maxPrefix && prev[start] === next[start]) start++;
+  let endPrev = prev.length;
+  let endNext = next.length;
+  while (endPrev > start && endNext > start && prev[endPrev - 1] === next[endNext - 1]) {
+    endPrev--;
+    endNext--;
+  }
+  const removed = prev.slice(start, endPrev);
+  const inserted = next.slice(start, endNext);
+  if (inserted === '') {
+    // Yalnızca binlik nokta silindiyse kullanıcı soldaki rakamı silmek istemiştir.
+    if (removed === '.') return deleteBackward(prev, start + 1, start + 1);
+    return normalizeAmountInput(next, start);
+  }
+  return insertText(prev, start, endPrev, inserted);
+}

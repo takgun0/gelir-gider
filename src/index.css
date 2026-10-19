@@ -90,3 +90,34 @@
     }
   }
 }
+
+/* Hatalı tutar alanı hafifçe yatay sallanır; "hareketi azalt"ta sallanmaz (DESIGN §8). */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shake {
+    animation: shake 320ms ease-in-out;
+  }
+}
+
+/* Uzun listelerde yatay taşmayı gizleyen kaydırılabilir çip satırı */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

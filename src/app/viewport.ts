@@ -21,56 +21,61 @@ export function useIsMobile(): boolean {
 /** Klavye açık kabul edilmesi için görünür alanın en az bu kadar küçülmesi gerekir. */
 const KEYBOARD_THRESHOLD = 120;
 
-/**
- * Ekran klavyesinin kapladığı yükseklik (px); kapalıyken 0. visualViewport ile ölçülür;
- * sabit Kaydet butonu bu kadar yukarı taşınır, alt çubuk gizlenir.
- */
-export function useKeyboardInset(): number {
-  const [inset, setInset] = useState(0);
-  useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-    const update = () => {
-      const covered = window.innerHeight - vv.height - vv.offsetTop;
-      setInset(covered > KEYBOARD_THRESHOLD ? Math.round(covered) : 0);
-    };
-    update();
-    vv.addEventListener('resize', update);
-    vv.addEventListener('scroll', update);
-    return () => {
-      vv.removeEventListener('resize', update);
-      vv.removeEventListener('scroll', update);
-    };
-  }, []);
-  return inset;
+function editableFocused(): boolean {
+  const el = document.activeElement;
+  if (el instanceof HTMLTextAreaElement) return true;
+  if (el instanceof HTMLInputElement) return !['button', 'checkbox', 'radio', 'submit', 'range', 'color', 'file'].includes(el.type);
+  return el instanceof HTMLElement && el.isContentEditable;
+}
+
+interface KeyboardState {
+  open: boolean;
+  /** iOS'ta klavyenin layout viewport üzerinde kapladığı yükseklik (px). */
+  inset: number;
 }
 
 /**
- * Android Chrome'da klavye açılınca layout viewport da küçülür ve inset 0 kalır;
- * bu durumda bir giriş alanının odakta olması ve görünür alanın daralması birlikte
- * klavyenin açık olduğunu gösterir.
+ * Ekran klavyesi: yalnızca bir giriş alanı odaktayken açık sayılır.
+ * - iOS: klavye layout viewport'u küçültmez; visualViewport ile kapladığı alan ölçülür.
+ * - Android Chrome: layout viewport küçülür; odaktaki alan ve daralma birlikte klavye sayılır.
  */
-export function useKeyboardOpen(): boolean {
-  const inset = useKeyboardInset();
-  const [shrunk, setShrunk] = useState(false);
+function useKeyboard(): KeyboardState {
+  const [state, setState] = useState<KeyboardState>({ open: false, inset: 0 });
   useEffect(() => {
-    const baseline = { height: window.innerHeight };
-    const editable = () => {
-      const el = document.activeElement;
-      return el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || (el instanceof HTMLElement && el.isContentEditable);
-    };
+    const vv = window.visualViewport;
+    let baseline = window.innerHeight;
     const update = () => {
-      if (!editable()) baseline.height = Math.max(baseline.height, window.innerHeight);
-      setShrunk(editable() && baseline.height - window.innerHeight > KEYBOARD_THRESHOLD);
+      const editing = editableFocused();
+      if (!editing) baseline = window.innerHeight;
+      const covered = vv ? window.innerHeight - vv.height - vv.offsetTop : 0;
+      const inset = editing && covered > KEYBOARD_THRESHOLD ? Math.round(covered) : 0;
+      const shrunk = editing && baseline - window.innerHeight > KEYBOARD_THRESHOLD;
+      const open = inset > 0 || shrunk;
+      setState((prev) => (prev.open === open && prev.inset === inset ? prev : { open, inset }));
     };
+    const deferred = () => window.setTimeout(update, 0);
+    vv?.addEventListener('resize', update);
+    vv?.addEventListener('scroll', update);
     window.addEventListener('resize', update);
-    document.addEventListener('focusin', update);
-    document.addEventListener('focusout', update);
+    document.addEventListener('focusin', deferred);
+    document.addEventListener('focusout', deferred);
     return () => {
+      vv?.removeEventListener('resize', update);
+      vv?.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
-      document.removeEventListener('focusin', update);
-      document.removeEventListener('focusout', update);
+      document.removeEventListener('focusin', deferred);
+      document.removeEventListener('focusout', deferred);
     };
   }, []);
-  return inset > 0 || shrunk;
+  return state;
+}
+
+/** Sabit Kaydet butonunun klavyenin üstüne taşınacağı yükseklik; kapalıyken 0. */
+export function useKeyboardInset(): number {
+  return useKeyboard().inset;
+}
+
+/** Klavye açıkken alt çubuk gizlenir. */
+export function useKeyboardOpen(): boolean {
+  return useKeyboard().open;
 }
