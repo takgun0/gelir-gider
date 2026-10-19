@@ -50,6 +50,11 @@ export default defineConfig([
     },
   },
   {
+    // Context modülleri sağlayıcıyla birlikte hook da dışa aktarır; HMR bu dosyalarda tam yenileme yapar.
+    files: ['src/app/**/*.tsx'],
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
+  {
     files: ['scripts/**/*.mjs', 'public/**/*.js'],
     extends: [js.configs.recommended],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },

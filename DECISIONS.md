@@ -74,3 +74,21 @@ Küçük uygulama kararları, her biri tek satır (SPEC §2.4). En yenisi en alt
 - Üretilmiş bir kaydın "Geri al"ı sırasında sabit işlem silinmişse ya da dönem doluysa kayıt bağsız geri yazılır.
 - Geri yükleme ayarları (`lastBackupAt`) korur; "Tüm verileri sil" ayarları da siler.
 - ESLint: `_` önekli yıkım değişkenleri (alan atmak için) kullanılmamış sayılmaz.
+
+## Faz 5
+- Sağlayıcılar: Prefs (tema, tutar gizleme) › Today › SelectedMonth › Toast › Router › TxSheet. "Bugün" gece yarısında ve sayfa görünür olunca yenilenir.
+- Seçili ay sınırı okunurken uygulanır (`clampPeriod`); seçim hep bu aydan en fazla 12 ay ileride kalır, geçmişe sınır yok.
+- Yeni metinler (aynı tonda): "Ay seç" (ay-yıl seçici başlığı), "Önceki yıl"/"Sonraki yıl" (seçicide yıl düğmeleri), "Tutar gizli" (gizli tutarın ekran okuyucu karşılığı).
+- Gizli tutar görünürde `₺•••••`, ekran okuyucuda "Tutar gizli"; bileşen dışı metinler (eksen, baloncuk, aria-label) `useAmountText` ile gizlenir.
+- Kahraman tutar masaüstünde 48/52, ₺ ve kuruş 34/52 (mobilde 40/44 ve 28/44).
+- Modal katmanı body'ye portal edilir; açıkken diğer body çocukları `inert` yapılır, Tab döngüsü ve Esc yalnızca en üstteki katmanda çalışır, kapanınca odak açan öğeye döner.
+- Alt sayfa 640 px altında alttan açılır (tutamaç ve başlık alanından aşağı çekince 96 px'te kapanma istenir); 640 px ve üstünde ortada modal (işlem formu 480 px, ay seçici 400 px).
+- Onay diyaloğu açılınca odak "Vazgeç"te; arka plana dokunmak Vazgeç sayılır.
+- Klavye: iOS'ta `visualViewport` ile kapladığı yükseklik ölçülür ve alt sayfa o kadar yukarı alınır; Android'de görünür alan daralması ve odaktaki giriş alanı birlikte klavye sayılır. Klavye açıkken alt çubuk gizlenir.
+- İkon şeridinde (640–1023) etiketler hover/odakta ipucu olarak görünür; "+ İşlem ekle" şeridin en üstünde.
+- Masaüstü kısayolları bir giriş alanında, değiştirici tuşla ya da modal açıkken çalışmaz; "/" İşlemler'e arama isteğiyle gider (alanı Faz 6 açar).
+- Bildirim alanı mobilde alt çubuğun hemen üstünde, 640 px ve üstünde sağ altta; tek `aria-live="polite"` bölgesi.
+- Sabit işlem üretimi `main.tsx`'te ilk render'dan önce (top-level await) ve `visibilitychange` ile çalışır; hata olursa uygulama yine açılır.
+- Context dosyaları (`src/app`) sağlayıcıyla birlikte hook da dışa aktardığı için react-refresh kuralı orada kapalı.
+- Nav ikonları: Özet `layout-dashboard`, İşlemler `list`, Kategoriler `shapes`, Ayarlar `settings-2` (kartlardaki çizimlerle aynı).
+- "+" ve N kısayolu şimdilik boş "Yeni işlem" sayfası açar; form Faz 6'da.

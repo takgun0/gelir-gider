@@ -59,3 +59,34 @@
     outline-offset: 2px;
   }
 }
+
+/* Alt sayfa ve diyalog açılışı; "hareketi azalt" tercihinde kapalı (DESIGN §9). */
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sheet-panel {
+    animation: sheet-up 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 180ms ease-out;
+  }
+
+  .dialog-panel {
+    animation: pop-in 160ms ease-out;
+  }
+
+  @media (min-width: 640px) {
+    .sheet-panel {
+      animation: pop-in 160ms ease-out;
+    }
+  }
+}

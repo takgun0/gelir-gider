@@ -1,18 +1,40 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router';
-import { copy } from '../ui/copy';
-import { Placeholder } from '../ui/pages/Placeholder';
+import { CategoriesPage } from '../ui/pages/CategoriesPage';
+import { SettingsPage } from '../ui/pages/SettingsPage';
+import { SummaryPage } from '../ui/pages/SummaryPage';
+import { TransactionsPage } from '../ui/pages/TransactionsPage';
+import { GenerationWatcher } from './generation';
+import { Layout } from './Layout';
+import { SelectedMonthProvider } from './month';
+import { PrefsProvider } from './prefs';
+import { TodayProvider } from './today';
+import { ToastProvider } from './toast';
+import { TxSheetProvider } from './tx-sheet';
 
-export function App() {
+export function App({ generated }: { generated: number }) {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Placeholder title={copy.nav.summary} />} />
-        <Route path="/islemler" element={<Placeholder title={copy.nav.transactions} />} />
-        <Route path="/islemler/sabit" element={<Placeholder title={copy.nav.transactions} />} />
-        <Route path="/kategoriler" element={<Placeholder title={copy.nav.categories} />} />
-        <Route path="/ayarlar" element={<Placeholder title={copy.nav.settings} />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </HashRouter>
+    <PrefsProvider>
+      <TodayProvider>
+        <SelectedMonthProvider>
+          <ToastProvider>
+            <GenerationWatcher initialCount={generated} />
+            <HashRouter>
+              <TxSheetProvider>
+                <Routes>
+                  <Route element={<Layout />}>
+                    <Route index element={<SummaryPage />} />
+                    <Route path="islemler" element={<TransactionsPage />} />
+                    <Route path="islemler/sabit" element={<TransactionsPage />} />
+                    <Route path="kategoriler" element={<CategoriesPage />} />
+                    <Route path="ayarlar" element={<SettingsPage />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Route>
+                </Routes>
+              </TxSheetProvider>
+            </HashRouter>
+          </ToastProvider>
+        </SelectedMonthProvider>
+      </TodayProvider>
+    </PrefsProvider>
   );
 }
