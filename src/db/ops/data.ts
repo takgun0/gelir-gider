@@ -8,10 +8,11 @@ import type { OpContext } from '../context';
 import { runGeneration } from './generation';
 
 export function readAllData(db: AppDB): Promise<BackupData> {
-  return db.transaction('r', db.categories, db.transactions, db.recurrings, async () => ({
+  return db.transaction('r', [db.categories, db.transactions, db.recurrings, db.debts], async () => ({
     categories: await db.categories.toArray(),
     transactions: await db.transactions.toArray(),
     recurrings: await db.recurrings.toArray(),
+    debts: await db.debts.toArray(),
   }));
 }
 
@@ -46,19 +47,26 @@ export function transactionCount(db: AppDB): Promise<number> {
  * olmadığı için korunur.
  */
 export async function restoreBackup(db: AppDB, backup: BackupFile, ctx: OpContext): Promise<number> {
-  await db.transaction('rw', db.categories, db.transactions, db.recurrings, async () => {
-    await Promise.all([db.categories.clear(), db.transactions.clear(), db.recurrings.clear()]);
+  await db.transaction('rw', [db.categories, db.transactions, db.recurrings, db.debts], async () => {
+    await Promise.all([db.categories.clear(), db.transactions.clear(), db.recurrings.clear(), db.debts.clear()]);
     await db.categories.bulkAdd(backup.data.categories);
     await db.recurrings.bulkAdd(backup.data.recurrings);
     await db.transactions.bulkAdd(backup.data.transactions);
+    await db.debts.bulkAdd(backup.data.debts);
   });
   return runGeneration(db, ctx);
 }
 
 /** "Tüm verileri sil": her şey silinir, varsayılan kategoriler geri gelir. */
 export async function deleteAllData(db: AppDB, ctx: OpContext): Promise<void> {
-  await db.transaction('rw', db.categories, db.transactions, db.recurrings, db.settings, async () => {
-    await Promise.all([db.categories.clear(), db.transactions.clear(), db.recurrings.clear(), db.settings.clear()]);
+  await db.transaction('rw', [db.categories, db.transactions, db.recurrings, db.debts, db.settings], async () => {
+    await Promise.all([
+      db.categories.clear(),
+      db.transactions.clear(),
+      db.recurrings.clear(),
+      db.debts.clear(),
+      db.settings.clear(),
+    ]);
     await db.categories.bulkAdd(defaultCategoryRecords(ctx.now, ctx.newId));
   });
 }

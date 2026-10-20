@@ -91,17 +91,33 @@ interface Recurring {
   updatedAt: number;
 }
 
+// Sonradan eklendi: borç ve alacak (Tasarım §6.8). Gelir-gider toplamlarına girmez.
+interface Debt {
+  id: string;
+  direction: 'payable' | 'receivable'; // payable: ben borçluyum, receivable: bana borçlu
+  amount: number;               // kuruş, > 0
+  person: string;               // 1–40 karakter, kırpılmış
+  date: string;                 // YYYY-MM-DD, kaydın tarihi
+  dueDate?: string;             // YYYY-MM-DD, vade; gelecekte olabilir, date'ten önce olamaz
+  description: string;
+  note: string;
+  paidOn?: string;              // YYYY-MM-DD; varsa kayıt ödendi
+  createdAt: number;
+  updatedAt: number;
+}
+
 interface Settings {
   id: 'app';
   lastBackupAt?: number;        // yalnızca JSON yedeği alınınca güncellenir
 }
 ```
 
-Dexie şeması (sürüm 1):
+Dexie şeması (sürüm 2; sürüm 1'den farkı yalnızca `debts` tablosu):
 ```
 categories:   id, type
 transactions: id, date, [type+date], categoryId, recurringId, &[recurringId+period]
 recurrings:   id, categoryId
+debts:        id, direction
 settings:     id
 ```
 
@@ -341,8 +357,9 @@ Silme:
 #### JSON yedeği
 - Biçim:
   ```json
-  { "app": "para-yonetimi", "formatVersion": 1, "exportedAt": "<ISO-8601>", "data": { "categories": [], "transactions": [], "recurrings": [] } }
+  { "app": "para-yonetimi", "formatVersion": 2, "exportedAt": "<ISO-8601>", "data": { "categories": [], "transactions": [], "recurrings": [], "debts": [] } }
   ```
+- `formatVersion: 1` yedekler (borç alanı yok) geri yüklenirken boş `debts` listesiyle sürüm 2'ye çevrilir.
 - Dosya adı: `para-yonetimi-yedek-YYYY-MM-DD.json` (yerel tarih).
 - Uygulamanın eski adıyla (`"app": "gelir-gider"`) alınmış yedekler de geri yüklenebilir.
 - Yedek başarıyla alınınca `lastBackupAt` güncellenir.

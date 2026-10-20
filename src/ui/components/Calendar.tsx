@@ -1,5 +1,5 @@
 // Takvim (Gereksinimler §6: projede yazılır, yerel <input type="date"> kullanılmaz).
-// Hafta Pazartesi başlar; bugünden sonraki günler seçilemez.
+// Hafta Pazartesi başlar; varsayılan olarak bugünden sonraki günler seçilemez (vade için sınır kaldırılabilir).
 import { ChevronLeft } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 import { useState } from 'react';
@@ -11,16 +11,21 @@ import { Sheet } from './Sheet';
 interface CalendarProps {
   value: DateStr;
   today: DateStr;
+  /** Seçilebilecek en geç gün; null: sınır yok. Varsayılan bugün. */
+  max?: DateStr | null;
+  /** Seçilebilecek en erken gün */
+  min?: DateStr;
+  title?: string;
   onSelect: (date: DateStr) => void;
   onClose: () => void;
 }
 
-export function Calendar({ value, today, onSelect, onClose }: CalendarProps) {
+export function Calendar({ value, today, max = today, min, title = copy.form.pickDate, onSelect, onClose }: CalendarProps) {
   const [period, setPeriod] = useState(() => periodOf(value));
-  const atCurrent = period >= periodOf(today);
+  const atCurrent = max !== null && period >= periodOf(max);
 
   return (
-    <Sheet title={copy.form.pickDate} onRequestClose={onClose} width={400}>
+    <Sheet title={title} onRequestClose={onClose} width={400}>
       <div className="flex flex-col gap-3 pb-2">
         <div className="flex items-center justify-between">
           <button
@@ -62,7 +67,7 @@ export function Calendar({ value, today, onSelect, onClose }: CalendarProps) {
                     {date && (
                       <button
                         type="button"
-                        disabled={date > today}
+                        disabled={(max !== null && date > max) || (min !== undefined && date < min)}
                         aria-pressed={date === value}
                         aria-label={longDate(date, today)}
                         className={`h-11 w-full rounded-xl tabular-nums disabled:opacity-30 ${

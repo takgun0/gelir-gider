@@ -51,12 +51,13 @@ export function RestoreSheet({ fileName, preview, currentCount, onCancel, onConf
               <span className="text-[13px] leading-[18px] font-medium text-text-2">{copy.restore.backupDate(fullDate(preview.exportedDate))}</span>
             </span>
           </div>
-          <dl className="m-0 grid grid-cols-3 gap-2">
+          <dl className={`m-0 grid gap-2 ${counts.debts > 0 ? 'grid-cols-2' : 'grid-cols-3'}`}>
             {(
               [
                 [copy.restore.transactions, counts.transactions],
                 [copy.restore.categories, counts.categories],
                 [copy.restore.recurrings, counts.recurrings],
+                ...(counts.debts > 0 ? ([[copy.debts.restoreCount, counts.debts]] as const) : []),
               ] as const
             ).map(([label, value]) => (
               <div key={label} className="flex flex-col gap-0.5 rounded-xl bg-surface p-3">

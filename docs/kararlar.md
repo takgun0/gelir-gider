@@ -185,3 +185,12 @@ Küçük uygulama kararları, her biri tek satır (Gereksinimler §2). En yenisi
 - Uygulamanın adı "Para Yönetimi" oldu; repo ve yayın yolu `para-yonetimi`. Yedek dosyaları `para-yonetimi-yedek-…json`, CSV `para-yonetimi-islemler-…csv` adını alır; yedekteki `app` alanı `para-yonetimi`.
 - Eski adla (`"app": "gelir-gider"`) alınmış yedekler geri yüklenebilir; doğrulamadan önce yeni kimliğe çevrilir.
 - IndexedDB adı (`gelir-gider`) ve localStorage anahtarları değişmedi: site aynı origin'de (`takgun0.github.io`) kaldığı için mevcut veriler yeni adreste de görünür.
+
+## Sonradan: Borç ve alacak
+- Proje sahibinin isteğiyle borç/alacak takibi eklendi (Tasarım §6.8). Kayıtlar ayrı bir `debts` tablosunda tutulur; gelir-gider toplamlarına, kalan tutara ve grafiklere girmez (borç para hareketi değil, bir yükümlülük kaydıdır). Ödeme ayrıca gelir ya da gider olarak kaydedilmek istenirse İşlemler'den eklenir.
+- Ekran İşlemler'in üçüncü sekmesi oldu; alt gezinmeye yeni öğe eklenmedi.
+- "Ödendi" durumu ayrı bir boolean değil `paidOn` tarihidir; ödendi işaretlemek bugünün tarihini yazar, geri almak alanı siler.
+- Vade isteğe bağlıdır ve ileri tarih olabilir (işlem tarihlerinden farklı olarak); kayıt tarihinden önce olamaz.
+- Dexie sürüm 2 yalnızca `debts` tablosunu ekler; mevcut veriler etkilenmez. Yedek biçimi 2 oldu; sürüm 1 yedekler boş borç listesiyle kabul edilir.
+- "Tüm verileri sil" ve geri yükleme borçları da kapsar; geri yükleme onayında borç sayısı varsa gösterilir.
+- Özet'te yalnızca ödenmemiş kayıt varken "Borç ve alacak" kartı görünür.

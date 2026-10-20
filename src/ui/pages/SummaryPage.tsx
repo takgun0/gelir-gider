@@ -20,7 +20,8 @@ import { EmptyState } from '../components/EmptyState';
 import { MonthSwitcher } from '../components/MonthSwitcher';
 import { Page } from '../components/Page';
 import { copy } from '../copy';
-import { useCategoryMap, useMonthTransactions, useRangeTransactions, useRecurrings, useTransactionCount } from '../data';
+import { useCategoryMap, useDebts, useMonthTransactions, useRangeTransactions, useRecurrings, useTransactionCount } from '../data';
+import { DebtsCard } from '../summary/DebtsCard';
 import { CategoryBreakdown } from '../summary/CategoryBreakdown';
 import { HeroCard, TodayWeekLine, TotalCard, Welcome } from '../summary/cards';
 import { DailyChart } from '../summary/DailyChart';
@@ -45,6 +46,7 @@ export function SummaryPage() {
   const recurrings = useRecurrings();
   const categories = useCategoryMap();
   const totalCount = useTransactionCount();
+  const debts = useDebts();
 
   const view = useMemo(() => {
     if (!monthTxs || !recurrings) return null;
@@ -73,8 +75,8 @@ export function SummaryPage() {
     }
   };
 
-  const loaded = view && categories && totalCount !== undefined && recurrings;
-  const firstRun = loaded && totalCount === 0 && recurrings.length === 0;
+  const loaded = view && categories && totalCount !== undefined && recurrings && debts;
+  const firstRun = loaded && totalCount === 0 && recurrings.length === 0 && debts.length === 0;
   const hasRecords = (monthTxs?.length ?? 0) > 0;
 
   return (
@@ -121,6 +123,8 @@ export function SummaryPage() {
           </div>
 
           {isCurrent && weekTxs && <TodayWeekLine {...todayAndWeek(weekTxs, today)} />}
+
+          <DebtsCard debts={debts} today={today} />
 
           {!isFuture && !hasRecords && (
             <EmptyState

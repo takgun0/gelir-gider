@@ -4,12 +4,14 @@ import { z } from 'zod';
 import { isValidDate, isValidPeriod, periodOf, toDateStr } from './date';
 import { MAX_AMOUNT } from './money';
 import { categoryNameKey } from './text';
-import { ICON_KEYS, PALETTE_KEYS, type Category, type DateStr, type Period, type Recurring, type Transaction } from './types';
+import { PERSON_MAX } from './debts';
+import { ICON_KEYS, PALETTE_KEYS, type Category, type DateStr, type Debt, type Period, type Recurring, type Transaction } from './types';
 
 export const APP_ID = 'para-yonetimi';
 /** Uygulamanın eski adıyla alınmış yedekler de kabul edilir. */
 export const LEGACY_APP_IDS: readonly string[] = ['gelir-gider'];
-export const FORMAT_VERSION = 1;
+/** 2: borç ve alacaklar eklendi. 1 sürümlü yedekler migrate() ile yükseltilir. */
+export const FORMAT_VERSION = 2;
 /** 10 MB */
 export const MAX_FILE_BYTES = 10 * 1024 * 1024;
 /** Tablo başına kayıt sınırı. */
@@ -19,6 +21,7 @@ export interface BackupData {
   categories: Category[];
   transactions: Transaction[];
   recurrings: Recurring[];
+  debts: Debt[];
 }
 
 export interface BackupFile {
@@ -100,6 +103,20 @@ const recurringSchema = z.strictObject({
   updatedAt: timestamp,
 });
 
+const debtSchema = z.strictObject({
+  id,
+  direction: z.enum(['payable', 'receivable']),
+  amount,
+  person: singleLine(PERSON_MAX).refine((s) => s.trim().length >= 1),
+  date: dateStr,
+  dueDate: dateStr.optional(),
+  description: singleLine(80),
+  note: z.string().max(500),
+  paidOn: dateStr.optional(),
+  createdAt: timestamp,
+  updatedAt: timestamp,
+});
+
 const backupSchema = z.strictObject({
   app: z.literal(APP_ID),
   formatVersion: z.literal(FORMAT_VERSION),
@@ -108,6 +125,7 @@ const backupSchema = z.strictObject({
     categories: z.array(categorySchema).max(MAX_RECORDS),
     transactions: z.array(transactionSchema).max(MAX_RECORDS),
     recurrings: z.array(recurringSchema).max(MAX_RECORDS),
+    debts: z.array(debtSchema).max(MAX_RECORDS),
   }),
 });
 
@@ -118,7 +136,7 @@ export type RestoreError = 'invalid' | 'newer' | 'tooLarge';
 export interface RestorePreview {
   /** Yedeğin alındığı yerel gün */
   exportedDate: DateStr;
-  counts: { transactions: number; categories: number; recurrings: number };
+  counts: { transactions: number; categories: number; recurrings: number; debts: number };
   /** İşlemlerin kapsadığı aralık; işlem yoksa null. */
   range: { from: Period; to: Period } | null;
 }
@@ -141,7 +159,13 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
  * sürüm eklendiğinde buraya bir adım eklenir.
  */
 export function migrate(raw: Record<string, unknown>): Record<string, unknown> {
-  return { ...raw, app: APP_ID };
+  let out: Record<string, unknown> = { ...raw, app: APP_ID };
+  // 1 → 2: borç ve alacak tablosu eklendi.
+  if (out.formatVersion === 1) {
+    const data = isPlainObject(out.data) ? out.data : {};
+    out = { ...out, formatVersion: 2, data: { ...data, debts: [] } };
+  }
+  return out;
 }
 
 function hasIntegrity(data: BackupData): boolean {
@@ -149,6 +173,7 @@ function hasIntegrity(data: BackupData): boolean {
   if (!unique(data.categories.map((c) => c.id))) return false;
   if (!unique(data.transactions.map((t) => t.id))) return false;
   if (!unique(data.recurrings.map((r) => r.id))) return false;
+  if (!unique(data.debts.map((d) => d.id))) return false;
 
   const categories = new Map(data.categories.map((c) => [c.id, c]));
   for (const type of ['income', 'expense'] as const) {
@@ -174,7 +199,7 @@ function hasIntegrity(data: BackupData): boolean {
 }
 
 function previewOf(backup: BackupFile): RestorePreview {
-  const { categories, transactions, recurrings } = backup.data;
+  const { categories, transactions, recurrings, debts } = backup.data;
   let from: Period | null = null;
   let to: Period | null = null;
   for (const t of transactions) {
@@ -184,7 +209,7 @@ function previewOf(backup: BackupFile): RestorePreview {
   }
   return {
     exportedDate: toDateStr(new Date(backup.exportedAt)),
-    counts: { transactions: transactions.length, categories: categories.length, recurrings: recurrings.length },
+    counts: { transactions: transactions.length, categories: categories.length, recurrings: recurrings.length, debts: debts.length },
     range: from !== null && to !== null ? { from, to } : null,
   };
 }

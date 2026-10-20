@@ -1,7 +1,7 @@
 // Dexie şeması (Gereksinimler §4). Şema yalnızca yeni bir sürüm ve upgrade() ile değişir.
 import Dexie, { type EntityTable } from 'dexie';
 import { defaultCategoryRecords } from '../domain/categories';
-import type { Category, Recurring, Settings, Transaction } from '../domain/types';
+import type { Category, Debt, Recurring, Settings, Transaction } from '../domain/types';
 
 // Uygulamanın eski adı; mevcut verilerin kaybolmaması için veritabanı adı değişmez.
 export const DB_NAME = 'gelir-gider';
@@ -11,6 +11,7 @@ export class AppDB extends Dexie {
   transactions!: EntityTable<Transaction, 'id'>;
   recurrings!: EntityTable<Recurring, 'id'>;
   settings!: EntityTable<Settings, 'id'>;
+  debts!: EntityTable<Debt, 'id'>;
 
   constructor(name: string = DB_NAME) {
     super(name);
@@ -21,6 +22,10 @@ export class AppDB extends Dexie {
       transactions: 'id, date, [type+date], categoryId, recurringId, &[recurringId+period]',
       recurrings: 'id, categoryId',
       settings: 'id',
+    });
+    // Sürüm 2: borç ve alacaklar. Mevcut tablolar aynen kalır, veri taşıması gerekmez.
+    this.version(2).stores({
+      debts: 'id, direction',
     });
     // Varsayılan kategoriler yalnızca ilk açılışta bir kez yüklenir.
     this.on('populate', (tx) => {

@@ -102,3 +102,31 @@ export interface Settings {
   /** Yalnızca JSON yedeği alınınca güncellenir. */
   lastBackupAt?: number;
 }
+
+/** Borç: başkasına ödeyeceğin; alacak: başkasının sana ödeyeceği. */
+export type DebtDirection = 'payable' | 'receivable';
+
+/**
+ * Borç ve alacaklar gelir-gider toplamlarına girmez; ayrı izlenir. Ödenince
+ * `paidOn` yazılır, açıkken alan hiç yazılmaz.
+ */
+export interface Debt {
+  id: string;
+  direction: DebtDirection;
+  /** Kuruş, 1 ≤ amount ≤ 99_999_999_999 */
+  amount: number;
+  /** Karşı taraf: 1–40 karakter */
+  person: string;
+  /** Borcun doğduğu gün, en fazla bugün */
+  date: DateStr;
+  /** Son ödeme günü (isteğe bağlı; ileri tarih olabilir) */
+  dueDate?: DateStr;
+  /** 0–80 karakter, tek satır */
+  description: string;
+  /** 0–500 karakter */
+  note: string;
+  /** Ödendiği gün; açıkken yazılmaz */
+  paidOn?: DateStr;
+  createdAt: number;
+  updatedAt: number;
+}

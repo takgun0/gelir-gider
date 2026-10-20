@@ -1,5 +1,6 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router';
 import { CategoriesPage } from '../ui/pages/CategoriesPage';
+import { DebtsPage } from '../ui/pages/DebtsPage';
 import { SettingsPage } from '../ui/pages/SettingsPage';
 import { SummaryPage } from '../ui/pages/SummaryPage';
 import { RecurringPage } from '../ui/pages/RecurringPage';
@@ -30,6 +31,7 @@ export function App({ generated }: { generated: number }) {
                       <Route index element={<SummaryPage />} />
                       <Route path="islemler" element={<TransactionsPage />} />
                       <Route path="islemler/sabit" element={<RecurringPage />} />
+                      <Route path="islemler/borclar" element={<DebtsPage />} />
                       <Route path="kategoriler" element={<CategoriesPage />} />
                       <Route path="ayarlar" element={<SettingsPage />} />
                       <Route path="*" element={<Navigate to="/" replace />} />

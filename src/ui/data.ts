@@ -2,7 +2,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useMemo } from 'react';
 import { periodRange } from '../domain/date';
-import type { Category, Period, Recurring, Transaction } from '../domain/types';
+import type { Category, Debt, Period, Recurring, Transaction } from '../domain/types';
 import { db } from '../db/db';
 
 export function useCategories(): Category[] | undefined {
@@ -37,4 +37,8 @@ export function useRecurrings(): Recurring[] | undefined {
 /** start ve end dahil tarih aralığındaki işlemler (ör. ay sınırını aşan hafta, son 6 ay). */
 export function useRangeTransactions(start: string, end: string): Transaction[] | undefined {
   return useLiveQuery(() => db.transactions.where('date').between(start, end, true, true).toArray(), [start, end]);
+}
+
+export function useDebts(): Debt[] | undefined {
+  return useLiveQuery(() => db.debts.toArray(), []);
 }

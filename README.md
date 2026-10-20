@@ -26,6 +26,7 @@ Diğer görüntüler: [docs/ekran-goruntuleri](docs/ekran-goruntuleri).
   - Arama ve tür/kategori filtreleri
   - Kaydırarak silme ve "Geri al"
 - **Sabit işlemler:** Kira, maaş, abonelik gibi her ay tekrar eden kayıtlar kendiliğinden eklenir. Durdurulabilir ve bitiş ayı verilebilir.
+- **Borç ve alacak:** Kime borçlu olduğunu ve kimden alacağın olduğunu, isteğe bağlı vadeyle kaydet; ödenince tek dokunuşla işaretle. Vadesi geçenler Özet'te uyarılır. Gelir-gider toplamlarını etkilemez.
 - **Kategoriler:** Ad, renk ve ikonla kendi kategorilerini oluşturabilirsin. Kategori bazında aylık toplamlar görünür.
 - **Yedek:**
   - JSON yedeği alma ve yedekten geri yükleme
@@ -102,7 +103,7 @@ npm run preview    # derlemeyi sunar: http://localhost:4173/para-yonetimi/
 
 ```
 src/
-  domain/   saf iş kuralları: para, tarih, sabit işlemler, istatistik, yedek, CSV
+  domain/   saf iş kuralları: para, tarih, sabit işlemler, borçlar, istatistik, yedek, CSV
   db/       Dexie şeması ve transaction'lı veritabanı işlemleri
   ui/       bileşenler, ekranlar, ikon kataloğu, arayüz metinleri (copy.ts)
   app/      yönlendirme, tema, seçili ay, bildirimler, PWA, tanıtım

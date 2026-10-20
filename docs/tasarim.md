@@ -259,6 +259,18 @@ Sonradan eklendi (proje sahibinin isteği). Siteye ilk kez girene birkaç adımd
 - ← → ile adımlar arasında gezilir, Esc ve "Geç" kapatır. Kapandıktan sonra bir daha kendiliğinden açılmaz.
 - Ayarlar › Hakkında'da "Tanıtımı yeniden göster" satırıyla yeniden açılır.
 
+### 6.8 Borç ve alacak (İşlemler › Borçlar)
+Sonradan eklendi (proje sahibinin isteği). Başkasına olan borçlar ve başkasından alacaklar tutulur, ödenince işaretlenir. Gelir-gider toplamlarına ve grafiklere girmez.
+
+- İşlemler'in üçüncü sekmesi: Tümü · Sabit · Borçlar. Başlıkta "+ Ekle".
+- Üstte özet kartı: Borçlarım (expense rengi) ve Alacaklarım (income rengi); yalnızca ödenmemiş kayıtlar toplanır.
+- Bölümler: Borçlarım, Alacaklarım (vadesi gelenler önce, sonra vadesizler), Ödenenler (soluk, en son ödenen üstte).
+- Satır: kişinin baş harfi (borçta expense-soft, alacakta income-soft daire), kişi adı, alt yazı (açıklama · vade durumu), tutar ve sağda yuvarlak onay düğmesi. Daireye dokunmak kaydı bugünün tarihiyle ödendi yapar ya da geri açar; "Geri al" bildirimi çıkar. Satırın kendisine dokunmak düzenler.
+- Vade durumu: "Vade: 5 Kas", "Bugün ödenmeli", "Vadesi geçti · 3 gün" (son ikisi expense rengi), ödenenlerde "Ödendi · 20 Eki".
+- Form (alttan sayfa / modal): Borcum | Alacağım seçici ve açıklama satırı, tutar, kişi (daha önce yazılan adlar öneri olarak), tarih, vade ("Vade yok" ya da takvim; ileri tarih seçilebilir, kayıt tarihinden önce olamaz), açıklama, not. Düzenlemede "Ödendi olarak işaretle" / "Ödenmedi olarak işaretle" ve "Bu kaydı sil".
+- Boş durum: el sıkışma ikonu, "Kime borcun var, kimden alacağın var? Buraya ekle, ödenince işaretle." ve "Borç ya da alacak ekle".
+- Özet'te ödenmemiş kayıt varsa "Borç ve alacak" kartı: iki toplam, kayıt sayıları, vadesi geçen varsa uyarı satırı ve "Tümü" bağlantısı.
+
 ## 7. Sabit işlem kuralları
 Bu kurallar arayüzde görünen her sabit işlem davranışını belirler; tasarımcı ve geliştirici aynı tabloya bakmalı.
 

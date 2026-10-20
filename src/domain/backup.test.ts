@@ -56,7 +56,22 @@ function fixture(): BackupData {
     { id: ID.tx2, type: 'income', amount: 1800000, categoryId: ID.maas, date: '2025-03-01', description: 'Maaş', note: '', recurringId: ID.rec, period: '2025-03', createdAt: 1, updatedAt: 1 },
     { id: ID.tx3, type: 'income', amount: 1800000, categoryId: ID.maas, date: '2026-10-01', description: 'Maaş', note: '', recurringId: ID.rec, period: '2026-10', createdAt: 1, updatedAt: 1 },
   ];
-  return { categories, transactions, recurrings };
+  const debts = [
+    {
+      id: uuid(9),
+      direction: 'payable' as const,
+      amount: 50000,
+      person: 'Ahmet',
+      date: '2026-10-01',
+      dueDate: '2026-11-15',
+      description: 'Borç',
+      note: '',
+      createdAt: 1,
+      updatedAt: 1,
+    },
+    { id: uuid(10), direction: 'receivable' as const, amount: 12000, person: 'Zeynep', date: '2026-09-20', description: '', note: '', paidOn: '2026-10-02', createdAt: 1, updatedAt: 2 },
+  ];
+  return { categories, transactions, recurrings, debts };
 }
 
 const now = new Date(2026, 9, 6, 14, 30);
@@ -81,7 +96,7 @@ describe('yedek oluşturma', () => {
   it('biçim ve dosya adı', () => {
     const file = buildBackup(fixture(), now);
     expect(file.app).toBe('para-yonetimi');
-    expect(file.formatVersion).toBe(1);
+    expect(file.formatVersion).toBe(2);
     expect(file.exportedAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
     expect(backupFileName('2026-10-18')).toBe('para-yonetimi-yedek-2026-10-18.json');
   });
@@ -99,6 +114,25 @@ describe('kabul edilenler', () => {
     expect(plain && 'period' in plain).toBe(false);
   });
 
+  it('biçim 1 (borçlar öncesi) yedek kabul edilir, borç listesi boş gelir', () => {
+    const file = fileOf() as { data: Record<string, unknown> } & Record<string, unknown>;
+    file.formatVersion = 1;
+    delete file.data.debts;
+    const result = parseObj(file);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.backup.data.debts).toEqual([]);
+      expect(result.backup.formatVersion).toBe(2);
+    }
+  });
+
+  it('geçersiz borç kaydı reddedilir', () => {
+    expect(mutate((f) => (f.data.debts[0]!.person = '  '))).toEqual(rejected);
+    expect(mutate((f) => ((f.data.debts[0] as unknown as Record<string, unknown>).direction = 'gift'))).toEqual(rejected);
+    expect(mutate((f) => (f.data.debts[1]!.id = f.data.debts[0]!.id))).toEqual(rejected);
+    expect(mutate((f) => (f.data.debts[0]!.dueDate = '2026-02-30'))).toEqual(rejected);
+  });
+
   it('eski adla (gelir-gider) alınmış yedek de kabul edilir', () => {
     const text = serializeBackup(buildBackup(fixture(), now)).replace('"app": "para-yonetimi"', '"app": "gelir-gider"');
     const result = parseBackup(text);
@@ -110,13 +144,13 @@ describe('kabul edilenler', () => {
     const result = parseBackup(serializeBackup(buildBackup(fixture(), now)));
     expect(result.ok && result.preview).toEqual({
       exportedDate: '2026-10-06',
-      counts: { transactions: 3, categories: 4, recurrings: 1 },
+      counts: { transactions: 3, categories: 4, recurrings: 1, debts: 2 },
       range: { from: '2025-03', to: '2026-10' },
     });
   });
 
   it('işlemsiz yedek', () => {
-    const data = { ...fixture(), transactions: [], recurrings: [] };
+    const data = { ...fixture(), transactions: [], recurrings: [], debts: [] };
     const result = parseObj(fileOf(data));
     expect(result.ok && result.preview.range).toBeNull();
   });
@@ -131,7 +165,7 @@ describe('reddedilenler', () => {
   });
 
   it('daha yeni formatVersion ayrı hata verir', () => {
-    expect(mutate((f) => (f.formatVersion = 2))).toEqual({ ok: false, error: 'newer' });
+    expect(mutate((f) => (f.formatVersion = 3))).toEqual({ ok: false, error: 'newer' });
     expect(mutate((f) => (f.formatVersion = 0))).toEqual(rejected);
     expect(mutate((f) => (f.formatVersion = '1'))).toEqual(rejected);
   });
